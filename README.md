@@ -6,4 +6,5 @@ Jonathan Nguyen
 Nate Agcaoili
 Elias Binchamo
 Elijah Horowitz
+Hayden Spinos
 
