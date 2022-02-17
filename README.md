@@ -4,3 +4,4 @@ A web application that will assist graduate students in visualizing their progre
 Members:
 Jonathan Nguyen
 Nate Agcaoili
+Elias Binchamo
