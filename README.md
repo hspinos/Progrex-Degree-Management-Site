@@ -5,3 +5,5 @@ Members:
 Jonathan Nguyen
 Nate Agcaoili
 Elias Binchamo
+Elijah Horowitz
+
