@@ -37,7 +37,22 @@ exports.create_user = async function (req, res) {
 }
 
 exports.user_login = function (req, res) {
-  console.log("username: " + req.body.username);
-  console.log("password: " + req.body.password);
-  res.sendStatus(200);
+  User.findOne({ username: req.body.username }, async function (err, user) {
+    if (err) return console.error(err);
+    try {
+      let result = await bcrypt.compare(req.body.password, user.password);
+      console.log(user);
+      console.log(`This is the hash: ${user.password}`);
+      req.session = user;
+      res
+        .json({ message: 'success!' })
+        .status(200)
+        .send();
+    } catch (err) {
+      console.error(err);
+      res
+        .status(401)
+        .send();
+    }
+  });
 }

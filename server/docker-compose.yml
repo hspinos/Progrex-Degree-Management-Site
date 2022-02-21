@@ -1,8 +1,14 @@
 version: "3.9"
 services:
+  redis:
+    image: redis:6.2.6-alpine
+    container_name: cache
+    expose:
+      - 6379
   mongo:
     image: mongo
     restart: always
+    container_name: mongo
     ports:
       - "27017:27017"
     environment:
@@ -13,9 +19,10 @@ services:
       - ./mongo-volume:/data/db
   app:
     image: "wthunder/degreeworkspp"
+    container_name: app
     restart: always
     volumes:
-      - .:/app
+      - .:/usr/src/app
       - /app/node_modules
     build: .
     ports:
@@ -24,5 +31,7 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: degreeworkspp
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017
-    links:
-      - mongo
+      REDIS_URL: redis://cache
+    depends_on:
+      - "mongo"
+      - "redis"

@@ -39,6 +39,7 @@ function Signup() {
               type="text"
               id="username"
               name="username"
+              required
               onChange={e => { setUsername(e.target.value) }}
             />
             <label className="text-lg font-semibold">Password</label>
@@ -47,12 +48,14 @@ function Signup() {
               type="password"
               id="password"
               name="password"
+              required
               onChange={e => { setPassword(e.target.value) }} />
             <label className="text-lg font-semibold">Verify Password</label>
             <input
               className="rounded-sm px-3 py-3 mb-4 text-black"
               type="password"
               id="passwordCheck"
+              required
               onChange={e => { setCheckPass(e.target.value) }}
               name="passwordCheck" />
             <input type="submit" value="Signup" className="bg-emerald-600 px-2 py-1 mt-2 rounded-sm text-white" />
