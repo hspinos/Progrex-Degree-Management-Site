@@ -2,7 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 const redis = require('redis');
-const connectRedis = require('connect-redis');
+const redisStore = require('connect-redis')(session);
+let client = redis.createClient({
+  url: `${process.env.REDIS_URL}:6379`
+});
 const mongoose = require('mongoose');
 
 let mongoDB = "mongodb://root:degreeworkspp@mongo:27017";
@@ -10,20 +13,7 @@ let app = express();
 
 const PORT = 8080;
 
-const RedisStore = connectRedis(session);
-const redisClient = redis.createClient({
-  host: process.env.REDIS_URL,
-  port: 6379
-});
-
-redisClient.on('error', () => {
-  console.log("Could not connect to redis: " + err);
-});
-
-redisClient.on('connect', () => {
-  console.log("Connected to redis successfully!");
-});
-
+client.connect();
 mongoose.connect(mongoDB, { useUnifiedTopology: true });
 let db = mongoose.connection;
 
@@ -37,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use(session({
-  store: new RedisStore({ client: redisClient }),
+  store: new redisStore({ host: process.env.REDIS_URL, port: 6379, client: client }),
   secret: 'partycat',
   resave: false,
   saveUninitialized: false,

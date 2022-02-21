@@ -43,7 +43,7 @@ exports.user_login = function (req, res) {
       let result = await bcrypt.compare(req.body.password, user.password);
       console.log(user);
       console.log(`This is the hash: ${user.password}`);
-      req.session = user;
+      req.session.user = user;
       res
         .json({ message: 'success!' })
         .status(200)
