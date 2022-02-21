@@ -32,15 +32,19 @@ exports.create_user = async function (req, res) {
       .send();
   } catch (err) {
     console.error(err);
-    res.sendStatus(401);
+    res
+      .status(401)
+      .send({ message: "Password does not match with given account." });
   }
 }
 
+// need to utilize the result from the compare
 exports.user_login = function (req, res) {
   User.findOne({ username: req.body.username }, async function (err, user) {
     if (err) return console.error(err);
     try {
       let result = await bcrypt.compare(req.body.password, user.password);
+      if (result == false) throw Error('Password does not match');
       console.log(user);
       console.log(`This is the hash: ${user.password}`);
       req.session.user = user;

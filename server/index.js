@@ -1,12 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
+
 const session = require('express-session');
 const redis = require('redis');
 const redisStore = require('connect-redis')(session);
 let client = redis.createClient({
   url: `${process.env.REDIS_URL}:6379`
 });
-const mongoose = require('mongoose');
 
 let mongoDB = "mongodb://root:degreeworkspp@mongo:27017";
 let app = express();
