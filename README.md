@@ -52,6 +52,7 @@ Refer to the MongoDB documentation for additional query methods.
 The following is an example of how to potentially use the Mongo shell: https://docs.mongodb.com/mongodb-shell/run-commands/
 
 ## Starting the client-side
+This will have to be run a different terminal.
 In order to start the client side, make sure that you have node and npm installed first. 
 If you don't already have it installed, here's a link to the node.js site: https://nodejs.org/en/download/
 
