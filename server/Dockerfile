@@ -13,7 +13,8 @@ RUN apk add python3 make alpine-sdk
 COPY package*.json ./
 
 RUN npm install
+RUN npm install -g nodemon
 
 COPY . .
 
-CMD ["node", "index.js"]
+CMD ["npm", "start"]
