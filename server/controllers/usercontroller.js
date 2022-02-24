@@ -24,17 +24,22 @@ exports.create_user = async function (req, res) {
   try {
     console.log("create user endpoint called");
     let hash = await bcrypt.hash(req.body.password, saltRounds);
-    const user = new User({ username: req.body.username, password: hash });
+    const user = new User({
+      username: req.body.username,
+      password: hash,
+      fName: req.body.fName,
+      lName: req.body.lName
+    });
     await user.save();
     res
       .json(user)
       .status(200)
       .send();
-  } catch (err) {
+  } catch (err) {       // User most likely already exists
     console.error(err);
     res
       .status(401)
-      .send({ message: "Password does not match with given account." });
+      .send();
   }
 }
 
@@ -45,9 +50,7 @@ exports.user_login = function (req, res) {
     try {
       let result = await bcrypt.compare(req.body.password, user.password);
       if (result == false) throw Error('Password does not match');
-      console.log(user);
-      console.log(`This is the hash: ${user.password}`);
-      req.session.user = user;
+      req.session.user = { id: user._id };
       res
         .json({ message: 'success!' })
         .status(200)
