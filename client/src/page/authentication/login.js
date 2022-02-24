@@ -20,8 +20,8 @@ function Login() {
   }
 
   return (
-    <div className="Login">
-      <div className="flex justify-center">
+    <div className="h-full flex justify-center">
+      <div className="flex items-center">
         <div className="border-2 items-center p-4 rounded-sm w-96">
           <h1 className="text-3xl text-center font-semibold mb-4">
             Login
