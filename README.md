@@ -33,6 +33,9 @@ docker compose up                     # Now the MongoDB, Redis, and DegreeWorksP
 
 ## Accessing the MongoDB container to check the database
 Before you begin, make sure that your containers are running
+
+* Note because your terminal is taken up by the running containers, you 
+will have to connect to the mongo container through a different terminal *
 ```
 docker exec -it mongo bash            # You should have access to the container's shell
 mongo admin -u root -p degreeworkspp  # This will give you access to the database's contents
