@@ -8,6 +8,7 @@ import {
 import Layout from './components/layout';
 import Signup from './page/authentication/signup';
 import Login from './page/authentication/login';
+import UserDash from './page/dashboards/userdash';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Switch>
             <Route path="/login"><Login /></Route>
             <Route path="/signup"><Signup /></Route>
+            <Route path="/userdash"><UserDash /></Route>
           </Switch>
         </Layout>
       </div>

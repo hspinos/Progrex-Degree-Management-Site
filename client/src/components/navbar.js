@@ -3,7 +3,7 @@ import React from 'react';
 function Navbar() {
   return (
     <div className="Navbar">
-      <nav className="flex items-center justify-between py-2 px-2">
+      <nav className="flex items-center justify-between py-2 px-2 h-16">
         <div className="flex items-center space-x-4">
           <div>
             <div className="flex items-center flex-shrink-0">

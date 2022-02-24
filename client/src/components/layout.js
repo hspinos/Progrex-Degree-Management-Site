@@ -4,8 +4,8 @@ import Navbar from '../components/navbar';
 
 function Layout({ children }) {
   return (
-    <div className="Layout bg-black">
-      <Navbar />
+    <div className="Layout bg-black h-screen grid">
+      <Navbar className="h-20" />
       <main>{children}</main>
     </div>
   )
