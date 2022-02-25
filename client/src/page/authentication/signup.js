@@ -12,7 +12,7 @@ function Signup() {
   async function handleSignup(e) {
     e.preventDefault();
     try {
-      if (password == checkPass) {
+      if (password === checkPass) {
         let res = await axios.post(`${process.env.REACT_APP_URL}/user/create`, {
           username: username,
           password: password,
@@ -30,7 +30,7 @@ function Signup() {
   return (
     <div className="h-full flex justify-center">
       <div className="flex items-center">
-        <div className="border-2 items-center w-fit px-4 py-4 rounded-sm w-96">
+        <div className="border-2 items-center w-fit p-4 rounded-sm">
           <h1 className="text-3xl text-center font-semibold mb-4">
             Signup
           </h1>

@@ -43,21 +43,29 @@ exports.create_user = async function (req, res) {
   }
 }
 
-// need to utilize the result from the compare
 exports.user_login = function (req, res) {
   User.findOne({ username: req.body.username }, async function (err, user) {
-    if (err) return console.error(err);
     try {
+      if (err) return console.error(err);
+
+      // The following method checks if passwords match
       let result = await bcrypt.compare(req.body.password, user.password);
-      if (result == false) throw Error('Password does not match');
-      req.session.user = { id: user._id };
-      res
-        .json({ message: 'success!' })
-        .status(200)
-        .send();
-    } catch (err) {
+
+      // Checks if password matches; If not, throw error
+      if (result == false) throw new Error('Password does not match');
+
+      // Set request session object to user._id
+      req.session.user = user._id;
+
+      /**
+       * Start building out response object
+       * add a cookie to it
+       * send it with status 200
+       */
+      res.cookie('userCookie', user.fName, { maxAge: 1000 * 60 * 10 }).sendStatus(200);
+    } catch (err) {     // If there are any errors, catch, print, and send 401
       console.error(err);
-      res
+      return res
         .status(401)
         .send();
     }
