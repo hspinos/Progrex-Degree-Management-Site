@@ -9,7 +9,7 @@ let client = redis.createClient({
   url: `${process.env.REDIS_URL}:6379`
 });
 
-let mongoDB = "mongodb://root:degreeworkspp@mongo:27017";
+let mongoDB = `mongodb://${process.env.ME_CONFIG_MONGODB_ADMINUSERNAME}:${process.env.ME_CONFIG_MONGODB_ADMINPASSWORD}@${process.env.ME_CONFIG_MONGO_HOST}:27017`;
 let app = express();
 
 const PORT = 8080;
