@@ -9,8 +9,9 @@ function Login() {
   async function handleLoginClick(e) {
     e.preventDefault();
     try {
+      console.log(process.env.REACT_APP_URL);
       // eslint-disable-next-line
-      let res = await axios.post(`/user/login`, {
+      let res = await axios.post(`${process.env.REACT_APP_URL}/user/login`, {
         username: username,
         password: password
       });

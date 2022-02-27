@@ -1,6 +1,7 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 
+// eslint-disable-next-line
 function Navbar() {
   return (
     <div className="Navbar">
@@ -12,14 +13,6 @@ function Navbar() {
             </div>
           </div>
           <div className="flex space-x-4">
-            <a href="/">Home</a>
-            {
-              /**
-               * 
-                <a href="#Placeholder1">Placeholder</a>
-                <a href="#Placeholder2">Placeholder</a>
-               */
-            }
           </div>
         </div>
         {
