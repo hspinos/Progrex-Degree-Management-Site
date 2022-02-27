@@ -9,6 +9,7 @@ function Login() {
   async function handleLoginClick(e) {
     e.preventDefault();
     try {
+      // eslint-disable-next-line
       let res = await axios.post(`/user/login`, {
         username: username,
         password: password
