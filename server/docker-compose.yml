@@ -18,7 +18,7 @@ services:
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
       - ./mongo-volume:/data/db
   app:
-    image: "degreeworkspp"
+    image: "ProgREX"
     container_name: app
     restart: always
     build: .
