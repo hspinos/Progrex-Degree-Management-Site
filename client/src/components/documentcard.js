@@ -3,6 +3,10 @@ import React from 'react';
 function DocumentCard(props) {
     var isSigned;
 
+    function handleCardClick(){
+        document.getElementById('modalTitle').textContent=props.name;
+    }
+
     switch(props.isSigned) {
         case true:
            isSigned = <span className="inline-block bg-green-400 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Completed</span>;
@@ -12,7 +16,7 @@ function DocumentCard(props) {
     }
 
     return (
-        <div className="max-w-sm rounded overflow-hidden shadow-lg rounded-md bg-stone-800">
+        <div onClick={handleCardClick} data-modal-toggle="docModal" className="max-w-sm rounded overflow-hidden shadow-lg rounded-md bg-stone-800">
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{props.name}</div>
                 <p className="text-white text-base">
