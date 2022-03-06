@@ -16,8 +16,8 @@ function Navbar() {
     route:"userdash",
     id:3,
   },{
-    name:"Nav btn",
-    route:"home",
+    name:"Documents",
+    route:"userdocuments",
     id:4,
   },{
     name:"Navbtn",
@@ -30,23 +30,23 @@ function Navbar() {
   let nav = menuItems.map((item)=>{
       return (
         <li key={item.id}>
-          <a href={item.route}> {item.name}</a>
+          <a href={item.route} class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">{item.name}</a>
         </li>)
     })
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-stone-800">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
       <a href="#" className="flex items-center">
-          <img src="/docs/images/logo.svg" className="mr-3 h-6 sm:h-10" alt="ProgREX Logo" />
+          <img src="assets/vectors/logo.svg" className="mr-3 h-6 sm:h-10" alt="ProgREX Logo" />
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">ProgREX</span>
       </a>
       <div className="flex items-center md:order-2">
         {
           Cookies.get('userCookie') ?
           <div>
-            <button type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" type="button" data-dropdown-toggle="dropdown">
+            <button type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
               <span className="sr-only">Open user menu</span>
-              <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo"/>
+              <img className="w-8 h-8 rounded-full" src="assets/profile_pics/blank-pfp.png" alt="user photo"/>
             </button>
 
             <div className="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-stone-800 dark:divide-gray-600" id="dropdown">
