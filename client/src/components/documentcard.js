@@ -5,6 +5,7 @@ function DocumentCard(props) {
 
     function handleCardClick(){
         document.getElementById('modalTitle').textContent=props.name;
+        document.getElementById('modalBody').textContent=props.desc;
     }
 
     switch(props.isSigned) {
@@ -12,7 +13,7 @@ function DocumentCard(props) {
            isSigned = <span className="inline-block bg-green-400 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Completed</span>;
            break;
         case false:
-            isSigned = <a className="bg-red-500 p-1 w-20 rounded-sm text-center" href="/userdocuments">Sign Now</a>
+            isSigned = <span className="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Action Needed</span>;
     }
 
     return (
