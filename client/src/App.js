@@ -13,7 +13,7 @@ import UserDash from './page/dashboards/userdash';
 function App() {
   return (
     <Router>
-      <div className="App bg-black text-white h-screen">
+      <div className="App bg-neutral-900 text-white h-screen">
         <header className="App-header">
         </header>
         <Layout>
