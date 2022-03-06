@@ -25,11 +25,10 @@ function Navbar() {
     id:5,
   }]
 
-  
-  
   let nav = menuItems.map((item)=>{
       return <a key= {item.id} href={item.route}> {item.name}</a>
     })
+
   return (
     <div className="Navbar">
       <nav className="flex items-center justify-between py-2 px-2 h-16">
