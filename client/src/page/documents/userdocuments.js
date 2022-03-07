@@ -44,12 +44,14 @@ function UserDocuments() {
     })  
 
     return (
-        <div>
+        <div className="h-full flex items-center justify-center">
+          <div className="w-9/12">
             <div className="mt-8 grid grid-cols-4 gap-10">
                 {docs}
             </div>
             <DocModalUnsigned />
             <DocModalSigned />
+            </div>
         </div>
     );
 }
