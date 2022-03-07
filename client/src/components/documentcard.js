@@ -1,38 +1,44 @@
 import React from 'react';
+import Cookies from 'js-cookie';
 
 function DocumentCard(props) {
-    var isSigned;
-    var modalFooter;
 
-    function handleCardClick(){
-        document.getElementById('modalTitle').textContent=props.name;
-        document.getElementById('modalBody').textContent=props.desc;
-        switch(props.isSigned) {
-            case true:
-                document.getElementById('modalFooter').innerHTML = 
-                    <div>
-                        <p>Date signed:</p>
-                    </div>;
-               break;
-            case false:
-                document.getElementById('modalFooter').innerHTML = 
-                    <div>
-                        <button data-modal-toggle="docModal" type="button" className="text-white bg-red-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-blue-800">Sign Now</button>
-                        <button data-modal-toggle="docModal" type="button" className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600">Cancel</button>
-                    </div>;
+    var isSigned;
+    var modal;
+
+    let docData = [{
+        id: 1,
+        url: 'https://demo.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=a438791b-188d-4644-921f-ffb1e3c27a76&env=demo&acct=34cdbed2-d10f-48e3-9c43-2f2058f7b861&v=2'
+    }]
+
+    function handleCardClick() {
+        if (props.isSigned) {
+            document.getElementById('signedModalTitle').textContent=props.name;
+            document.getElementById('signedModalBody').textContent=props.desc;
+        } else {
+            document.getElementById('unsignedModalTitle').textContent=props.name;
+            document.getElementById('unsignedModalBody').textContent=props.desc;
+            document.getElementById('signButton').onclick=openPowerForm;
         }
     }
 
-    switch(props.isSigned) {
-        case true:
-           isSigned = <span className="inline-block bg-green-400 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Completed</span>;
-           break;
-        case false:
-            isSigned = <span className="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Action Needed</span>;
+    function openPowerForm() {
+        let powerFormUrl = docData.find(currentDoc => currentDoc.id === props.id).url;
+        let powerFormQuery = (`&signer_UserName=${Cookies.get('userCookie')}&signer_Email=${Cookies.get('userCookie')}@noemail.example.com&fname=${Cookies.get('userCookie')},`)
+        let queriedUrl = powerFormUrl + powerFormQuery;
+        window.open(queriedUrl);
+    }
+
+    if (props.isSigned) {
+        isSigned = <span className="inline-block bg-green-400 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Completed</span>;
+        modal="signedModal";
+    } else {
+        isSigned = <span className="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Action Needed</span>;
+        modal = "unsignedModal";
     }
 
     return (
-        <div onClick={handleCardClick} data-modal-toggle="docModal" className="max-w-sm rounded overflow-hidden shadow-lg rounded-md bg-stone-800">
+        <div onClick={handleCardClick} data-modal-toggle={modal} className="max-w-sm rounded overflow-hidden shadow-lg rounded-md bg-stone-800">
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{props.name}</div>
                 <p className="text-white text-base">

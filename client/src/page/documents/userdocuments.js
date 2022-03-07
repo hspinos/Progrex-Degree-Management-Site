@@ -1,19 +1,16 @@
 import React from 'react';
 
 import DocumentCard from '../../components/documentcard';
-import DocumentModal from '../../components/documentmodal'
+import DocModalUnsigned from '../../components/docmodalunsigned'
+import DocModalSigned from '../../components/docmodalsigned'
 
 let fillerText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec feugiat lorem, sed efficitur nulla. Donec elementum augue ac ex suscipit fermentum.';
-
-function handleCardClick(){
-    document.getElementById('modalTitle').textContent='test';
-}
 
 function UserDocuments() {
     let documents=[{
         name:"Document 1",
         desc:fillerText,
-        isSigned:true,
+        isSigned:false,
         id:1,
       },{
         name:"Document 2",
@@ -43,7 +40,7 @@ function UserDocuments() {
       }]
 
     let docs = documents.map((doc)=>{
-        return <DocumentCard key={doc.id} name={doc.name} desc={doc.desc} isSigned={doc.isSigned} />
+        return <DocumentCard key={doc.id} name={doc.name} desc={doc.desc} isSigned={doc.isSigned} id={doc.id} />
     })  
 
     return (
@@ -51,7 +48,8 @@ function UserDocuments() {
             <div className="mt-8 grid grid-cols-4 gap-10">
                 {docs}
             </div>
-            <DocumentModal />
+            <DocModalUnsigned />
+            <DocModalSigned />
         </div>
     );
 }
