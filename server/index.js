@@ -22,6 +22,7 @@ db.on('connected', () => console.log("DB connected!"));
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const UserRouter = require('./routes/UserRouter');
+const DocumentRouter = require('./routes/DocumentRouter');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,6 +41,8 @@ app.use(session({
 }));
 
 app.use('/user', UserRouter);
+
+app.use('/document', DocumentRouter);
 
 // Test endpoint
 app.use('/', (req, res) => {
