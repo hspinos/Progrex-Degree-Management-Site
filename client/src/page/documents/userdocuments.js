@@ -1,13 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import DocumentCard from '../../components/documentcard';
 import DocModalUnsigned from '../../components/docmodalunsigned'
 import DocModalSigned from '../../components/docmodalsigned'
+import {Document} from '../../scripts/Document'
+
+import 'flowbite';
+
 
 let fillerText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec feugiat lorem, sed efficitur nulla. Donec elementum augue ac ex suscipit fermentum.';
 
+
 function UserDocuments() {
-    let documents=[{
+  /*const [documents, setDocuments] = useState([]);
+  
+  const getDocuments = async() => {
+    try {
+        
+        const response = await fetch("http://localhost:3000/document/list");
+        const jsonData = await response.json();
+
+        setDocuments(jsonData);
+
+    } catch (err) {
+        console.error(err.message);
+    }
+  };
+  useEffect(() => {
+    getDocuments();
+  }, []);*/
+  const documents = Document();
+  
+  let documents3 = [];
+  documents3.push(...documents);
+
+console.log(documents3);
+    let documents2= [{
         name:"Document 1",
         desc:fillerText,
         isSigned:false,
@@ -38,7 +66,9 @@ function UserDocuments() {
         isSigned:true,
         id:6,
       }]
-
+      //documents.push(...documents2);
+      //console.log(documents2);
+      
     let docs = documents.map((doc)=>{
         return <DocumentCard key={doc.id} name={doc.name} desc={doc.desc} isSigned={doc.isSigned} id={doc.id} />
     })  
@@ -51,6 +81,7 @@ function UserDocuments() {
             </div>
             <DocModalUnsigned />
             <DocModalSigned />
+            
             </div>
         </div>
     );

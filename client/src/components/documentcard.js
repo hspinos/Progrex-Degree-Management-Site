@@ -1,5 +1,6 @@
 import React from 'react';
 import Cookies from 'js-cookie';
+import {toggleModal} from 'flowbite';
 
 function DocumentCard(props) {
 
@@ -12,6 +13,8 @@ function DocumentCard(props) {
     }]
 
     function handleCardClick() {
+        toggleModal('signedModal');
+        console.log("click");
         if (props.isSigned) {
             document.getElementById('signedModalTitle').textContent=props.name;
             document.getElementById('signedModalBody').textContent=props.desc;
