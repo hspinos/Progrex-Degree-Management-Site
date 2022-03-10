@@ -1,4 +1,4 @@
-import GameBoard from '../../components/UnityContext';
+import GameBoard from "../../components/gameBoard";
 
 export default function UserDash() {
   let badgesList = [
