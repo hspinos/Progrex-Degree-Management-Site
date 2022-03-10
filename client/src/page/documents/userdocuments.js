@@ -5,7 +5,7 @@ import DocModalUnsigned from '../../components/docmodalunsigned'
 import DocModalSigned from '../../components/docmodalsigned'
 import {Document} from '../../scripts/Document'
 
-import 'flowbite';
+
 
 
 let fillerText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec feugiat lorem, sed efficitur nulla. Donec elementum augue ac ex suscipit fermentum.';
@@ -32,7 +32,7 @@ function UserDocuments() {
   const documents = Document();
   
   let documents3 = [];
-  documents3.push(...documents);
+  //documents3.push(...documents);
 
 console.log(documents3);
     let documents2= [{
