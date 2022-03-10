@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Unity, { UnityContext } from "react-unity-webgl";
 
 const config = new UnityContext({
@@ -9,6 +9,13 @@ const config = new UnityContext({
 })
 
 function GameBoard(){
+
+    useEffect(function (){
+        config.on("canvas", function (canvas){
+            canvas.width = 900;
+            canvas.height = 450;
+        });
+    }, []);
 
     return <Unity unityContext={config} />;
 }
