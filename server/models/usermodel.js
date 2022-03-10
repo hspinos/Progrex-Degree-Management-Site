@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
+    userID: {type: String, required: true, maxLength: 40},
     fName: { type: String, required: true, maxLength: 40 },
     lName: { type: String, required: true, maxLength: 40 },
     username: { type: String, required: true, maxLength: 40, unique: true, dropDups: true },
