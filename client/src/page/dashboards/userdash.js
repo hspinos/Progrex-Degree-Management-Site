@@ -80,6 +80,8 @@ export default function UserDash() {
                 </div>
               </div>*/}
               <ProgressBar progressPercentage={25}/>
+              <ProgressBar progressPercentage={50}/>
+              <ProgressBar progressPercentage={75}/>
             </div>
           </div>
         </div>
