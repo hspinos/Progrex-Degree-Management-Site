@@ -24,7 +24,7 @@ function DocumentCard(props) {
     }
 
     function openPowerForm() {
-        let powerFormUrl = docData.find(currentDoc => currentDoc.id === props.id).url;
+        let powerFormUrl = props.pfUrl;//docData.find(currentDoc => currentDoc.id === props.id).url;
         let powerFormQuery = (`&signer_UserName=${Cookies.get('userCookie')}&signer_Email=${Cookies.get('userCookie')}@noemail.example.com&fname=${Cookies.get('userCookie')},`)
         let queriedUrl = powerFormUrl + powerFormQuery;
         window.open(queriedUrl);
@@ -39,7 +39,7 @@ function DocumentCard(props) {
     }
 
     return (
-        <div data-bs-toggle="modal" data-bs-target={modal} onClick={handleCardClick} data-modal-toggle={modal} className="max-w-sm rounded overflow-hidden shadow-lg rounded-md bg-stone-800">
+        <div data-bs-toggle="modal" data-bs-target={modal} onClick={handleCardClick} className="max-w-sm rounded overflow-hidden shadow-lg rounded-md bg-stone-800">
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{props.name}</div>
                 <p className="text-white text-base">
