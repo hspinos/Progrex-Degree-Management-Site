@@ -13,15 +13,13 @@ function DocumentCard(props) {
     }]
 
     function handleCardClick() {
-       // toggleModal('signedModal');
-        //console.log("click");
         if (props.isSigned) {
-            document.getElementById('signedModalTitle').textContent=props.name;
-            document.getElementById('signedModalBody').textContent=props.desc;
+            document.getElementById('signedModalTitle').textContent = props.name;
+            document.getElementById('signedModalBody').textContent = props.desc;
         } else {
-            document.getElementById('unsignedModalTitle').textContent=props.name;
-            document.getElementById('unsignedModalBody').textContent=props.desc;
-            document.getElementById('signButton').onclick=openPowerForm;
+            document.getElementById('unsignedModalTitle').textContent = props.name;
+            document.getElementById('unsignedModalBody').textContent = props.desc;
+            document.getElementById('signButton').onclick = openPowerForm;
         }
     }
 
@@ -34,14 +32,14 @@ function DocumentCard(props) {
 
     if (props.isSigned) {
         isSigned = <span className="inline-block bg-green-400 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Completed</span>;
-        modal="signedModal";
+        modal = "#signedModal";
     } else {
         isSigned = <span className="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Action Needed</span>;
-        modal = "unsignedModal";
+        modal = "#unsignedModal";
     }
 
     return (
-        <div onClick={handleCardClick} data-modal-toggle={modal} className="max-w-sm rounded overflow-hidden shadow-lg rounded-md bg-stone-800">
+        <div data-bs-toggle="modal" data-bs-target={modal} onClick={handleCardClick} data-modal-toggle={modal} className="max-w-sm rounded overflow-hidden shadow-lg rounded-md bg-stone-800">
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{props.name}</div>
                 <p className="text-white text-base">
