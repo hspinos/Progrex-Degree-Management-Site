@@ -15,6 +15,7 @@ function Login() {
         username: username,
         password: password
       });
+      console.log(res);
     } catch (err) {
       console.error(err);
     }

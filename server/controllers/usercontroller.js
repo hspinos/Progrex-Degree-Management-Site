@@ -62,7 +62,11 @@ exports.user_login = function (req, res) {
        * add a cookie to it
        * send it with status 200
        */
-      res.cookie('userCookie', user.fName, { maxAge: 1000 * 60 * 10 }).sendStatus(200);
+      console.log('login was called');
+      res
+        .cookie('userCookie', user.fName, { maxAge: 1000 * 60 * 10 })
+        .status(200)
+        .send({ "user": user.fName });
     } catch (err) {     // If there are any errors, catch, print, and send 401
       console.error(err);
       return res

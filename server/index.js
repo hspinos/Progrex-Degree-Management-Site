@@ -15,6 +15,7 @@ let app = express();
 const PORT = 8080;
 
 client.connect();
+client.on('connect', () => console.log("Redis is connected!"));
 mongoose.connect(mongoDB, { useUnifiedTopology: true });
 let db = mongoose.connection;
 
@@ -35,7 +36,7 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     secure: false,
-    httpOnly: false,
+    httpOnly: true,
     maxAge: 1000 * 60 * 10
   }
 }));
