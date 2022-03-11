@@ -9,11 +9,12 @@ import Layout from './components/layout';
 import Signup from './page/authentication/signup';
 import Login from './page/authentication/login';
 import UserDash from './page/dashboards/userdash';
+import UserDocuments from './page/documents/userdocuments';
 
 function App() {
   return (
     <Router>
-      <div className="App bg-black text-white h-screen">
+      <div className="App bg-neutral-900 text-white h-screen">
         <header className="App-header">
         </header>
         <Layout>
@@ -21,6 +22,7 @@ function App() {
             <Route path="/login"><Login /></Route>
             <Route path="/signup"><Signup /></Route>
             <Route path="/userdash"><UserDash /></Route>
+            <Route path="/userdocuments"><UserDocuments /></Route>
           </Switch>
         </Layout>
       </div>
