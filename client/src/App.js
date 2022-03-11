@@ -14,7 +14,7 @@ import UserDocuments from './page/documents/userdocuments';
 function App() {
   return (
     <Router>
-      <div className="App bg-neutral-900 text-white h-screen">
+      <div className="App bg-neutral-900 text-white h-screen bg-auto">
         <header className="App-header">
         </header>
         <Layout>
