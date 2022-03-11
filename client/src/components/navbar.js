@@ -1,35 +1,37 @@
 import React from 'react';
 import Cookies from 'js-cookie';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
+// eslint-disable-next-line
 function Navbar() {
 
-  let menuItems=[{
-    name:"Home",
-    route:"home",
-    id:1,
-  },{
-    name:"About",
-    route:"about",
-    id:2,
-  },{
-    name:"Dashboard",
-    route:"userdash",
-    id:3,
-  },{
-    name:"Nav btn",
-    route:"home",
-    id:4,
-  },{
-    name:"Navbtn",
-    route:"home",
-    id:5,
+  let menuItems = [{
+    name: "Home",
+    route: "home",
+    id: 1,
+  }, {
+    name: "About",
+    route: "about",
+    id: 2,
+  }, {
+    name: "Dashboard",
+    route: "userdash",
+    id: 3,
+  }, {
+    name: "Nav btn",
+    route: "home",
+    id: 4,
+  }, {
+    name: "Navbtn",
+    route: "home",
+    id: 5,
   }]
 
-  
-  
-  let nav = menuItems.map((item)=>{
-      return <a key= {item.id} href={item.route}> {item.name}</a>
-    })
+
+
+  let nav = menuItems.map((item) => {
+    return <a key={item.id} href={item.route}> {item.name}</a>
+  })
   return (
     <div className="Navbar">
       <nav className="flex items-center justify-between py-2 px-2 h-16">
