@@ -62,7 +62,6 @@ exports.user_login = function (req, res) {
        * add a cookie to it
        * send it with status 200
        */
-      console.log('login was called');
       res
         .cookie('userCookie', user.fName, { maxAge: 1000 * 60 * 10 })
         .status(200)
