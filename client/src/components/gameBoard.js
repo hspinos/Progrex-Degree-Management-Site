@@ -28,7 +28,6 @@ function GameBoard(){
     
     return (
         <div>
-        <button onClick={spawnAvatar}>Spawn</button>
         <Unity 
             unityContext={config} 
             style={{
