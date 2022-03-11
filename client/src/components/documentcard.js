@@ -7,11 +7,6 @@ function DocumentCard(props) {
     var isSigned;
     var modal;
 
-    let docData = [{
-        id: 1,
-        url: 'https://demo.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=a438791b-188d-4644-921f-ffb1e3c27a76&env=demo&acct=34cdbed2-d10f-48e3-9c43-2f2058f7b861&v=2'
-    }]
-
     function handleCardClick() {
         if (props.isSigned) {
             document.getElementById('signedModalTitle').textContent = props.name;
@@ -24,7 +19,7 @@ function DocumentCard(props) {
     }
 
     function openPowerForm() {
-        let powerFormUrl = props.pfUrl;//docData.find(currentDoc => currentDoc.id === props.id).url;
+        let powerFormUrl = props.pfUrl;
         let powerFormQuery = (`&signer_UserName=${Cookies.get('userCookie')}&signer_Email=${Cookies.get('userCookie')}@noemail.example.com&fname=${Cookies.get('userCookie')},`)
         let queriedUrl = powerFormUrl + powerFormQuery;
         window.open(queriedUrl);
