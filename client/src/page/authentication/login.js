@@ -9,7 +9,7 @@ function Login() {
   async function handleLoginClick(e) {
     e.preventDefault();
     try {
-      let res = await axios.post(`${process.env.REACT_APP_URL}/user/login`, {
+      let res = await axios.post(`/user/login`, {
         username: username,
         password: password
       });
