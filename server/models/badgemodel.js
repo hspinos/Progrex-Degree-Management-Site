@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const badgesSchema = new Schema(
+const badgeSchema = new Schema(
   {
     badgeId: {type: String, required: true, maxLegnth: 40, unique: true, dropDups: true},
     isApproved: {type: Boolean, required: true,},
@@ -9,4 +9,4 @@ const badgesSchema = new Schema(
   }
 )
 
-module.exports = mongoose.model('Badge', badgesSchema);
+module.exports = mongoose.model('Badge', badgeSchema);
