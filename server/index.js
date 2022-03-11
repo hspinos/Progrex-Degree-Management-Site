@@ -35,7 +35,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false,
+    secure: true,
     httpOnly: true,
     maxAge: 1000 * 60 * 10
   }
@@ -46,10 +46,10 @@ app.use('/user', UserRouter);
 app.use('/document', DocumentRouter);
 
 // Test endpoint
-app.use('/', (req, res) => {
-  res.send("This is the home page");
-  console.log("The home page was accessed");
-});
+// app.use('/', (req, res) => {
+//   res.send("This is the home page");
+//   console.log("The home page was accessed");
+// });
 
 
 app.listen(PORT, () => {
