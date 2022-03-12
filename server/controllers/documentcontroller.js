@@ -14,3 +14,8 @@ exports.document_detail = async function (req, res) {
     document = documentModel.getDocumentById(req.params.id);
     res.send(document);
 }
+
+exports.set_document_signed = async function (req, res) {
+    documentModel.setDocumentSigned(req.params.id);
+    res.send("Document " + req.params.id + " isSigned has been set to true.");
+}

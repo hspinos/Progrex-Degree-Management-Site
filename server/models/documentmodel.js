@@ -9,7 +9,7 @@ class DocumentModel {
       [
         {
           id: 1,
-          name: "Document 0",
+          name: "Document 1",
           desc: fillerText,
           isSigned: false,
           powerFormUrl: "https://demo.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=a438791b-188d-4644-921f-ffb1e3c27a76&env=demo&acct=34cdbed2-d10f-48e3-9c43-2f2058f7b861&v=2"
@@ -52,13 +52,12 @@ class DocumentModel {
   }
 
   getDocumentById(id) {
-    return this.documentList.find(id => {
-      return id == id;
-    })
+    return this.documentList.find(doc => doc.id == id);
   }
 
   setDocumentSigned(id) {
-    this.documentList.find(document => document.id === id).isSigned = true;
+    let signedDocument = this.getDocumentById(id);
+    signedDocument.isSigned = true;
   }
 }
 
