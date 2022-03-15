@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Cookies from 'js-cookie';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 // eslint-disable-next-line
 function Navbar() {
+  const [user, setUser] = useState('');
 
   let menuItems = [{
     name: "Home",
@@ -28,6 +30,13 @@ function Navbar() {
   }]
 
 
+  useEffect(() => {
+    if (Cookies.get('userCookie')) {
+      let user = JSON.parse(Cookies.get('userCookie'));
+      console.log(`${user.id} ${user.fName} ${user.lName}`)
+      let firstName = JSON.parse(Cookies.get('userCookie')).fName; // This will turn the string into JSON and then you can access the key-val pairs
+    }
+  }, [])
 
   let nav = menuItems.map((item) => {
     return (
