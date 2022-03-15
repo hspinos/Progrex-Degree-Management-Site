@@ -67,7 +67,7 @@ exports.user_login = function (req, res) {
       console.log("Inside user login");
       return res
         .status(200)
-        .cookie('userCookie', user.fName, { maxAge: 1000 * 60 * 10 })
+        .cookie('userCookie', JSON.stringify({ id: user._id, fName: user.fName, lName: user.lName }), { maxAge: 1000 * 60 * 10 })
         .send({ "user": user.fName })
         .end()
     } catch (err) {     // If there are any errors, catch, print, and send 401

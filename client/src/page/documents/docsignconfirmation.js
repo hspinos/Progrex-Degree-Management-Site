@@ -1,8 +1,11 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 function DocSignConfirmation() {
+    var user;
+
     //Getting data from URL parameters
     const search = useLocation().search;
     const documentName = new URLSearchParams(search).get('docName');
@@ -11,10 +14,7 @@ function DocSignConfirmation() {
     //Fetching document that was signed
     const updateSignedStatus = async () => {
         try {
-            const updateSignedStatus = await fetch(`http://localhost:3000/document/sign/${documentId}`, {
-                method: "PUT"
-            });
-
+            const updateSignedStatus = await axios.put(`/document/sign/${documentId}`);
         } catch (err) {
             console.error(err.message);
         }
@@ -33,11 +33,16 @@ function DocSignConfirmation() {
         obscureUrl()
     };
 
+    //Defining user that is logged in
+    if (Cookies.get('userCookie')) {
+        user = JSON.parse(Cookies.get('userCookie'));
+    }
+
     return (
         <div className="h-full flex justify-center">
             <div className="flex items-center w-screen grid place-items-center h-screen">
                 <div className="bg-stone-800 items-center p-4 w-1/3 rounded overflow-hidden shadow-lg rounded-md">
-                    <h1 className="text-3xl text-center font-semibold mb-4">Thank you for signing, {Cookies.get('userCookie')}!</h1>
+                    <h1 className="text-3xl text-center font-semibold mb-4">Thank you for signing, {user.fName}!</h1>
                     <div className="items-center p-4 border-t h-fit border-gray-200 rounded-t-m dark:border-stone-700">
                         <p>{documentName} has successfully been signed. A copy of the signed document has been sent to your email.</p>
                         <div className="m-14 flex grid place-items-center">

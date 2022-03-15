@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Cookies from 'js-cookie';
-import { Link } from 'react-router-dom'
 
 // eslint-disable-next-line
 function Navbar() {
+  var user;
 
   let menuItems = [{
     name: "Home",
@@ -18,23 +18,22 @@ function Navbar() {
     route: "userdash",
     id: 3,
   }, {
-    name: "Documents",
-    route: "userdocuments",
-    id: 4,
-  }, {
     name: "Navbtn",
     route: "home",
-    id: 5,
+    id: 4,
   }]
 
-
+  if (Cookies.get('userCookie')) {
+    user = JSON.parse(Cookies.get('userCookie'));
+  }
 
   let nav = menuItems.map((item) => {
     return (
       <li key={item.id}>
         <a href={item.route} className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">{item.name}</a>
       </li>)
-  })
+  });
+
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-stone-800 w-full">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -53,18 +52,18 @@ function Navbar() {
 
                 <div className="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-stone-800 dark:divide-gray-600" id="dropdown">
                   <div className="py-3 px-4">
-                    <span className="block text-sm text-gray-900 dark:text-white">{Cookies.get('userCookie')}</span>
-                    <span className="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">{Cookies.get('userCookie')}@progrex.edu</span>
+                    <span className="block text-sm text-gray-900 dark:text-white">{user.fName} {user.lName}</span>
+                    <span className="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">{user.fName}@progrex.edu</span>
                   </div>
                   <ul className="py-1" aria-labelledby="dropdown">
                     <li>
                       <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
                     </li>
                     <li>
-                      <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                      <a href="userdocuments" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Documents</a>
                     </li>
                     <li>
-                      <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+                      <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
                     </li>
                     <li>
                       <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
@@ -92,33 +91,6 @@ function Navbar() {
         </div>
       </div>
     </nav>
-    /*<div className="Navbar">
-      <nav className="flex items-center justify-between py-2 px-2 h-16">
-        <div className="flex items-center space-x-4">
-          <div>
-            <div className="flex items-center flex-shrink-0">
-              <span className="font-bold text-xl tracking-tight">DegreeWorks++</span>
-            </div>
-          </div>
-          <div className="flex space-x-4">
-            {nav}
-          </div>
-        </div>
-        {
-          Cookies.get('userCookie') ?
-            <div>
-              <a className="">Currently logged in as {Cookies.get('userCookie')}</a>
-            </div>
-
-            :
-
-            <div className="flex space-x-3">
-              <a className="bg-emerald-600 py-1 w-20 rounded-sm text-center" href="/signup">Signup</a>
-              <a className="bg-sky-600 p-1 w-20 rounded-sm text-center" href="/login">Login</a>
-            </div>
-        }
-      </nav>
-    </div>*/
   )
 }
 
