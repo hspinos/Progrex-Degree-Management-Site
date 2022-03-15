@@ -7,6 +7,7 @@ exports.test_document_endpoint = function (req, res) {
 
 exports.get_documents = async function (req, res) {
     documents = documentModel.getAllDocuments();
+    console.log(documents);
     res.send(documents);
 }
 
