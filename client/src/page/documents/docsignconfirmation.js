@@ -14,7 +14,7 @@ function DocSignConfirmation() {
     //Fetching document that was signed
     const updateSignedStatus = async () => {
         try {
-            const updateSignedStatus = await axios.put(`/document/sign/${documentId}`);
+            const updateSignedStatus = await axios.put(`/olddocument/sign/${documentId}`);
         } catch (err) {
             console.error(err.message);
         }

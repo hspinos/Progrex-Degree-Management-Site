@@ -1,22 +1,56 @@
+//import mongoose from 'mongoose';
 let Document = require('../models/documentmodel');
 documentModel = new Document();
+const mongoose = require('mongoose');
 
 exports.test_document_endpoint = function (req, res) {
     res.send('This is the test_document_endpoint');
 }
 
 exports.get_documents = async function (req, res) {
-    documents = documentModel.getAllDocuments();
-    console.log(documents);
-    res.send(documents);
+    let query = Document.find({});
+    query.exec(function (err, document) {
+        if (err) return handleError(err);
+        res
+          .status(200)
+          .send(document)
+      });
 }
 
 exports.document_detail = async function (req, res) {
-    document = documentModel.getDocumentById(req.params.id);
-    res.send(document);
+      const document = await Document.findById(req.params.id);
+      res
+        .status(200)
+        .send(document);
 }
 
 exports.set_document_signed = async function (req, res) {
-    documentModel.setDocumentSigned(req.params.id);
-    res.send("Document " + req.params.id + " isSigned has been set to true.");
+    const document = await Document.findById(req.params.docId);
+    document.usersSigned.push({ signerId: mongoose.Types.ObjectId(req.params.userId) });
+    await document.save();
+    res
+          .json(document)
+          .status(200)
+          .send();
+}
+
+exports.create_document = async function (req, res) {
+    try {
+        console.log("create document endpoint called");
+        const document = new Document({
+          name: req.body.name,
+          description: req.body.description,
+          powerFormUrl: req.body.powerFormUrl,
+        });
+        await document.save();
+        res
+          .json(document)
+          .status(200)
+          .send();
+      } catch (err) {       // User most likely already exists
+        console.error(err);
+        res
+          .status(401)
+          .send();
+      }
 }
