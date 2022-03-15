@@ -1,12 +1,13 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 
-
 function DocumentCard(props) {
 
     var isSigned;
     var modal;
+    var user;
 
+    //Handling card click depending on if document has been signed
     function handleCardClick() {
         if (props.isSigned) {
             document.getElementById('signedModalTitle').textContent = props.name;
@@ -18,16 +19,22 @@ function DocumentCard(props) {
         }
     }
 
+    //Defining user that is logged in
+    if (Cookies.get('userCookie')) {
+        user = JSON.parse(Cookies.get('userCookie'));
+    }
+
+    //Generating and open PowerForm link for selected document
     function openPowerForm() {
         let powerFormUrl = props.pfUrl;
-        let signerQuery = (`&signer_UserName=${Cookies.get('userCookie')}&signer_Email=${Cookies.get('userCookie')}@noemail.example.com`);
-        let envelopeQuery = (`&EnvelopeField_docName=${(props.name)}&EnvelopeField_docId=${props.id}&fname=${Cookies.get('userCookie')},`);
+        let signerQuery = (`&signer_UserName=${user.fName}%20${user.lName}&signer_Email=${user.fName}@noemail.example.com`);
+        let envelopeQuery = (`&EnvelopeField_docName=${(props.name)}&EnvelopeField_docId=${props.id}&fname=${user.fName},`);
 
         let queriedUrl = powerFormUrl + signerQuery + envelopeQuery;
-        //console.log(queriedUrl);
         window.open(queriedUrl);
     }
 
+    //Indicating which documents have been signed
     if (props.isSigned) {
         isSigned = <span className="inline-block bg-green-400 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Completed</span>;
         modal = "#signedModal";
