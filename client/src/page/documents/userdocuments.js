@@ -13,12 +13,10 @@ function UserDocuments() {
 
   const getDocuments = async () => {
     try {
-
       const response = await axios.get("/document/list");
       const jsonData = await response.data;
 
       setDocuments(jsonData);
-
     } catch (err) {
       console.error(err.message);
     }

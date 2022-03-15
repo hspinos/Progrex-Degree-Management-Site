@@ -16,7 +16,9 @@ exports.get_users = async function (req, res) {
   query.select("username password");
   query.exec(function (err, person) {
     if (err) return handleError(err);
-    res.send(person)
+    res
+      .status(200)
+      .send(person)
   });
 }
 
@@ -62,15 +64,17 @@ exports.user_login = function (req, res) {
        * add a cookie to it
        * send it with status 200
        */
-      res
-        .cookie('userCookie', user.fName, { maxAge: 1000 * 60 * 10 })
+      console.log("Inside user login");
+      return res
         .status(200)
-        .send({ "user": user.fName });
+        .cookie('userCookie', user.fName, { maxAge: 1000 * 60 * 10 })
+        .send({ "user": user.fName })
+        .end()
     } catch (err) {     // If there are any errors, catch, print, and send 401
       console.error(err);
       return res
         .status(401)
-        .send();
+        .send()
     }
   });
 }
