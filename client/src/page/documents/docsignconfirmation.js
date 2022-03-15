@@ -20,8 +20,18 @@ function DocSignConfirmation() {
         }
     }
 
-    //Calling status updating function
-    if (documentId != null) updateSignedStatus();
+    //Hiding URL parameters from user
+    function obscureUrl() {
+        let stateObj = { id: "100" };
+
+        window.history.pushState(stateObj, "Hidden Url", "/docsignconfirmation");
+    }
+
+    //Calling status updating function and obscuring URL
+    if (documentId != null) {
+        updateSignedStatus()
+        obscureUrl()
+    };
 
     return (
         <div className="h-full flex justify-center">
