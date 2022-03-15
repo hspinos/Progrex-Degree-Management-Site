@@ -4,6 +4,8 @@ import DocumentCard from '../../components/documentcard';
 import DocModalUnsigned from '../../components/docmodalunsigned'
 import DocModalSigned from '../../components/docmodalsigned'
 
+import axios from 'axios';
+
 //Fetching documents from backend
 function UserDocuments() {
 
@@ -11,12 +13,10 @@ function UserDocuments() {
 
   const getDocuments = async () => {
     try {
-
-      const response = await fetch("http://localhost:3000/document/list");
-      const jsonData = await response.json();
+      const response = await axios.get("/document/list");
+      const jsonData = await response.data;
 
       setDocuments(jsonData);
-
     } catch (err) {
       console.error(err.message);
     }
