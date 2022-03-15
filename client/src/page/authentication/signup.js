@@ -13,14 +13,13 @@ function Signup() {
     e.preventDefault();
     try {
       if (password === checkPass) {
-        let res = await axios.post(`${process.env.REACT_APP_URL}/user/create`, {
+        let res = await axios.post(`/user/create`, {
           username: username,
           password: password,
           fName: fName,
           lName: lName
         });
         console.log(res);
-        console.log(process.env.REACT_APP_URL)
       }
     } catch (err) {
       console.error(err);
@@ -30,7 +29,7 @@ function Signup() {
   return (
     <div className="h-full flex justify-center">
       <div className="flex items-center">
-        <div className="bg-stone-800 items-center p-4 rounded-sm w-fit rounded-md">
+        <div className="bg-stone-800 items-center p-4 w-fit rounded-md">
           <h1 className="text-3xl text-center font-semibold mb-4">
             Signup
           </h1>

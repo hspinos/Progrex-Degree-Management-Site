@@ -9,12 +9,13 @@ let client = redis.createClient({
   url: `${process.env.REDIS_URL}:6379`
 });
 
-let mongoDB = "mongodb://root:degreeworkspp@mongo:27017";
+let mongoDB = `mongodb://${process.env.ME_CONFIG_MONGODB_ADMINUSERNAME}:${process.env.ME_CONFIG_MONGODB_ADMINPASSWORD}@${process.env.ME_CONFIG_MONGODB_HOST}:27017`;
 let app = express();
 
 const PORT = 8080;
 
 client.connect();
+client.on('connect', () => console.log("Redis is connected!"));
 mongoose.connect(mongoDB, { useUnifiedTopology: true });
 let db = mongoose.connection;
 
@@ -45,10 +46,10 @@ app.use('/user', UserRouter);
 app.use('/document', DocumentRouter);
 
 // Test endpoint
-app.use('/', (req, res) => {
-  res.send("This is the home page");
-  console.log("The home page was accessed");
-});
+// app.use('/', (req, res) => {
+//   res.send("This is the home page");
+//   console.log("The home page was accessed");
+// });
 
 
 app.listen(PORT, () => {
