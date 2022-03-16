@@ -10,11 +10,12 @@ function DocSignConfirmation() {
     const search = useLocation().search;
     const documentName = new URLSearchParams(search).get('docName');
     const documentId = new URLSearchParams(search).get('docId');
+    const userId = new URLSearchParams(search).get('userId');
 
     //Fetching document that was signed
     const updateSignedStatus = async () => {
         try {
-            const updateSignedStatus = await axios.put(`/olddocument/sign/${documentId}`);
+            const updateSignedStatus = await axios.put(`/document/sign/${documentId}/${userId}`);
         } catch (err) {
             console.error(err.message);
         }

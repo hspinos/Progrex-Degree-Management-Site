@@ -52,9 +52,9 @@ function DocumentCard(props) {
     function openPowerForm() {
         let powerFormUrl = props.pfUrl;
         let signerQuery = (`&signer_UserName=${user.fName}%20${user.lName}&signer_Email=${user.fName}@noemail.example.com`);
-        let envelopeQuery = (`&EnvelopeField_docName=${(props.name)}&EnvelopeField_docId=${props.id}&fname=${user.fName},`);
+        let envelopeQuery = (`&EnvelopeField_docName=${(props.name)}&EnvelopeField_docId=${props.id}&EnvelopeField_userId=${user.id}`);
 
-        let queriedUrl = powerFormUrl + signerQuery + envelopeQuery;
+        let queriedUrl = powerFormUrl + signerQuery + envelopeQuery + `&fname=${user.fName},`;
         window.open(queriedUrl);
     }
 
