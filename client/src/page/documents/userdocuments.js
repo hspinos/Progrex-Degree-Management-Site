@@ -41,7 +41,7 @@ function UserDocuments() {
 
   function generateClick() {
     resetDocuments();
-    setTimeout(() => {window.location.reload();}, 500)
+    setTimeout(() => {window.location.reload();}, 500);
     
   }
 

@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const courseSchema = new Schema(
   {
-    courseId: {type: String, required: true, maxLegnth: 40, unique: true, dropDups: true},
     courseName: {type: String, required: true, maxLegnth: 40, unique: true, dropDups: true},
     courseYear: {type: String, required: true, maxLegnth: 4}
   }
