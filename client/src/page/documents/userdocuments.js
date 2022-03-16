@@ -41,7 +41,8 @@ function UserDocuments() {
 
   function generateClick() {
     resetDocuments();
-    window.location.reload();
+    setTimeout(() => {window.location.reload();}, 500)
+    
   }
 
   if (Cookies.get('userCookie')) {
