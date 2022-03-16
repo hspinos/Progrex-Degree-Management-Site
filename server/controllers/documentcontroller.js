@@ -6,6 +6,7 @@ exports.test_document_endpoint = function (req, res) {
   res.send('This is the test_document_endpoint');
 }
 
+//Returns list of documents in database
 exports.get_documents = async function (req, res) {
   try {
     let query = Document.find({});
@@ -20,6 +21,7 @@ exports.get_documents = async function (req, res) {
   }
 }
 
+//Returns document details by ID
 exports.document_detail = async function (req, res) {
   try {
     const document = await Document.findById(req.params.id);
@@ -31,6 +33,7 @@ exports.document_detail = async function (req, res) {
   }
 }
 
+//Checks if a specific user has signed a specific document
 exports.check_document_signed = async function (req, res) {
   try {
     let userId = mongoose.Types.ObjectId(req.params.userId);
@@ -46,6 +49,7 @@ exports.check_document_signed = async function (req, res) {
   }
 }
 
+//Sets a document to be signed by a user
 exports.set_document_signed = async function (req, res) {
   try {
     let userId = mongoose.Types.ObjectId(req.params.userId);
@@ -67,6 +71,7 @@ exports.set_document_signed = async function (req, res) {
   }
 }
 
+//Creates a new document
 exports.create_document = async function (req, res) {
   try {
     console.log("create document endpoint called");
@@ -88,6 +93,7 @@ exports.create_document = async function (req, res) {
   }
 }
 
+//Resets document list (for testing and demonstration purposes)
 exports.reset_documents = async function (req, res) {
   try {
     //Dropping current doc data
@@ -127,6 +133,7 @@ exports.reset_documents = async function (req, res) {
       }
     ]
 
+    //Populating database
     for (var i = 0; i < sampleDocuments.length; i++) {
       const document = new Document({
         name: sampleDocuments[i].name,
@@ -135,24 +142,6 @@ exports.reset_documents = async function (req, res) {
       });
       await document.save();
     }
-
-    /*sampleDocuments.forEach(function (doc) {
-      const document = new Document({
-        name: doc.name,
-        description: doc.description,
-        powerFormUrl: doc.powerFormUrl,
-      });
-      await document.save();
-    });*/
-
-    /*sampleDocuments.map((doc) => {
-      const document = new Document({
-        name: doc.name,
-        description: doc.description,
-        powerFormUrl: doc.powerFormUrl,
-      });
-      await document.save();
-    })*/
 
     res
       .status(200)
