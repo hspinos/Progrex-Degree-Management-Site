@@ -13,7 +13,8 @@ documentRouter.get('/sign/:docId/:userId', document_controller.check_document_si
 
 documentRouter.put('/sign/:docId/:userId', document_controller.set_document_signed);
 
-documentRouter.post('/create/', document_controller.create_document);
+documentRouter.put('/reset/', document_controller.reset_documents);
 
+documentRouter.post('/create/', document_controller.create_document);
 
 module.exports = documentRouter;
