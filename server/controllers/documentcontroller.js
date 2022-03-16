@@ -24,6 +24,21 @@ exports.document_detail = async function (req, res) {
     .send(document);
 }
 
+exports.check_document_signed = async function (req, res) {
+  try {
+    let userId = mongoose.Types.ObjectId(req.params.userId);
+    const document = await Document.findById(req.params.docId);
+    let data = document.usersSigned.find(signData => signData.signerId.equals(userId));
+    if (data) {
+      res.send({ isSigned: true, dateSigned: data.dateSigned });
+    } else {
+      res.send({ isSigned: false });
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 exports.set_document_signed = async function (req, res) {
   let userId = mongoose.Types.ObjectId(req.params.userId);
   const document = await Document.findById(req.params.docId);
@@ -39,7 +54,6 @@ exports.set_document_signed = async function (req, res) {
       .status(200)
       .send();
   }
-
 }
 
 exports.create_document = async function (req, res) {

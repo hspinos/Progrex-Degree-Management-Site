@@ -23,8 +23,8 @@ function DocModalSigned() {
                         ...
                     </div>
                     <div
-                        id="modalFooter" className="modal-footer flex flex-shrink-0 flex-wrap items-center  p-4 border-t border-gray-200 rounded-b-md dark:border-stone-700">
-                        <p>Date Signed: </p>
+                        id="signedModalFooter" className="modal-footer flex flex-shrink-0 flex-wrap items-center  p-4 border-t border-gray-200 rounded-b-md dark:border-stone-700">
+                        Date Signed:
                     </div>
                 </div>
             </div>

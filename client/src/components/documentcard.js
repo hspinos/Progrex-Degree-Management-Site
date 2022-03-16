@@ -1,17 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 function DocumentCard(props) {
 
-    var isSigned;
+    const [isSigned, setSigned] = useState();
+    const [dateSigned, setDateSigned] = useState();
+    var modalFooter;
     var modal;
     var user;
 
+    const getSignedStatus = async () => {
+        try {
+            const response = await axios.get(`/document/sign/${props.id}/${user.id}`);
+            const signResponse = await response.data;
+
+            console.log(signResponse);
+
+            setSigned(signResponse.isSigned);
+            if (signResponse.isSigned) setDateSigned(signResponse.dateSigned);
+
+        } catch (err) {
+            console.error(err.message);
+        }
+    };
+
+    useEffect(() => {
+        getSignedStatus();
+      }, []);
+
     //Handling card click depending on if document has been signed
     function handleCardClick() {
-        if (props.isSigned) {
+        if (isSigned) {
             document.getElementById('signedModalTitle').textContent = props.name;
             document.getElementById('signedModalBody').textContent = props.desc;
+            document.getElementById('signedModalFooter').textContent = "Date Signed: " + new Date(dateSigned).toLocaleDateString();
         } else {
             document.getElementById('unsignedModalTitle').textContent = props.name;
             document.getElementById('unsignedModalBody').textContent = props.desc;
@@ -35,11 +58,11 @@ function DocumentCard(props) {
     }
 
     //Indicating which documents have been signed
-    if (props.isSigned) {
-        isSigned = <span className="inline-block bg-green-400 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Completed</span>;
+    if (isSigned) {
+        modalFooter = <span className="inline-block bg-green-400 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Completed</span>;
         modal = "#signedModal";
     } else {
-        isSigned = <span className="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Action Needed</span>;
+        modalFooter = <span className="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2">Action Needed</span>;
         modal = "#unsignedModal";
     }
 
@@ -52,7 +75,7 @@ function DocumentCard(props) {
                 </p>
             </div>
             <div className="px-6 pt-4 pb-2 flex items-center justify-center">
-                {isSigned}
+                {modalFooter}
             </div>
         </div>
     );
