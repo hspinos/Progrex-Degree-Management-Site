@@ -10,6 +10,7 @@ function DocumentCard(props) {
     var modal;
     var user;
 
+    //Determining if document has been signed by the user
     const getSignedStatus = async () => {
         try {
             const response = await axios.get(`/document/sign/${props.id}/${user.id}`);

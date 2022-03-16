@@ -69,7 +69,7 @@ exports.create_document = async function (req, res) {
       .json(document)
       .status(200)
       .send();
-  } catch (err) {       // User most likely already exists
+  } catch (err) {
     console.error(err);
     res
       .status(401)
