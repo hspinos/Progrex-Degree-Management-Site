@@ -8,6 +8,8 @@ import DocModalSigned from '../../components/docmodalsigned'
 
 //Fetching documents from backend
 function UserDocuments() {
+  var user;
+  
   const [documents, setDocuments] = useState([]);
 
   const getDocuments = async () => {
