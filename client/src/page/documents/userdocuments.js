@@ -41,12 +41,8 @@ function UserDocuments() {
 
   function generateClick() {
     resetDocuments();
-    setTimeout(() => {window.location.reload();}, 500);
-    
-  }
+    setTimeout(() => { window.location.reload(); }, 500);
 
-  if (Cookies.get('userCookie')) {
-    user = JSON.parse(Cookies.get('userCookie'));
   }
 
   //Mapping document JSON objects to card components
@@ -54,7 +50,11 @@ function UserDocuments() {
     return <DocumentCard key={doc._id} name={doc.name} desc={doc.description} id={doc._id} pfUrl={doc.powerFormUrl} />
   })
 
-  if (documents.length != 0) {
+
+  if (!Cookies.get('userCookie')) {
+    window.location.replace('/login?redirectLocation=userdocuments');
+  } else if (documents.length != 0) {
+    user = JSON.parse(Cookies.get('userCookie'));
     return (
       <div className="h-full flex items-center justify-center">
         <div className="w-9/12">

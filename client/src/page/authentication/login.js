@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useLocation } from "react-router-dom";
 import { Redirect } from 'react-router-dom';
 
 function Login() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  var redirectLocation = "home";
+
+  const search = useLocation().search;
+  if (new URLSearchParams(search).get('redirectLocation')) redirectLocation = new URLSearchParams(search).get('redirectLocation');
 
   async function handleLoginClick(e) {
     e.preventDefault();
@@ -22,19 +28,8 @@ function Login() {
       console.log("Hello console!")
       if (res.status == 200) {
         console.log("login successful!");
-        return (
-          <Redirect to="/home" />
-        )
+        window.location.replace(`/${redirectLocation}`);
       }
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  async function handleTestClick(e) {
-    e.preventDefault();
-    try {
-      let res = await axios.get(`/`);
-      console.log(res);
     } catch (err) {
       console.error(err);
     }
@@ -73,11 +68,6 @@ function Login() {
               className="bg-emerald-600 px-2 py-1 mt-2 rounded-sm text-white"
               onClick={handleLoginClick}>
               Login
-            </button>
-            <button
-              className="bg-emerald-600 px-2 py-1 mt-2 rounded-sm text-white"
-              onClick={handleTestClick}>
-              Test Click
             </button>
           </form>
         </div>
