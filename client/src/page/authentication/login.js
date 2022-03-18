@@ -22,19 +22,8 @@ function Login() {
       console.log("Hello console!")
       if (res.status == 200) {
         console.log("login successful!");
-        return (
-          <Redirect to="/home" />
-        )
+        window.location.replace('/home');
       }
-    } catch (err) {
-      console.error(err);
-    }
-  }
-  async function handleTestClick(e) {
-    e.preventDefault();
-    try {
-      let res = await axios.get(`/`);
-      console.log(res);
     } catch (err) {
       console.error(err);
     }
@@ -73,11 +62,6 @@ function Login() {
               className="bg-emerald-600 px-2 py-1 mt-2 rounded-sm text-white"
               onClick={handleLoginClick}>
               Login
-            </button>
-            <button
-              className="bg-emerald-600 px-2 py-1 mt-2 rounded-sm text-white"
-              onClick={handleTestClick}>
-              Test Click
             </button>
           </form>
         </div>
