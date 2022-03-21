@@ -1,4 +1,34 @@
 import Badge from "../../components/badge";
+import GameBoard from "../../components/gameBoard";
+
+// export default function UserDash() {
+//   let badgesList = [
+//     {
+//       name: "badge 1",
+//       desc: "Ipsum nostrud anim ad incididunt cupidatat ut aliqua excepteur consequat.",
+//       id: 1,
+//     },
+//     {
+//       name: "badge 2",
+//       desc: "Ipsum nostrud anim ad incididunt cupidatat ut aliqua excepteur consequat.",
+//       id: 2,
+//     },
+//     {
+//       name: "badge 3",
+//       desc: "Proident aute cillum mollit deserunt eiusmod Lorem duis incididunt velit sint.",
+//       id: 3,
+//     },
+//     {
+//       name: "badge 4",
+//       desc: "Pariatur quis consequat consequat amet culpa incididunt aute elit consequat.",
+//       id: 4,
+//     },
+//     {
+//       name: "Badge 5",
+//       desc: "Do non ullamco laboris deserunt enim aliquip pariatur aute voluptate nulla consequat.",
+//       id: 5,
+//     },
+//   ];
 
 export default function UserDash() {
   
@@ -6,7 +36,7 @@ export default function UserDash() {
     <div className="flex h-full justify-center align-center">
       <div className="grid grid-cols-2 w-full h-full">
         <div className="flex items-center">
-          <div className="text-5xl font-semibold">gameboard div</div>
+          <GameBoard />
         </div>
         <div className="flex flex-col items-stretch justify-center space-y-2">
           <div className="border-4 rounded-md p-4 flex-auto overflow-y-auto">

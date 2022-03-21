@@ -10,11 +10,12 @@ import Signup from './page/authentication/signup';
 import Login from './page/authentication/login';
 import UserDash from './page/dashboards/userdash';
 import UserDocuments from './page/documents/userdocuments';
+import DocSignConfirmation from './page/documents/docsignconfirmation';
 
 function App() {
   return (
     <Router>
-      <div className="App bg-neutral-900 text-white h-screen">
+      <div className="App bg-neutral-900 text-white h-screen bg-auto">
         <header className="App-header">
         </header>
         <Layout>
@@ -23,6 +24,7 @@ function App() {
             <Route path="/signup"><Signup /></Route>
             <Route path="/userdash"><UserDash /></Route>
             <Route path="/userdocuments"><UserDocuments /></Route>
+            <Route path="/docsignconfirmation"><DocSignConfirmation /></Route>
           </Switch>
         </Layout>
       </div>
