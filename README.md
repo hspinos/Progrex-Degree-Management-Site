@@ -19,8 +19,8 @@ Head to https://docs.docker.com/desktop/windows/install/ and install Docker. Mak
 ## To run and test only the application container, write the following to the command prompt:
 Open a command prompt, cd into the server folder of the project.
 ```
-docker build -t progrex .         # This will build the docker image
-docker run -p 8080:8080 progrex   # This will run the docker image you just created
+docker build -t wthunder/progrex .  # This will build the docker image
+docker run -p 8080:8080 progrex     # This will run the docker image you just created
 ``` 
 You can test to see if this work by going to http://localhost:8080 in your browser
 
