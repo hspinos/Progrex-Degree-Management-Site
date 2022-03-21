@@ -10,6 +10,7 @@ import Signup from './page/authentication/signup';
 import Login from './page/authentication/login';
 import UserDash from './page/dashboards/userdash';
 import UserDocuments from './page/documents/userdocuments';
+import UserProgress from './page/progress/userprogress';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/signup"><Signup /></Route>
             <Route path="/userdash"><UserDash /></Route>
             <Route path="/userdocuments"><UserDocuments /></Route>
+            <Route path="/userprogress"><UserProgress /></Route>
           </Switch>
         </Layout>
       </div>
