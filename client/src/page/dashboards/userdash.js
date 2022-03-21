@@ -21,7 +21,7 @@ export default function UserDash() {
                   </div>
                 </div>
               </div> */}
-              {<Badge/>}
+              <Badge/>
             </div>
           </div>
           <div className="border-4 rounded-md p-4 flex-auto ">

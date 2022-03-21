@@ -2,9 +2,11 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   requestBadge,
-  getBadges
+  getBadge,
+  getBadges,
 } from "../redux/slices/badgeSlice";
 import { Link } from "react-router-dom";
+import BadgesService from "../services/badgeService";
 
 
 const Badge = () => {
@@ -14,26 +16,26 @@ const Badge = () => {
       desc: "Ipsum nostrud anim ad incididunt cupidatat ut aliqua excepteur consequat.",
       id: 1,
     },
-    {
-      name: "badge 2",
-      desc: "Ipsum nostrud anim ad incididunt cupidatat ut aliqua excepteur consequat.",
-      id: 2,
-    },
-    {
-      name: "badge 3",
-      desc: "Proident aute cillum mollit deserunt eiusmod Lorem duis incididunt velit sint.",
-      id: 3,
-    },
-    {
-      name: "badge 4",
-      desc: "Pariatur quis consequat consequat amet culpa incididunt aute elit consequat.",
-      id: 4,
-    },
-    {
-      name: "Badge 5",
-      desc: "Do non ullamco laboris deserunt enim aliquip pariatur aute voluptate nulla consequat.",
-      id: 5,
-    },
+    // {
+    //   name: "badge 2",
+    //   desc: "Ipsum nostrud anim ad incididunt cupidatat ut aliqua excepteur consequat.",
+    //   id: 2,
+    // },
+    // {
+    //   name: "badge 3",
+    //   desc: "Proident aute cillum mollit deserunt eiusmod Lorem duis incididunt velit sint.",
+    //   id: 3,
+    // },
+    // {
+    //   name: "badge 4",
+    //   desc: "Pariatur quis consequat consequat amet culpa incididunt aute elit consequat.",
+    //   id: 4,
+    // },
+    // {
+    //   name: "Badge 5",
+    //   desc: "Do non ullamco laboris deserunt enim aliquip pariatur aute voluptate nulla consequat.",
+    //   id: 5,
+    // },
   ];
 
   let badgesx = badgesList.map((item) => {
@@ -52,18 +54,53 @@ const Badge = () => {
 
 
 
-//   const [currentIndex, setCurrentIndex] = useState(-1);
 
-  const badges = useSelector(state => state.badges);
-  const dispatch = useDispatch();
 
-  const initFetch = useCallback(() => {
-    dispatch(getBadges());
-  }, [dispatch])
+   const initialBadgeState = {
+    id: null,
+    title: "",
+    description: "",
+    price:0,
+    imageUrl: false
+  };
+  const [currentBadge, setCurrentBadge] = useState(initialBadgeState);
+  const [message, setMessage] = useState("");
+
+
+  const getBadge = id => {
+    BadgesService.get(id)
+      .then(response => {
+        setCurrentBadge(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
 
   useEffect(() => {
-    initFetch()
-  }, [initFetch])
+    getBadge(1);
+  }, []);
+
+  badgesList.push({name:currentBadge.title,...currentBadge})
+
+
+//   const [currentIndex, setCurrentIndex] = useState(-1);
+
+//   const badges = useSelector(state => state.badges);
+//   const badge = useSelector(state => state.badge);
+
+//   console.log(badges)
+  console.log(currentBadge)
+//   const dispatch = useDispatch();
+
+//   const initFetch = useCallback(() => {
+//     // dispatch(getBadges());
+//     dispatch(getBadge(1));
+//   }, [dispatch])
+
+//   useEffect(() => {
+//     initFetch()
+//   }, [initFetch])
 
  
 
@@ -72,7 +109,8 @@ const Badge = () => {
 
   return (
     <div>{badgesx}
-    <p>{badges}</p></div>
+    {/* <p>{badges}</p> */}
+    </div>
   )
 }
 

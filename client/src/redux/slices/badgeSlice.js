@@ -19,10 +19,17 @@ export const requestBadge = createAsyncThunk(
   }
 );
 
+export const getBadge = createAsyncThunk(
+  "badges/get",
+  async (id) => {
+    const res = await BadgesService.get(id);
+    return res.data;
+  }
+);
 export const getBadges = createAsyncThunk(
   "badges/get",
-  async () => {
-    const res = await BadgesService.getAll();
+  async ({ids}) => {
+    const res = await BadgesService.getAll({ids});
     return res.data;
   }
 );
