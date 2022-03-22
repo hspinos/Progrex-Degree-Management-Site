@@ -7,8 +7,8 @@ function CourseTable() {
     return (
 
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table class="w-full text-sm text-left text-white-500 dark:text-white-400">
+                <thead class="text-xs text-white-700 uppercase bg-white-50 dark:bg-white-700 dark:text-white-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             Course Name
@@ -23,7 +23,7 @@ function CourseTable() {
                 </thead>
                 <tbody> 
                     {contacts.map((contact) => (
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <tr class="bg-gray border-b dark:bg-black-800 dark:border-white-700">
                         
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                             {contact.name}
