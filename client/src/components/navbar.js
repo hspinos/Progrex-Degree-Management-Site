@@ -18,8 +18,8 @@ function Navbar() {
     route: "userdash",
     id: 3,
   }, {
-    name: "Progress",
-    route: "userprogress",
+    name: "Navbtn",
+    route: "home",
     id: 4,
   }]
 
