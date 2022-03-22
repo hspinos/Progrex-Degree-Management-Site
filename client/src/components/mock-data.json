@@ -1,0 +1,25 @@
+[{
+    "name":"Course 1",
+    "courseYear":"2018",
+    "id":1
+  },{
+    "name":"Course 2",
+    "courseYear":"2019",
+    "id":2
+  },{
+    "name":"Course 3",
+    "courseYear":"2029",
+    "id":3
+  },{
+    "name":"Course 4",
+    "courseYear":"2020",
+    "id":4
+  },{
+    "name":"Course 5",
+    "courseYear":"2019",
+    "id":5
+  },{
+    "name":"Course 6",
+    "courseYear":"2020",
+    "id":6
+  }]
