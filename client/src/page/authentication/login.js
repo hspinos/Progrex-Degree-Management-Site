@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useLocation } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 
 function Login() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  var redirectLocation = "home";
+
+  const search = useLocation().search;
+  if (new URLSearchParams(search).get('redirectLocation')) redirectLocation = new URLSearchParams(search).get('redirectLocation');
 
   async function handleLoginClick(e) {
     e.preventDefault();
@@ -12,7 +19,17 @@ function Login() {
       let res = await axios.post(`/user/login`, {
         username: username,
         password: password
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
       });
+      console.log("Hello console!")
+      if (res.status == 200) {
+        console.log("login successful!");
+        window.location.replace(`/${redirectLocation}`);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -21,11 +38,13 @@ function Login() {
   return (
     <div className="h-full flex justify-center">
       <div className="flex items-center">
-        <div className="bg-stone-800 items-center p-4 rounded-sm w-96 rounded-md">
+        <div className="bg-stone-800 items-center p-4 w-96 rounded-md">
           <h1 className="text-3xl text-center font-semibold mb-4">
             Login
           </h1>
-          <form className="grid grid-cols-1 justify-center items-center">
+          <form
+            className="grid grid-cols-1 justify-center items-center"
+            onSubmit={handleLoginClick}>
             <div className="grid mb-2">
               <input
                 className="rounded-sm p-2 text-black"

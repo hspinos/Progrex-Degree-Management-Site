@@ -19,8 +19,8 @@ Head to https://docs.docker.com/desktop/windows/install/ and install Docker. Mak
 ## To run and test only the application container, write the following to the command prompt:
 Open a command prompt, cd into the server folder of the project.
 ```
-docker build -t degreeworkspp .         # This will build the docker image
-docker run -p 8080:8080 degreeworkspp   # This will run the docker image you just created
+docker build -t wthunder/progrex .  # This will build the docker image
+docker run -p 8080:8080 progrex     # This will run the docker image you just created
 ``` 
 You can test to see if this work by going to http://localhost:8080 in your browser
 
@@ -38,7 +38,7 @@ Before you begin, make sure that your containers are running
 will have to connect to the mongo container through a different terminal *
 ```
 docker exec -it mongo bash            # You should have access to the container's shell
-mongo admin -u root -p degreeworkspp  # This will give you access to the database's contents
+mongo admin -u root -p progrex  # This will give you access to the database's contents
                                       # At this point, you can refer to the MongoDB documentation to begin making queries
 ```
 ## Testing a query

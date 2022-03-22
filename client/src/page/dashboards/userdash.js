@@ -1,4 +1,6 @@
 import ProgressBar from "../../components/progressbar"
+import GameBoard from "../../components/gameBoard";
+
 export default function UserDash() {
   let badgesList = [
     {
@@ -46,7 +48,7 @@ export default function UserDash() {
     <div className="flex h-full justify-center align-center">
       <div className="grid grid-cols-2 w-full h-full">
         <div className="flex items-center">
-          <div className="text-5xl font-semibold">gameboard div</div>
+          <GameBoard />
         </div>
         <div className="flex flex-col items-stretch justify-center space-y-2">
           <div className="border-4 rounded-md p-4 flex-auto overflow-y-auto">
