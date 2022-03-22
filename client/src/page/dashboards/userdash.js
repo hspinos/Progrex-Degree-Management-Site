@@ -45,7 +45,7 @@ export default function UserDash() {
   return (
     <div className="flex h-full justify-center align-center">
       <div className="grid grid-cols-2 w-full h-full">
-        <div className="flex flex-col  justify-center items-center">
+        <div className="flex flex-col justify-center items-center">
           <div>GameBoard Div</div>
           <GameBoard />
           <div>Current User Info</div>

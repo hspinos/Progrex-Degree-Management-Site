@@ -27,19 +27,17 @@ function GameBoard(){
     
     
     return (
-        <div>
         <Unity 
             unityContext={config}
+            className="w-full"
             style={{
                 visibility: isLoaded ? "visible" : "hidden",
                 height: "100%",
                 width: "100%",
                 border: "6px solid #00E676",
                 background: "grey",
-            }}
-            
+            }} 
         />
-        </div>  
     );
 }
 
