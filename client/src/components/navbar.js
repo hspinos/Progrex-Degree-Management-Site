@@ -112,9 +112,7 @@ function Navbar() {
             <div>
               <a className="">Currently logged in as {Cookies.get('userCookie')}</a>
             </div>
-
             :
-
             <div className="flex space-x-3">
               <a className="bg-emerald-600 py-1 w-20 rounded-sm text-center" href="/signup">Signup</a>
               <a className="bg-sky-600 p-1 w-20 rounded-sm text-center" href="/login">Login</a>
