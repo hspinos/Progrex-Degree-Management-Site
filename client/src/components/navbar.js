@@ -19,10 +19,6 @@ function Navbar() {
     route:"userdash",
     id:3,
   },{
-    name:"Documents",
-    route:"userdocuments",
-    id:4,
-  },{
     name:"Navbtn",
     route:"home",
     id:5,
