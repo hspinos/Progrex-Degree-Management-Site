@@ -5,22 +5,32 @@ import Cookies from 'js-cookie';
 function Navbar() {
   var user;
 
-  let menuItems = [{
-    name: "Home",
-    route: "home",
-    id: 1,
-  }, {
-    name: "About",
-    route: "about",
-    id: 2,
-  }, {
-    name: "Dashboard",
-    route: "userdash",
-    id: 3,
-  }, {
-    name: "Navbtn",
-    route: "home",
-    id: 4,
+
+  let menuItems=[{
+    name:"Home",
+    route:"home",
+    id:1,
+  },{
+    name:"About",
+    route:"about",
+    id:2,
+  },{
+    name:"Dashboard",
+    route:"userdash",
+    id:3,
+  },{
+    name:"Documents",
+    route:"userdocuments",
+    id:4,
+  },{
+    name:"Navbtn",
+    route:"home",
+    id:5,
+  },{
+    name:"Progress",
+    route:"userprogress",
+    id:6,
+
   }]
 
   if (Cookies.get('userCookie')) {
