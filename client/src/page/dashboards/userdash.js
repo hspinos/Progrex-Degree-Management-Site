@@ -45,8 +45,10 @@ export default function UserDash() {
   return (
     <div className="flex h-full justify-center align-center">
       <div className="grid grid-cols-2 w-full h-full">
-        <div className="flex items-center">
+        <div className="flex flex-col  justify-center items-center">
+          <div>GameBoard Div</div>
           <GameBoard />
+          <div>Current User Info</div>
         </div>
         <div className="flex flex-col items-stretch justify-center space-y-2">
           <div className="border-4 rounded-md p-4 flex-auto overflow-y-auto">
