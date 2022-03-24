@@ -17,7 +17,10 @@ function CourseTable() {
                             Course ID
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Course Year
+                            Date Completed
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Grade    
                         </th>
                     </tr>
                 </thead>
@@ -33,6 +36,9 @@ function CourseTable() {
                         </td>
                         <td class="px-6 py-4">
                             {contact.courseYear}
+                        </td>
+                        <td class="px-6 py-4">
+                            {contact.grade}
                         </td>
                     </tr>
                     ))}

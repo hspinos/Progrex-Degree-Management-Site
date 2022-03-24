@@ -6,7 +6,14 @@ let fillerText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliqu
 function UserProgress() {
     return (
         <div>
-            <CourseTable/>
+            <div className="text-center text-xl">
+                Student: Example
+            </div>
+            <div className="text-center text-l py-4">
+                Completed Courses
+                <CourseTable/>
+            </div>
+            
         </div>
     );
     }
