@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import data from "./mock-data.json"
 
 
-function CourseTable() {
+function CoreTable() {
     const [contacts, setContacts] = useState(data);
     return (
         <div className="flex mb-10">
@@ -44,4 +44,4 @@ function CourseTable() {
         </div>
     )
 }
-export default CourseTable;
+export default CoreTable;
