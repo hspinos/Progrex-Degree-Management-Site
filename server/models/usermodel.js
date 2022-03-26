@@ -11,7 +11,7 @@ const userSchema = new Schema(
     avatarNum: { type: String, required: true },
     isThesis: { type:Boolean, required: true},
     pathway: { type:String, required: true},
-    gpa: { type:Double, required: true},
+    gpa: { type:String, required: true},
     isGoodStanding: {type: Boolean, required: true},
     isAppliedToGrad: {type: Boolean, required: true}
   }
