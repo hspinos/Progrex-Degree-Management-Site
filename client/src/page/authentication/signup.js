@@ -42,8 +42,8 @@ function Signup() {
                   <div className="w-full border-t border-gray-300"></div>
                 </div>
                 <div className="relative flex justify-center text-sm leading-5">
-                  <span className="px-2 text-gray-500 bg-gray-300">
-                    Signup
+                  <span className="px-2 text-gray-500 bg-gray-300 rounded text-lg">
+                    Sign Up
                   </span>
                 </div>
               </div>
@@ -112,7 +112,7 @@ function Signup() {
                         className="py-2 px-4  bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
                         onClick={handleSignup}
                       >
-                        Signup
+                        Sign Up
                       </button>
                     </span>
                   </div>
