@@ -10,7 +10,7 @@ import DocModalSigned from '../../components/docmodalsigned'
 function UserDocuments() {
   var user;
 
-  const [documents, setDocuments] = useState([]);
+  const [documents, setDocuments] = useState([]);//
 
   //Getting document list from database
   const getDocuments = async () => {
