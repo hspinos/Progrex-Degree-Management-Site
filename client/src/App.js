@@ -11,6 +11,7 @@ import Login from './page/authentication/login';
 import UserDash from './page/dashboards/userdash';
 import UserDocuments from './page/documents/userdocuments';
 import DocSignConfirmation from './page/documents/docsignconfirmation';
+import BadgeRequest from './page/badge/badgeRequest';
 
 function App() {
   return (
@@ -20,9 +21,11 @@ function App() {
         </header>
         <Layout>
           <Switch>
+            
             <Route path="/login"><Login /></Route>
             <Route path="/signup"><Signup /></Route>
             <Route path="/userdash"><UserDash /></Route>
+            <Route path="/badgerequest"><BadgeRequest /></Route>
             <Route path="/userdocuments"><UserDocuments /></Route>
             <Route path="/docsignconfirmation"><DocSignConfirmation /></Route>
           </Switch>

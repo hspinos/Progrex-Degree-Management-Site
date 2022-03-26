@@ -30,6 +30,7 @@ export const getBadges = createAsyncThunk(
   "badges/get",
   async ({ids}) => {
     const res = await BadgesService.getAll({ids});
+    console.log(res.data)
     return res.data;
   }
 );

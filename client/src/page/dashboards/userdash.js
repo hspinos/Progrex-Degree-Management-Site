@@ -1,5 +1,6 @@
 import Badge from "../../components/badge";
 import GameBoard from "../../components/gameBoard";
+import Sidebar from "../../components/sidebar";
 
 // export default function UserDash() {
 //   let badgesList = [
@@ -33,14 +34,16 @@ import GameBoard from "../../components/gameBoard";
 export default function UserDash() {
   
   return (
-    <div className="flex h-full justify-center align-center">
-      <div className="grid grid-cols-2 w-full h-full">
-        <div className="flex items-center">
+    <div className="flex justify-around items-center w-full m-auto">
+      <div className="flex flex-col md:flex-row mt-4 m-auto justify-between space-x-3">
+        <div className="flex-grow">
           <GameBoard />
         </div>
-        <div className="flex flex-col items-stretch justify-center space-y-2">
-          <div className="border-4 rounded-md p-4 flex-auto overflow-y-auto">
-            <div className="w-11/12 space-y-4 m-auto">
+
+
+        <div className="flex flex-col items-center justify-center space-y-2">
+          <div className=" rounded-md flex-auto overflow-y-auto bg-stone-800">
+            <div className="w-full p-8 space-y-4 m-auto">
               <h1 className="text-6xl font-semibold">Badges</h1>
               {/* <div className=" h-24 border-2 rounded-md">
                 <div className="flex flex-row items-center h-full p-2 space-x-5">
@@ -51,6 +54,7 @@ export default function UserDash() {
                   </div>
                 </div>
               </div> */}
+              {/* <Sidebar/> */}
               <Badge/>
             </div>
           </div>

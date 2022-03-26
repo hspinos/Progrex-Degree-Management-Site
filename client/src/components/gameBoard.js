@@ -15,7 +15,7 @@ function spawnAvatar(){
 function GameBoard(){
 
     const [isLoaded, setIsLoaded] = useState(false);
-
+    const [windowWidth, setWindowWidth] = useState(1920)
     
     useEffect(function () {
       config.on("loaded", () => {
@@ -25,16 +25,25 @@ function GameBoard(){
       });
     }, []);
     
+    useEffect(function(){
+        let wid =  document.documentElement.clientWidth
+|| window.innerWidth
+||document.body.clientWidth;
+        setWindowWidth(wid)
+    },[windowWidth])
     
+
+    console.log(windowWidth)
     return (
         <div>
         <Unity 
-            unityContext={config} 
+            unityContext={config}
+            className="border-stone-600 rounded-md border-8 w-full aspect-auto"
             style={{
                 visibility: isLoaded ? "visible" : "hidden",
-                height: "50%",
-                width: 950,
-                border: "6px solid #00E676",
+                // height: "50%",
+                width: windowWidth*0.75+"px",
+                // border: "2px solid #00E676",
                 background: "grey",
             }}
         />

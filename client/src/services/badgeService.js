@@ -1,7 +1,7 @@
 import {http, admin} from "../axios-config";
 
 const getAll = (ids) => {
-  return http.post("/badges",ids);
+  return http.post("/badge/badges",ids);
 };
 
 const get = id => {
