@@ -38,7 +38,73 @@ function Login() {
   return (
     <div className="h-full flex justify-center">
       <div className="flex items-center">
-        <div className="bg-stone-800 items-center p-4 w-96 rounded-md">
+
+
+
+<div className="bg-gray-300 rounded-lg shadow sm:max-w-md sm:w-full sm:mx-auto sm:overflow-hidden dark:bg-stone-800 ">
+            <div className="px-4 py-8 sm:px-10">
+              <div className="relative mt-6">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300"></div>
+                </div>
+                <div className="relative flex justify-center text-sm leading-5">
+                  <span className="px-2 text-gray-500 bg-gray-300">
+                    Login
+                  </span>
+                </div>
+              </div>
+              <div className="mt-6">
+                <div className="w-full space-y-6">
+                  <div className="w-full">
+                    <div className=" relative ">
+                      <input
+                        type="text"
+                         id="username"
+                name="username"
+                        className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-300 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
+                        placeholder="Username"
+                         onChange={e => { setUsername(e.target.value) }}
+                      />
+                    </div>
+                  </div>
+                  <div className="w-full">
+                    <div className=" relative ">
+                      <input
+                        type="password"
+                         id="password"
+                name="password"
+                        className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-300 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:border-transparent"
+                        placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <span className="block w-full rounded-md shadow-sm">
+                      <button
+                        type="button"
+                        className="py-2 px-4  bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                        onClick={handleLoginClick}
+                      >
+                        Login
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="px-4 py-6 border-t-2 border-gray-400  sm:px-10">
+              <p className="text-xs leading-5 text-gray-500">
+                By clicking "login" you agree to <a href='terms'> <i>terms</i></a> and <a href="#"><i>conditions</i></a>.
+              </p>
+            </div>
+          </div>
+
+
+
+
+
+        {/* <div className="bg-stone-800 items-center p-4 w-96 rounded-md">
           <h1 className="text-3xl text-center font-semibold mb-4">
             Login
           </h1>
@@ -70,7 +136,7 @@ function Login() {
               Login
             </button>
           </form>
-        </div>
+        </div> */}
       </div>
     </div>
   )

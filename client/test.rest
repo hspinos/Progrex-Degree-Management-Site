@@ -2,7 +2,7 @@ POST http://localhost:8080/badge/create HTTP/1.1
 Content-Type: application/json
 
 {
-    "badgeName":"Test Badge s",
+    "badgeName":"Test Badge 1",
     "isApproved": false,
     "description":"test badge "
 }
@@ -13,16 +13,13 @@ Content-Type: application/json
 
 ###
 
-GET  http://localhost:8080/badge HTTP/1.1
+# GET  http://localhost:8080/badge HTTP/1.1
 
-###
-GET http://localhost:8080/badge/find?id=6238c25a892f738e0d63d68c HTTP/1.1
-Content-Type: application/json
 
 ###
 POST http://localhost:8080/badge/badges HTTP/1.1
 Content-Type: application/json
 
 {
-"ids":["6238c251892f738e0d63d68a","6238c25a892f738e0d63d68c"]
+"ids":["623a1c4c3c3c23b9517a2e34","623a1b473c3c23b9517a0ec5"]
 }
