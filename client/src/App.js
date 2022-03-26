@@ -17,7 +17,7 @@ import BadgeRequest from './page/badge/badgeRequest';
 function App() {
   return (
     <Router>
-      <div className="App bg-neutral-900 text-white h-screen bg-auto">
+      <div className="App bg-neutral-900 text-white h-full min-h-screen bg-auto">
         <header className="App-header">
         </header>
         <Layout>
