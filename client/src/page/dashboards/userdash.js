@@ -43,8 +43,8 @@ export default function UserDash() {
 
         <div className="flex flex-col items-center justify-center space-y-2">
           <div className=" rounded-md flex-auto overflow-y-auto bg-stone-800">
-            <div className="w-full p-8 space-y-4 m-auto">
-              <h1 className="text-6xl font-semibold">Badges</h1>
+            <div className="w-full p-8 space-y-4 m-auto text-center">
+              <h1 className="text-3xl font-semibold uppercase">Badges</h1>
               {/* <div className=" h-24 border-2 rounded-md">
                 <div className="flex flex-row items-center h-full p-2 space-x-5">
                   <div className="w-12 bg-gray-300 h-12 rounded-full "></div>
