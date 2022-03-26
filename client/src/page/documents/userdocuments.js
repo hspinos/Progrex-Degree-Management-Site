@@ -47,7 +47,7 @@ function UserDocuments() {
 
   //Mapping document JSON objects to card components
   let docs = documents.map((doc) => {
-    return <DocumentCard key={doc._id} name={doc.name} desc={doc.description} id={doc._id} pfUrl={doc.powerFormUrl} />
+    if (doc.isActive) return <DocumentCard key={doc._id} name={doc.name} desc={doc.description} id={doc._id} pfUrl={doc.powerFormUrl} />
   })
 
 
