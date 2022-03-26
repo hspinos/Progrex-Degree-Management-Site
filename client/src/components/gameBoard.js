@@ -18,16 +18,17 @@ const spawnAvatars = async () => {
         const jsonData = await response.data;
 
         console.log(jsonData);
+        console.log("Before for loop")
+        for (const x of jsonData){
+            console.log("In for loop");
+            config.send("Spawner", "spawnAvatar", JSON.stringify(x));
+        }
+        console.log("After for loop");
     }
     catch{
         
     }
-    //Insert logic for calling database here
-    //axios.get call to get all student objects
-    //then call config.send within a for loop for i times where i = num of students returned
-    //for (int i = 0; i <= axios.getStudents.length; i++)
-    //  config.send("Spawner", "spawnAvatar", axios.getStudents[i]);
-    config.send("Spawner", "spawnAvatar", "{\"FName\":\"Jonathan\", \"LName\" : \"Nguyen\", \"position\" : 1, \"avatarNum\" : 1}");
+    //config.send("Spawner", "spawnAvatar", "{\"FName\":\"Jonathan\", \"LName\" : \"Nguyen\", \"position\" : 1, \"avatarNum\" : 1}");
 }
 
 //React component to be called to spawn the gameboard
@@ -47,8 +48,8 @@ function GameBoard(){
     
     useEffect(function(){
         let wid =  document.documentElement.clientWidth
-|| window.innerWidth
-||document.body.clientWidth;
+||      window.innerWidth
+||      document.body.clientWidth;
         setWindowWidth(wid)
     },[windowWidth])
     
