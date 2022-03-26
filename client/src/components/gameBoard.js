@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Unity, { UnityContext } from "react-unity-webgl";
 
@@ -11,7 +12,16 @@ const config = new UnityContext({
 })
 
 //Handle retrieving data from the data base and spawning all avatars on gameboard based on data returned
-function spawnAvatar(){
+const spawnAvatars = async () => {
+    try {
+        const response = await axios.get("/gameboard/list");
+        const jsonData = await response.data;
+
+        console.log(jsonData);
+    }
+    catch{
+        
+    }
     //Insert logic for calling database here
     //axios.get call to get all student objects
     //then call config.send within a for loop for i times where i = num of students returned
@@ -30,7 +40,7 @@ function GameBoard(){
     useEffect(function () {
       config.on("loaded", () => {
         setIsLoaded(true);
-        setTimeout(() => {spawnAvatar()}, 3000)
+        setTimeout(() => {spawnAvatars()}, 3000)
         console.log("after spawn avatar");
       });
     }, []);
@@ -58,7 +68,6 @@ function GameBoard(){
             }}
         />
         </div>  
-
     );
 }
 

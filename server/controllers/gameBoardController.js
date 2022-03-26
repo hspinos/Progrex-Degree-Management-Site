@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-let gameBoard = require('../models/gameBoardModel');
+let gameBoard = require('../models/usermodel');
 
 
 exports.get_users = function(req, res){
