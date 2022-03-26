@@ -14,7 +14,7 @@ function ElectivesTable() {
                     <table class="w-full text-sm text-left text-white-500 dark:text-white-400">
                         <thead class="text-xs text-white-700 uppercase bg-white-50 dark:bg-white-700 dark:text-white-400">
                             <tr>
-                                <th scope="col" class="px-6 py-3"></th>
+                                <th scope="col" class="px-1 py-3"></th>
                                 <th scope="col" class="px-6 py-3">
                                     Course Name
                                 </th>
