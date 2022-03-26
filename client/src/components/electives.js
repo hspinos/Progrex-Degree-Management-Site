@@ -2,14 +2,14 @@ import React, { useState } from "react"
 import data from "./mock-data.json"
 
 
-function CoreTable() {
+function ElectivesTable() {
     const [contacts, setContacts] = useState(data);
     return (
         <div className="flex mb-10">
             <div className="bg-stone-800 items-center p-4 w-screen rounded-md">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-left text-lg font-bold">
                     <div className="bg-stone-800 items-center p-4 w-full rounded-md font-bold">
-                        Core Curriculum
+                        Electives Table
                     </div>
                     <table class="w-full text-sm text-left text-white-500 dark:text-white-400">
                         <thead class="text-xs text-white-700 uppercase bg-white-50 dark:bg-white-700 dark:text-white-400">
@@ -56,4 +56,4 @@ function CoreTable() {
         </div>
     )
 }
-export default CoreTable;
+export default ElectivesTable;
