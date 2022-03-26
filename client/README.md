@@ -14,6 +14,19 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+
+## running mock server
+
+you can user *generate.js* file to generate mock db. If you want to add a new end point/route to the mock server, add to the *database.json* file an empty array of the endpoint that you want to create. For example if you want to add a */products* route, add *"products":[]*. Then in *generate.js* file, in line 4 add *products:[]*.
+
+### `npm run generate`
+
+generates mock database
+
+### `npm run server`
+
+runs mock server on port 3000. make sure that port 3000 is open. mock server requires port 3000 to be free in order to work.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\

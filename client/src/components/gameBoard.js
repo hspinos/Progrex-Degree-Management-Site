@@ -35,6 +35,7 @@ function GameBoard(){
 
     //Uses state to ensure the gameboard is loaded before calling method to spawn avatars
     const [isLoaded, setIsLoaded] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(1920)
 
     useEffect(function () {
       config.on("loaded", () => {
@@ -44,21 +45,29 @@ function GameBoard(){
       });
     }, []);
     
+    useEffect(function(){
+        let wid =  document.documentElement.clientWidth
+|| window.innerWidth
+||document.body.clientWidth;
+        setWindowWidth(wid)
+    },[windowWidth])
     
+
+    console.log(windowWidth)
     return (
-        
+        <div>
         <Unity 
             unityContext={config}
-            className="max-w-sm m-20 rounded shadow-lg rounded-md bg-stone-800"
-            // style={{
-            //     visibility: isLoaded ? "visible" : "hidden",
-            //     height: "100%",
-            //     width: "100%",
-            //     border: "6px solid #00E676",
-            //     background: "grey",
-            // }} 
+            className="border-stone-600 rounded-md border-8 w-full aspect-auto"
+            style={{
+                visibility: isLoaded ? "visible" : "hidden",
+                // height: "50%",
+                width: windowWidth*0.75+"px",
+                // border: "2px solid #00E676",
+                background: "grey",
+            }}
         />
-        
+        </div>  
     );
 }
 

@@ -1,14 +1,16 @@
 import React from "react";
 import CourseTable from '../../components/coursetable'
-
-let fillerText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec feugiat lorem, sed efficitur nulla. Donec elementum augue ac ex suscipit fermentum.';
+import StudentInfoDiv from "../../components/studentinfodiv";
 
 function UserProgress() {
     return (
-        <div>
-            <CourseTable/>
+        <div className="h-full w-screen flex justify-center">
+            <div className="flex-col w-10/12">
+                <StudentInfoDiv />
+                <CourseTable />
+            </div>
         </div>
     );
-    }
+}
 
 export default UserProgress;
