@@ -11,7 +11,8 @@ const config = new UnityContext({
 })
 
 //Handle retrieving data from the data base and spawning all avatars on gameboard based on data returned
-function spawnAvatar(){
+const spawnAvatars = async () =>{
+
     //Insert logic for calling database here
     //axios.get call to get all student objects
     //then call config.send within a for loop for i times where i = num of students returned
@@ -29,26 +30,26 @@ function GameBoard(){
     useEffect(function () {
       config.on("loaded", () => {
         setIsLoaded(true);
-        setTimeout(() => {spawnAvatar()}, 3000)
+        setTimeout(() => {spawnAvatars()}, 3000)
         console.log("after spawn avatar");
       });
     }, []);
     
     
     return (
-        <div>
-            <Unity 
-                unityContext={config}
-                style={{
-                    visibility: isLoaded ? "visible" : "hidden",
-                    height: "100%",
-                    width: "100%",
-                    border: "6px solid #00E676",
-                    background: "grey",
-                }} 
-            />
-        </div>
-
+        
+        <Unity 
+            unityContext={config}
+            className="max-w-sm m-20 rounded shadow-lg rounded-md bg-stone-800"
+            // style={{
+            //     visibility: isLoaded ? "visible" : "hidden",
+            //     height: "100%",
+            //     width: "100%",
+            //     border: "6px solid #00E676",
+            //     background: "grey",
+            // }} 
+        />
+        
     );
 }
 
