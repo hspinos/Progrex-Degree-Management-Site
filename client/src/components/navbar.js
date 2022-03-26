@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 // eslint-disable-next-line
 function Navbar() {
@@ -30,6 +31,15 @@ function Navbar() {
   }]
   if (Cookies.get('userCookie')) {
     user = JSON.parse(Cookies.get('userCookie'));
+  }
+
+  async function handleSignout() {
+    try{
+      await axios.get('/user/logout');
+      Cookies.remove('userCookie');
+    } catch(err) {
+      alert('Failed to logout');
+    }
   }
 
   let nav = menuItems.map((item) => {
@@ -73,7 +83,7 @@ function Navbar() {
                       <a href="badgerequest" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Request Badges</a>
                     </li>
                     <li>
-                      <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                      <a onClick={handleSignout} className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
                     </li>
                   </ul>
                 </div>

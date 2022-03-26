@@ -11,4 +11,6 @@ userRouter.post("/create", userController.create_user);
 
 userRouter.post("/login", userController.user_login);
 
+userRouter.get("/logout", userController.user_logout);
+
 module.exports = userRouter;

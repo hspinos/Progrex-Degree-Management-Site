@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const session = require('express-session');
 const Redis = require('ioredis');
@@ -26,6 +27,7 @@ const DocumentRouter = require('./routes/DocumentRouter');
 const badgeRouter = require('./routes/badgeRouter');
 const gameBoardRouter = require('./routes/GameBoardRouter');
 
+app.use(express.static(path.join(__dirname, 'frontend/build')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({
@@ -51,8 +53,8 @@ app.use('/badge', badgeRouter)
 app.use('/gameboard', gameBoardRouter);
 
 // Test endpoint
-app.get('/', (req, res) => {
-  res.send("Test endpoint");
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/frontend/build/index.html'));
 });
 
 
