@@ -9,8 +9,11 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     position: { type: String, requried: true },
     avatarNum: { type: String, required: true },
-    program: { type:Boolean, required: true},
-    pathway: { type:String, required: true}
+    isThesis: { type:Boolean, required: true},
+    pathway: { type:String, required: true},
+    gpa: { type:Double, required: true},
+    isGoodStanding: {type: Boolean, required: true},
+    isAppliedToGrad: {type: Boolean, required: true}
   }
 )
 
