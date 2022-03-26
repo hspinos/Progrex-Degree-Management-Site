@@ -8,7 +8,9 @@ const userSchema = new Schema(
     username: { type: String, required: true, maxLength: 40, unique: true, dropDups: true},
     password: { type: String, required: true },
     position: { type: String, requried: true },
-    avatarNum: { type: String, required: true }
+    avatarNum: { type: String, required: true },
+    program: { type:Boolean, required: true},
+    pathway: { type:String, required: true}
   }
 )
 

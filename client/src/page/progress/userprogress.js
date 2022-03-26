@@ -4,7 +4,7 @@ import StudentInfoDiv from "../../components/studentinfodiv";
 import ElectivesTable from "../../components/electives";
 function UserProgress() {
     return (
-        <div className="h-full w-screen flex justify-center">
+        <div className="h-full w-full flex justify-center">
             <div className="flex-col w-10/12">
                 <StudentInfoDiv />
                 <CoreTable />
