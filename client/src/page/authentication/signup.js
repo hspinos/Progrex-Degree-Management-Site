@@ -8,6 +8,13 @@ function Signup() {
   const [lName, setLName] = useState("");
   const [password, setPassword] = useState("");
   const [checkPass, setCheckPass] = useState("");
+  const [position, setPosition] = useState("");
+  const [avatarNum, setAvatarNum] = useState("");
+  const [isThesis, setIsThesis ] = useState("");
+  const [pathway, setPathway] = useState("");
+  const [gpa, setGpa] = useState("");
+  const [isGoodStanding, setIsGoodStanding] = useState("");
+  const [isAppliedToGrad, setIsAppliedToGrad] = useState("");
 
   async function handleSignup(e) {
     e.preventDefault();
