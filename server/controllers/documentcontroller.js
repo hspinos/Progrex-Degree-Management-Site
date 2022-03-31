@@ -93,6 +93,26 @@ exports.create_document = async function (req, res) {
   }
 }
 
+//Setting document signed status
+exports.set_document_active = async function (req, res) {
+  try {
+    console.log("set active endpoint called")
+    const document = await Document.findById(req.params.id);
+    document.isActive = req.params.isActive;
+
+    await document.save();
+
+    res
+      .status(200)
+      .send(document);
+  } catch (err) {
+    console.error(err);
+    res
+      .status(401)
+      .send(err.message)
+  }
+}
+
 //Resets document list (for testing and demonstration purposes)
 exports.reset_documents = async function (req, res) {
   try {
