@@ -9,11 +9,12 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     position: { type: String, requried: true },
     avatarNum: { type: String, required: true },
-    isThesis: { type:Boolean, required: false},
-    pathway: { type:String, required: false},
-    gpa: { type:String, required: false},
-    isGoodStanding: {type: Boolean, required: false},
-    isAppliedToGrad: {type: Boolean, required: false}
+    isThesis: { type:Boolean, required: false, default: true},
+    pathway: { type:String, required: false, default: "Auto"},
+    gpa: { type:String, required: false, default: "auto"},
+    isGoodStanding: {type: Boolean, required: false, default: "auto"},
+    isAppliedToGrad: {type: Boolean, required: false, default: true},
+    studentID: {type: String, required: false, default: "Auto-Generate"}
   }
 )
 
