@@ -28,4 +28,6 @@ documentRouter.put(
 
 documentRouter.post("/create/", document_controller.create_document);
 
+documentRouter.put("/update/:id", document_controller.update_document);
+
 module.exports = documentRouter;
