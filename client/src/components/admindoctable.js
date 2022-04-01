@@ -70,17 +70,32 @@ function AdminDocTable() {
 				>
 					{doc.name}
 				</th>
-				<td className="px-2 py-4">{doc.usersSigned.length}</td>
+				<td className="px-2 py-4 hover:underline hover:cursor-pointer">
+					{doc.usersSigned.length}
+				</td>
 				<td className="px-2 py-4 flex items-center">
-					{/*doc.isActive.toString()*/}
 					<DocStatus isActive={doc.isActive} />
 				</td>
 				<td className="px-2 py-4">{doc.creator}</td>
 				<td className="px-2 py-4 text-right">
-					<button className=" px-1 py-1 w-1/2 h-full whitespace-nowrap bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-						Edit Document
-					</button>
+					<div className="grid grid-cols-2">
+						<button
+							data-bs-toggle="modal"
+							data-bs-target={`#editModal${doc._id}`}
+							className=" w-min px-4 h-full whitespace-nowrap bg-green-600 hover:bg-green-700 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
+						>
+							Edit
+						</button>
+						<button
+							data-bs-toggle="modal"
+							data-bs-target="#editModal"
+							className="px-1 py-1 w-min h-full whitespace-nowrap bg-red-600 hover:bg-red-700 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
+						>
+							Delete
+						</button>
+					</div>
 				</td>
+				<td></td>
 			</tr>
 		);
 	});
@@ -101,6 +116,9 @@ function AdminDocTable() {
 						</th>
 						<th scope="col" className="px-2 py-4">
 							Creator
+						</th>
+						<th scope="col" className="px-2 py-4">
+							Options
 						</th>
 						<th
 							scope="col"

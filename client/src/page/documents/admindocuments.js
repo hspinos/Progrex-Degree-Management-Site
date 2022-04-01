@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { BsFileEarmarkPlusFill } from "react-icons/bs";
 
 import AdminDocTable from "../../components/admindoctable";
-
+import DocModalEdit from "../../components/docmodaledit";
+import { MdPodcasts } from "react-icons/md";
+/*<button className="absolute right-0 transform -translate-y-5 object-none mb-5 w-12 h-12 flex items-center justify-center rounded-full bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white hover:scale-110 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 ">
+					<BsFileEarmarkPlusFill className="h-full w-6/12 fill-white-600" />
+				</button>*/
 //Fetching documents from backend
 function AdminDocuments() {
 	var user;
@@ -44,15 +47,29 @@ function AdminDocuments() {
 		}, 500);
 	}
 
+	let editModals = documents.map((doc) => {
+		return (
+			<DocModalEdit
+				key={doc._id}
+				docId={doc._id}
+				name={doc.name}
+				description={doc.description}
+				pfUrl={doc.powerFormUrl}
+				isActive={doc.isActive}
+			/>
+		);
+	});
+
 	if (!Cookies.get("userCookie")) {
 		window.location.replace("/login?redirectLocation=admindocuments");
 	} else if (documents.length != 0) {
 		user = JSON.parse(Cookies.get("userCookie"));
 		return (
 			<div className="h-full w-screen flex justify-center">
-				<div className="flex-col w-8/12">
+				<div className="flex-col w-8/12 h-full">
 					<AdminDocTable />
 				</div>
+				{editModals}
 			</div>
 		);
 	}
