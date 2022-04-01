@@ -91,7 +91,7 @@ exports.update_document = async function (req, res) {
 		if (req.body.name) document.name = req.body.name;
 		if (req.body.description) document.description = req.body.description;
 		if (req.body.powerFormUrl) document.powerFormUrl = req.body.powerFormUrl;
-		if (req.body.isActive) document.isActive = req.body.isActive;
+		document.isActive = req.body.isActive;
 		await document.save();
 		res.json(document).status(200).send();
 	} catch (err) {

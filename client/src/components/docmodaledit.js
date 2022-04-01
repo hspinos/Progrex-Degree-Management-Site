@@ -57,6 +57,7 @@ function DocModalEdit(props) {
 				docUpdateData
 			);
 			console.log(res);
+			window.location.reload();
 		} catch (err) {
 			console.error(err);
 		}
