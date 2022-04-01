@@ -11,9 +11,8 @@ function DocModalEdit(props) {
 	const [docName, setDocName] = useState("");
 	const [description, setDescription] = useState("");
 	const [pfUrl, setPfUrl] = useState("");
-	const [checkPass, setCheckPass] = useState("");
 
-	//Getting document list from database
+	/*Getting document list from database
 	const getDocuments = async () => {
 		try {
 			const response = await axios.get(`/document/detail/${props.docId}`);
@@ -27,7 +26,7 @@ function DocModalEdit(props) {
 
 	useEffect(() => {
 		getDocuments();
-	}, []);
+	}, []);*/
 
 	const toggleStyle = `
 	input:checked ~ .dot {
@@ -40,17 +39,27 @@ function DocModalEdit(props) {
 
 	`;
 
-	function handleSaveClick() {
-		const updateDocument = async () => {
-			try {
-				const response = await axios.get(`/document/detail/${props.docId}`);
-				const jsonData = await response.data;
+	/*function handleSaveClick() {
+		console.log("test");
+	}*/
 
-				setDocuments(jsonData);
-			} catch (err) {
-				console.error(err.message);
-			}
-		};
+	async function handleSaveClick(e) {
+		e.preventDefault();
+		console.log(docName, description, pfUrl, isActive);
+		let docUpdateData = { isActive: isActive };
+		if (docName) docUpdateData["name"] = docName;
+		if (description) docUpdateData["description"] = description;
+		if (pfUrl) docUpdateData["powerFormUrl"] = pfUrl;
+		console.log(docUpdateData);
+		try {
+			let res = await axios.put(
+				`/document/update/${props.docId}`,
+				docUpdateData
+			);
+			console.log(res);
+		} catch (err) {
+			console.error(err);
+		}
 	}
 
 	function handleCancel() {
@@ -198,9 +207,17 @@ function DocModalEdit(props) {
 					</div>
 					<div
 						id="editModalFooter"
-						className="modal-footer flex flex-shrink-0 flex-wrap items-center  p-4 border-t border-gray-200 rounded-b-md dark:border-stone-700"
+						className="relative modal-footer flex flex-shrink-0 flex-wrap items-center p-4 border-t border-gray-200 rounded-b-md dark:border-stone-700 justify-end"
 					>
-						Date Signed:
+						<button className="mx-5 w-1/6 px-4 h-10 whitespace-nowrap  bg-stone-500 hover:bg-stone-600 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg ">
+							Cancel
+						</button>
+						<button
+							className="w-1/6 px-4 h-10 whitespace-nowrap bg-green-600 hover:bg-green-700 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg"
+							onClick={handleSaveClick}
+						>
+							Save
+						</button>
 					</div>
 				</div>
 			</div>

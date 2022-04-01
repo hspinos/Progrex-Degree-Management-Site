@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { BsFileEarmarkPlusFill } from "react-icons/bs";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
@@ -8,7 +7,6 @@ import { MdCancel } from "react-icons/md";
 
 //Fetching documents from backend
 function AdminDocTable() {
-	var user;
 	var documentIndex = 0;
 
 	const [documents, setDocuments] = useState([]); //

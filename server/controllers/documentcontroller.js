@@ -88,10 +88,10 @@ exports.update_document = async function (req, res) {
 	try {
 		console.log("update document endpoint called");
 		const document = await Document.findById(req.params.id);
-		document.name = req.body.name;
-		document.description = req.body.description;
-		document.powerFormUrl = req.body.powerFormUrl;
-		document.isActive = req.body.isActive;
+		if (req.body.name) document.name = req.body.name;
+		if (req.body.description) document.description = req.body.description;
+		if (req.body.powerFormUrl) document.powerFormUrl = req.body.powerFormUrl;
+		if (req.body.isActive) document.isActive = req.body.isActive;
 		await document.save();
 		res.json(document).status(200).send();
 	} catch (err) {
