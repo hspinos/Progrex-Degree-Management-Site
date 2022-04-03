@@ -49,8 +49,8 @@ exports.user_detail = async function (req, res){
   try{
     const user = await User.findById(req.params.id);
     res
-      .status
-      .send(user)
+      .status(200)
+      .send(User)
   }catch (err){
     console.error(err);
   }
