@@ -2,8 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Unity, { UnityContext } from "react-unity-webgl";
 
-//Unity context object is from react-unity-webgl library that acts as brain for embedded WebGL build.
-//Build files must be stored in the public folder
+
 const config = new UnityContext({
     loaderUrl: "Build/gameboard.loader.js",
     dataUrl: "Build/gameboard.data",
@@ -11,24 +10,35 @@ const config = new UnityContext({
     codeUrl: "Build/gameboard.wasm"
 })
 
-//Handle retrieving data from the data base and spawning all avatars on gameboard based on data returned
 const spawnAvatars = async () => {
     try {
         const response = await axios.get("/gameboard/list");
         const jsonData = await response.data;
 
         console.log(jsonData);
-        console.log("Before for loop")
         for (const x of jsonData){
-            console.log("In for loop");
             config.send("Spawner", "spawnAvatar", JSON.stringify(x));
         }
-        console.log("After for loop");
     }
     catch{
         
     }
-    //config.send("Spawner", "spawnAvatar", "{\"FName\":\"Jonathan\", \"LName\" : \"Nguyen\", \"position\" : 1, \"avatarNum\" : 1}");
+}
+
+const populateGameBoard = async () => {
+    try {
+        const response = await axios.get("/gameboard/list");
+        const jsonData = await response.data;
+
+        console.log(jsonData);
+        for (const x of jsonData){
+            config.send("GameManager", "createStudent", JSON.stringify(x));
+        }
+
+    }
+    catch{
+        
+    }
 }
 
 //React component to be called to spawn the gameboard
