@@ -16,8 +16,8 @@ function UpdateUserPage() {
   const [lName, setLName] = useState('');
 
   return (
-    <div className="flex items-center justify-center h-full ">
-      <div className="m-auto">
+    <div className="h-full w-full">
+      <div className="grid justify-center content-center">
         <form>
           <div>
             <label>
@@ -39,6 +39,7 @@ function UpdateUserPage() {
           </div>
 
         </form>
+
       </div>
     </div>
   )
