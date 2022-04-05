@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
@@ -29,15 +30,20 @@ function Navbar() {
     id: 6,
 
   }]
+
   if (Cookies.get('userCookie')) {
     user = JSON.parse(Cookies.get('userCookie'));
   }
 
+  // TODO this method needs to be moved into a service file
   async function handleSignout() {
-    try{
+    try {
       await axios.get('/user/logout');
       Cookies.remove('userCookie');
-    } catch(err) {
+
+      // The following line refreshes the page after a successful logout
+      window.location.reload('/');
+    } catch (err) {
       alert('Failed to logout');
     }
   }
@@ -78,6 +84,13 @@ function Navbar() {
                     </li>
                     <li>
                       <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                    </li>
+                    <li>
+                      <a className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                        <Link to="/updateuserpage">
+                          Update Information
+                        </Link>
+                      </a>
                     </li>
                     <li>
                       <a href="badgerequest" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Request Badges</a>

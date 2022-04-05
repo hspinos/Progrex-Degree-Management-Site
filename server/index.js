@@ -43,7 +43,8 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     secure: false,
-    httpOnly: true
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 // This will result in a hour
   }
 }));
 
@@ -54,7 +55,7 @@ app.use('/gameboard', gameBoardRouter);
 
 // Test endpoint
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/frontend/build/index.html'));
+  res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
 });
 
 

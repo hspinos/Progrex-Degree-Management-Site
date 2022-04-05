@@ -9,6 +9,7 @@ import Layout from './components/layout';
 import Signup from './page/authentication/signup';
 import Login from './page/authentication/login';
 import UserDash from './page/dashboards/userdash';
+import UpdateUserPage from './page/user/updateuserinfo';
 import UserDocuments from './page/documents/userdocuments';
 import UserProgress from './page/progress/userprogress';
 import DocSignConfirmation from './page/documents/docsignconfirmation';
@@ -23,10 +24,11 @@ function App() {
         </header>
         <Layout>
           <Switch>
-            
+
             <Route path="/login"><Login /></Route>
             <Route path="/signup"><Signup /></Route>
             <Route path="/userdash"><UserDash /></Route>
+            <Route path="/updateuserpage"><UpdateUserPage /></Route>
             <Route path="/badgerequest"><BadgeRequest /></Route>
             <Route path="/userdocuments"><UserDocuments /></Route>
             <Route path="/userprogress"><UserProgress /></Route>
