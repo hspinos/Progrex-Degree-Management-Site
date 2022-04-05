@@ -4,26 +4,11 @@ import Unity, { UnityContext } from "react-unity-webgl";
 
 
 const config = new UnityContext({
-    loaderUrl: "Build/gameboard.loader.js",
-    dataUrl: "Build/gameboard.data",
-    frameworkUrl: "Build/gameboard.framework.js",
-    codeUrl: "Build/gameboard.wasm"
+    loaderUrl: "Build/build.loader.js",
+    dataUrl: "Build/build.data",
+    frameworkUrl: "Build/build.framework.js",
+    codeUrl: "Build/build.wasm"
 })
-
-const spawnAvatars = async () => {
-    try {
-        const response = await axios.get("/gameboard/list");
-        const jsonData = await response.data;
-
-        console.log(jsonData);
-        for (const x of jsonData){
-            config.send("Spawner", "spawnAvatar", JSON.stringify(x));
-        }
-    }
-    catch{
-        
-    }
-}
 
 const populateGameBoard = async () => {
     try {
@@ -51,7 +36,7 @@ function GameBoard(){
     useEffect(function () {
       config.on("loaded", () => {
         setIsLoaded(true);
-        setTimeout(() => {spawnAvatars()}, 3000)
+        setTimeout(() => {populateGameBoard()}, 3000)
         console.log("after spawn avatar");
       });
     }, []);
