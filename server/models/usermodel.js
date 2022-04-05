@@ -10,11 +10,11 @@ const userSchema = new Schema(
     position: { type: String, requried: true },
     avatarNum: { type: String, required: true },
     isThesis: { type:Boolean, required: false, default: true},
-    pathway: { type:String, required: false, default: "Auto"},
-    gpa: { type:String, required: false, default: "auto"},
-    isGoodStanding: {type: Boolean, required: false, default: "auto"},
+    pathway: { type:String, required: false, default: "autoPathway"},
+    gpa: { type:String, required: false, default: "autoGPA"},
+    isGoodStanding: {type: Boolean, required: false, default: true},
     isAppliedToGrad: {type: Boolean, required: false, default: true},
-    studentID: {type: String, required: false, default: "Auto-Generate"}
+    studentID: {type: String, required: false, default: "autoID"}
   }
 )
 
