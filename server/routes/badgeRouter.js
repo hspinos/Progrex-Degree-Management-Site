@@ -4,6 +4,7 @@ const badgeRouter = express.Router();
 const badge_controller = require('../controllers/badgeController');
 
 badgeRouter.get('/test', badge_controller.test_document_endpoint);
+badgeRouter.delete('/delete', badge_controller.deleteAllBadges);
 
 badgeRouter.get('/list', badge_controller.getAllBadges);
 

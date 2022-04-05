@@ -2,32 +2,32 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import BadgesService from "../../services/badgeService";
 
 
-const initialState = [];
+const initialState = []
 
 export const createBadge = createAsyncThunk(
-  "badges/create",
-  async ({ title, description }) => {
-    const res = await BadgesService.create({ title, description });
+  "badge/create",
+  async ({ badgeName, description, isApproved }) => {
+    const res = await BadgesService.create({ badgeName, description,isApproved });
     return res.data;
   }
 );
 export const requestBadge = createAsyncThunk(
-  "badges/request",
-  async ({ title, description, referance, notes, documents}) => {
-    const res = await BadgesService.request({ title, description,referance, notes, documents });
+  "badge/request",
+  async ({ badgeName, description, referance, isApproved}) => {
+    const res = await BadgesService.request({ badgeName, description,referance, isApproved });
     return res.data;
   }
 );
 
 export const getBadge = createAsyncThunk(
-  "badges/get",
+  "badge/get",
   async (id) => {
     const res = await BadgesService.get(id);
     return res.data;
   }
 );
 export const getBadges = createAsyncThunk(
-  "badges/get",
+  "badge/get",
   async ({ids}) => {
     const res = await BadgesService.getAll({ids});
     console.log(res.data)
@@ -36,7 +36,7 @@ export const getBadges = createAsyncThunk(
 );
 
 export const updateBadge = createAsyncThunk(
-  "badges/update",
+  "badge/update",
   async ({ id, data }) => {
     const res = await BadgesService.update(id, data);
     return res.data;
@@ -44,7 +44,7 @@ export const updateBadge = createAsyncThunk(
 );
 
 export const deleteBadge = createAsyncThunk(
-  "badges/delete",
+  "badge/delete",
   async ({ id }) => {
     await BadgesService.remove(id);
     return { id };
@@ -52,7 +52,7 @@ export const deleteBadge = createAsyncThunk(
 );
 
 export const deleteAllBadges = createAsyncThunk(
-  "badges/deleteAll",
+  "badge/deleteAll",
   async () => {
     const res = await BadgesService.removeAll();
     return res.data;
@@ -60,19 +60,19 @@ export const deleteAllBadges = createAsyncThunk(
 );
 
 export const findBadgesByTitle = createAsyncThunk(
-  "badges/findByTitle",
-  async ({ title }) => {
-    const res = await BadgesService.findByTitle(title);
+  "badge/findByTitle",
+  async ({ badgeName }) => {
+    const res = await BadgesService.findByTitle(badgeName);
     return res.data;
   }
 );
 
 const badgeSlice = createSlice({
-  name: "badge",
+  name: "badges",
   initialState,
   extraReducers: {
     [createBadge.fulfilled]: (state, action) => {
-      state.push(action.payload);
+      state.push(action.payload)
     },
     [getBadges.fulfilled]: (state, action) => {
       return [...action.payload];

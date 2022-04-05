@@ -4,12 +4,13 @@ const getAll = (ids) => {
   return http.post("/badge/badges",ids);
 };
 
+
 const get = id => {
   return http.get(`/badges/${id}`);
 };
 
-const create = data => {
-  return http.post("/badges", data);
+const create = (body, headers) => {
+  return http.post("/badge/create", body, headers );
 };
 
 const update = (id, data) => {

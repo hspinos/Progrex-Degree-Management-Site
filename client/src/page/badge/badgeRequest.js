@@ -1,36 +1,90 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createBadge,
+  getBadges,
+} from "../../redux/slices/badgeSlice";
 
 const BadgeRequest = () => {
+  let dispach = useDispatch();
   const [badgeName, setBadgeName] = useState("");
   const [badgeDescription, setBadgeDescription] = useState("");
   const [badgeReferance, setBadgeReferance] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+
   const headers = {
     "Content-Type": "application/json",
   };
+
+  // let initialBadgeState = {
+  //   id:null,
+  //   badgeName:"",
+  //   description:"",
+  //   referance:""
+  // }
+  const bx = useSelector((state) => state.badges);
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      let req = await axios.post(
-        "http://localhost:8080/badge/create",
-        {
-          badgeName: badgeName,
-          description: badgeDescription,
-          isApproved: false,
-        },
-        { headers: headers }
+      const createBadgeDispach = await dispach(
+        createBadge(
+          {
+            badgeName: badgeName,
+            description: badgeDescription,
+            isApproved: false,
+          },
+          { headers }
+        )
       );
-      if (req.status == 200) {
+      if (createBadge.fulfilled) {
         setIsSubmitted(true);
+        console.log(createBadgeDispach.payload._id);
       }
-      console.log(req.status);
+
+
+
+      //     console.log("start");
+      // console.log(createBadgeDispach)
+      // console.log("end");
+      //   .then(action=>{
+      //     console.log(action.payload);
+      //     setIsSubmitted(true)
+      //   }).catch(e => {
+      //   console.log(e)
+
+      // });
+      //  if(BadgesService.create.fulfilled.match(createBadgeDispach)){
+      //     console.log(createBadgeDispach.payload);
+      //   }
+      // let res = BadgesService.create({
+      //     badgeName: badgeName,
+      //     description: badgeDescription,
+      //     isApproved: false,
+      //   },{headers})
+      // let res = await axios.post(
+      //   "/badge/create",
+      //   {
+      //     badgeName: badgeName,
+      //     description: badgeDescription,
+      //     isApproved: false,
+      //   },
+      //   { headers: headers }
+      // );
+      // if (res.status ===  200) {
+      //   setIsSubmitted(true);
+      // }
     } catch (err) {}
   }
+  // let bs = badge.map(dat =>{
+  //   return <div>
+  //     {dat.badgeName}
+  //   </div>
+  // })
   return (
     <div>
       <div className="m-auto flex items-center justify-center mt-10">
-        {isSubmitted ==false&& (
+        {isSubmitted === false && (
           <div className="bg-white rounded-lg shadow sm:max-w-md sm:w-full sm:mx-auto sm:overflow-hidden dark:bg-stone-800 ">
             <div className="px-4 py-8 sm:px-10">
               <div className="relative mt-6">
@@ -99,21 +153,20 @@ const BadgeRequest = () => {
             </div>
           </div>
         )}
-        {isSubmitted == true && (
+        {isSubmitted === true && (
           <div className="px-4 py-6 border-t-2 border-gray-200  sm:px-10">
             <p className="text-xl leading-5 text-gray-500">
               Request for {badgeName} has been submitted!
+              {/* {bs} */}
             </p>
             <div className="mt-8 ">
-                
-
-            <a
-              type="button"
-              className="py-2 px-4 bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
-              href="userdash"
-            >
-              Go back to dashboard
-            </a>
+              <a
+                type="button"
+                className="py-2 px-4 bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                href="userdash"
+              >
+                Go back to dashboard
+              </a>
             </div>
           </div>
         )}
