@@ -7,9 +7,7 @@ const userSchema = new Schema(
     lName: { type: String, required: true, maxLength: 40 },
     username: { type: String, required: true, maxLength: 40, unique: true, dropDups: true},
     password: { type: String, required: true },
-    badges:{
-      type: [String]
-    }
+    badges:[String]
   }
 )
 

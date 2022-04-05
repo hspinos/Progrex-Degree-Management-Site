@@ -42,13 +42,13 @@ const Badge = () => {
    const getData = () => {
     let cookie = JSON.parse(Cookies.get("userCookie"))
     let bs = JSON.stringify(cookie.badges)
-    // setUser(JSON.parse(Cookies.get("userCookie")));
+    setUser(JSON.parse(Cookies.get("userCookie")));
     getBadges(JSON.parse(bs))
   };
 
   useEffect(() => {
    getData()
-  },[]);
+  },[length]);
 
   let randomSize = (min, max) => {
     return Math.floor(Math.random() * (max - min) + min);
