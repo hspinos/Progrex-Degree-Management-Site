@@ -13,6 +13,7 @@ import UserDocuments from './page/documents/userdocuments';
 import UserProgress from './page/progress/userprogress';
 import DocSignConfirmation from './page/documents/docsignconfirmation';
 import BadgeRequest from './page/badge/badgeRequest';
+import AdminDocuments from './page/documents/admindocuments';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/userdocuments"><UserDocuments /></Route>
             <Route path="/userprogress"><UserProgress /></Route>
             <Route path="/docsignconfirmation"><DocSignConfirmation /></Route>
+            <Route path="/admindocuments"><AdminDocuments /></Route>
           </Switch>
         </Layout>
       </div>

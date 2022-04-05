@@ -1,20 +1,33 @@
-const express = require('express');
+const express = require("express");
 const documentRouter = express.Router();
 
-const document_controller = require('../controllers/documentcontroller');
+const document_controller = require("../controllers/documentcontroller");
 
-documentRouter.get('/test', document_controller.test_document_endpoint);
+documentRouter.get("/test", document_controller.test_document_endpoint);
 
-documentRouter.get('/list', document_controller.get_documents);
+documentRouter.get("/list", document_controller.get_documents);
 
-documentRouter.get('/detail/:id', document_controller.document_detail);
+documentRouter.get("/detail/:id", document_controller.document_detail);
 
-documentRouter.get('/sign/:docId/:userId', document_controller.check_document_signed);
+documentRouter.get(
+	"/sign/:docId/:userId",
+	document_controller.check_document_signed
+);
 
-documentRouter.put('/sign/:docId/:userId', document_controller.set_document_signed);
+documentRouter.put(
+	"/sign/:docId/:userId",
+	document_controller.set_document_signed
+);
 
-documentRouter.put('/reset/', document_controller.reset_documents);
+documentRouter.put("/reset/", document_controller.reset_documents);
 
-documentRouter.post('/create/', document_controller.create_document);
+documentRouter.put(
+	"/active/:id/:isActive",
+	document_controller.set_document_active
+);
+
+documentRouter.post("/create/", document_controller.create_document);
+
+documentRouter.put("/update/:id", document_controller.update_document);
 
 module.exports = documentRouter;

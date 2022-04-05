@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import DocumentCard from "../../components/documentcard";
-import DocModalUnsigned from "../../components/docmodalunsigned";
-import DocModalSigned from "../../components/docmodalsigned";
-
+import AdminDocTable from "../../components/admindoctable";
+import DocModalEdit from "../../components/docmodaledit";
+import { MdPodcasts } from "react-icons/md";
+/*<button className="absolute right-0 transform -translate-y-5 object-none mb-5 w-12 h-12 flex items-center justify-center rounded-full bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white hover:scale-110 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 ">
+					<BsFileEarmarkPlusFill className="h-full w-6/12 fill-white-600" />
+				</button>*/
 //Fetching documents from backend
-function UserDocuments() {
+function AdminDocuments() {
 	var user;
 
-	const [documents, setDocuments] = useState([]); //
+	const [documents, setDocuments] = useState([]);
 
 	//Getting document list from database
 	const getDocuments = async () => {
@@ -45,31 +47,29 @@ function UserDocuments() {
 		}, 500);
 	}
 
-	//Mapping document JSON objects to card components
-	let docs = documents.map((doc) => {
-		if (doc.isActive)
-			return (
-				<DocumentCard
-					key={doc._id}
-					name={doc.name}
-					desc={doc.description}
-					id={doc._id}
-					pfUrl={doc.powerFormUrl}
-				/>
-			);
+	let editModals = documents.map((doc) => {
+		return (
+			<DocModalEdit
+				key={doc._id}
+				docId={doc._id}
+				name={doc.name}
+				description={doc.description}
+				pfUrl={doc.powerFormUrl}
+				isActive={doc.isActive}
+			/>
+		);
 	});
 
 	if (!Cookies.get("userCookie")) {
-		window.location.replace("/login?redirectLocation=userdocuments");
+		window.location.replace("/login?redirectLocation=admindocuments");
 	} else if (documents.length != 0) {
 		user = JSON.parse(Cookies.get("userCookie"));
 		return (
-			<div className="h-full flex items-center justify-center">
-				<div className="w-9/12">
-					<div className="mt-8 grid grid-cols-4 gap-10">{docs}</div>
-					<DocModalUnsigned />
-					<DocModalSigned />
+			<div className="h-full w-screen flex justify-center">
+				<div className="flex-col w-8/12 h-full">
+					<AdminDocTable />
 				</div>
+				{editModals}
 			</div>
 		);
 	}
@@ -100,4 +100,4 @@ function UserDocuments() {
 	);
 }
 
-export default UserDocuments;
+export default AdminDocuments;
