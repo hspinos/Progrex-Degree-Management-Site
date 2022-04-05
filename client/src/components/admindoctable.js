@@ -80,14 +80,14 @@ function AdminDocTable() {
 						<button
 							data-bs-toggle="modal"
 							data-bs-target={`#editModal${doc._id}`}
-							className=" w-min px-4 h-full whitespace-nowrap bg-green-600 hover:bg-green-700 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
+							className=" w-1/2 px-4 h-full whitespace-nowrap bg-green-600 hover:bg-green-700 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
 						>
 							Edit
 						</button>
 						<button
 							data-bs-toggle="modal"
 							data-bs-target="#editModal"
-							className="px-1 py-1 w-min h-full whitespace-nowrap bg-red-600 hover:bg-red-700 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
+							className="px-1 py-1 w-1/2 h-full whitespace-nowrap bg-red-600 hover:bg-red-700 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
 						>
 							Delete
 						</button>

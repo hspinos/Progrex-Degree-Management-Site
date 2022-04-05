@@ -151,7 +151,7 @@ function DocModalEdit(props) {
 										type="text"
 										id={`docName${props.docId}`}
 										name="docName"
-										className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-300 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:border-transparent"
+										className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:border-transparent"
 										placeholder="Document Title"
 										defaultValue={props.name}
 										onChange={(e) => setDocName(e.target.value)}
@@ -178,7 +178,7 @@ function DocModalEdit(props) {
 							<div className="grid mb-2">
 								<label className="font-semibold">Description</label>
 								<textarea
-									className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-300 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
+									className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
 									id={`docDescription${props.docId}`}
 									name="docDescription"
 									placeholder="A brief description of the contents and purpose of this document."
@@ -196,12 +196,23 @@ function DocModalEdit(props) {
 									type="text"
 									id={`pfUrl${props.docId}`}
 									name="pfUrl"
-									className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-300 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
+									className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
 									placeholder="Link to DocuSign PowerForm associated with this document."
 									defaultValue={props.pfUrl}
 									onChange={(e) => {
 										setPfUrl(e.target.value);
 									}}
+								/>
+							</div>
+							<div className="grid mb-2">
+								<label className="font-semibold">Creator</label>
+								<input
+									type="text"
+									id={`creator${props.docId}`}
+									name="creator"
+									className="cursor-not-allowed rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-400 text-gray-700 placeholder-gray-700 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
+									placeholder={props.creator}
+									disabled
 								/>
 							</div>
 						</form>
@@ -210,7 +221,12 @@ function DocModalEdit(props) {
 						id="editModalFooter"
 						className="relative modal-footer flex flex-shrink-0 flex-wrap items-center p-4 border-t border-gray-200 rounded-b-md dark:border-stone-700 justify-end"
 					>
-						<button className="mx-5 w-1/6 px-4 h-10 whitespace-nowrap  bg-stone-500 hover:bg-stone-600 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg ">
+						<button
+							className="mx-5 w-1/6 px-4 h-10 whitespace-nowrap  bg-stone-500 hover:bg-stone-600 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+							onClick={handleCancel}
+						>
 							Cancel
 						</button>
 						<button

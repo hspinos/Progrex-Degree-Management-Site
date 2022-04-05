@@ -5,9 +5,7 @@ import Cookies from "js-cookie";
 import AdminDocTable from "../../components/admindoctable";
 import DocModalEdit from "../../components/docmodaledit";
 import { MdPodcasts } from "react-icons/md";
-/*<button className="absolute right-0 transform -translate-y-5 object-none mb-5 w-12 h-12 flex items-center justify-center rounded-full bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white hover:scale-110 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 ">
-					<BsFileEarmarkPlusFill className="h-full w-6/12 fill-white-600" />
-				</button>*/
+
 //Fetching documents from backend
 function AdminDocuments() {
 	var user;
@@ -47,6 +45,18 @@ function AdminDocuments() {
 		}, 500);
 	}
 
+	function Alert(props) {
+		return (
+			<div
+				class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+				role="alert"
+			>
+				<span class="font-medium">Success alert!</span> Change a few things up
+				and try submitting again.
+			</div>
+		);
+	}
+
 	let editModals = documents.map((doc) => {
 		return (
 			<DocModalEdit
@@ -56,6 +66,7 @@ function AdminDocuments() {
 				description={doc.description}
 				pfUrl={doc.powerFormUrl}
 				isActive={doc.isActive}
+				creator={doc.creator}
 			/>
 		);
 	});
