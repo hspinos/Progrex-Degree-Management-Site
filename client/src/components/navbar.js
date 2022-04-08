@@ -19,8 +19,8 @@ function Navbar() {
     route:"userdash",
     id:3,
   },{
-    name:"Navbtn",
-    route:"home",
+    name:"Admin Dash",
+    route:"admindash",
     id:5,
   },{
     name:"Progress",

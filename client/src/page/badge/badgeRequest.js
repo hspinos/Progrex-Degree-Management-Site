@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -23,9 +24,14 @@ const BadgeRequest = () => {
   //   description:"",
   //   referance:""
   // }
+
+  
   const bx = useSelector((state) => state.badges);
   async function handleSubmit(event) {
     event.preventDefault();
+    let cookie = JSON.parse(Cookies.get("userCookie"))
+    console.log(cookie)
+    let uid = cookie.id;
     try {
       const createBadgeDispach = await dispach(
         createBadge(
@@ -33,13 +39,16 @@ const BadgeRequest = () => {
             badgeName: badgeName,
             description: badgeDescription,
             isApproved: false,
+            isCommon:true,
+            requester: uid
           },
           { headers }
         )
       );
       if (createBadge.fulfilled) {
         setIsSubmitted(true);
-        console.log(createBadgeDispach.payload._id);
+        console.log(uid)
+        console.log(createBadgeDispach.payload);
       }
 
 
@@ -99,6 +108,36 @@ const BadgeRequest = () => {
               </div>
               <div className="mt-6">
                 <div className="w-full space-y-6">
+                  <label class="w-full" for="animals">
+    Select badge from list
+    <select id="animals" class="block w-full py-2 px-3 text-gray-500  border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" name="animals">
+        <option value="">
+            Select an option
+        </option>
+        <option value="dog">
+            Dog
+        </option>
+        <option value="cat">
+            Cat
+        </option>
+        <option value="hamster">
+            Hamster
+        </option>
+        <option value="parrot">
+            Parrot
+        </option>
+        <option value="spider">
+            Spider
+        </option>
+        <option value="goldfish">
+            Goldfish
+        </option>
+    </select>
+</label>
+<div className="my-2 text-center">
+  OR
+</div>
+
                   <div className="w-full">
                     <div className=" relative ">
                       <input

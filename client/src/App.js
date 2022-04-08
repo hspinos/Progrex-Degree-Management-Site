@@ -13,6 +13,7 @@ import UserDocuments from './page/documents/userdocuments';
 import UserProgress from './page/progress/userprogress';
 import DocSignConfirmation from './page/documents/docsignconfirmation';
 import BadgeRequest from './page/badge/badgeRequest';
+import AdminDash from './page/dashboards/admindash';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/login"><Login /></Route>
             <Route path="/signup"><Signup /></Route>
             <Route path="/userdash"><UserDash /></Route>
+            <Route path="/admindash"><AdminDash /></Route>
             <Route path="/badgerequest"><BadgeRequest /></Route>
             <Route path="/userdocuments"><UserDocuments /></Route>
             <Route path="/userprogress"><UserProgress /></Route>

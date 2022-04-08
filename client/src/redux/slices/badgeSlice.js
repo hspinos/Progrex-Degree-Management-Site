@@ -4,17 +4,18 @@ import BadgesService from "../../services/badgeService";
 
 const initialState = []
 
+
 export const createBadge = createAsyncThunk(
   "badge/create",
-  async ({ badgeName, description, isApproved }) => {
-    const res = await BadgesService.create({ badgeName, description,isApproved });
+  async ({ badgeName, description, status, dateApproved, dateDeclined, dateRequested,isCommon, requester }) => {
+    const res = await BadgesService.create({ badgeName, description,status, dateApproved, dateDeclined, dateRequested,isCommon, requester });
     return res.data;
   }
 );
 export const requestBadge = createAsyncThunk(
   "badge/request",
-  async ({ badgeName, description, referance, isApproved}) => {
-    const res = await BadgesService.request({ badgeName, description,referance, isApproved });
+  async ({ badgeName, description, referance, status, dateApproved, dateDeclined, dateRequested,isCommon, requester}) => {
+    const res = await BadgesService.request({ badgeName, description,referance, status, dateApproved, dateDeclined, dateRequested,isCommon, requester });
     return res.data;
   }
 );
@@ -26,10 +27,35 @@ export const getBadge = createAsyncThunk(
     return res.data;
   }
 );
-export const getBadges = createAsyncThunk(
+
+export const approveBadge = createAsyncThunk(
+  "badge/approve",
+  async (id) => {
+    const res = await BadgesService.approveBadge(id);
+    return res.data;
+  }
+);
+
+export const denyBadge = createAsyncThunk(
+  "badge/decline",
+  async (id) => {
+    const res = await BadgesService.denyBadge(id);
+    return res.data;
+  }
+);
+
+
+export const listBadge = createAsyncThunk(
+  "badge/list",
+  async () => {
+    const res = await BadgesService.list();
+    return res.data;
+  }
+);
+export const getBadgesByIds = createAsyncThunk(
   "badge/get",
   async ({ids}) => {
-    const res = await BadgesService.getAll({ids});
+    const res = await BadgesService.getAllByIds({ids});
     console.log(res.data)
     return res.data;
   }
@@ -68,14 +94,28 @@ export const findBadgesByTitle = createAsyncThunk(
 );
 
 const badgeSlice = createSlice({
-  name: "badges",
+  name: "badge",
   initialState,
+  reducers:{
+    [approveBadge.fulfilled]:(state,action)=>{
+      // let index = state.findIndex(({ id }) => id === action.payload.id);
+      // state.splice(index, 1);},
+      return action.payload},
+  },
   extraReducers: {
     [createBadge.fulfilled]: (state, action) => {
       state.push(action.payload)
     },
-    [getBadges.fulfilled]: (state, action) => {
+    [getBadgesByIds.fulfilled]: (state, action) => {
       return [...action.payload];
+    },
+    [listBadge.fulfilled]:(state,action)=>{
+     return [...action.payload]
+    },
+
+    
+    [denyBadge.fulfilled]:(state,action)=>{
+    //  return action.payload
     },
     [updateBadge.fulfilled]: (state, action) => {
       const index = state.findIndex(badge => badge.id === action.payload.id);

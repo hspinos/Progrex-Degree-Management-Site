@@ -2,12 +2,11 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Cookies from "js-cookie";
 
 import { useDispatch, useSelector } from "react-redux";
-import { requestBadge, getBadge, getBadges } from "../redux/slices/badgeSlice";
+import { requestBadge, getBadgesByIds,listBadge } from "../redux/slices/badgeSlice";
 import { Link } from "react-router-dom";
 import BadgesService from "../services/badgeService";
 import { http } from "../axios-config";
 import axios from "axios";
-import { getDefaultMiddleware } from "@reduxjs/toolkit";
 
 const Badge = () => {
 
@@ -15,13 +14,14 @@ const Badge = () => {
   const [user, setUser] = useState({});
   const [badges, setBadges] = useState({});
   const [length, setLength] = useState(0)
-
-  async function getBadges(ids) {
+  const dispach = useDispatch()
+  const s = useSelector(data=>data.badges)
+  async function getBadges(userId) {
     try {
       let res = await axios.post(
-        `http://localhost:8080/badge/badges`,
+        `http://localhost:8080/badge/badgeswithuid`,
         {
-          ids: ids,
+          userId: userId,
         },
         {
           headers: {
@@ -41,7 +41,7 @@ const Badge = () => {
 
    const getData = () => {
     let cookie = JSON.parse(Cookies.get("userCookie"))
-    let bs = JSON.stringify(cookie.badges)
+    let bs = JSON.stringify(cookie.id)
     // setUser(JSON.parse(Cookies.get("userCookie")));
     getBadges(JSON.parse(bs))
   };
@@ -56,6 +56,7 @@ const Badge = () => {
 
   let badgesx = badgesList.map((item) => {
     return (
+      (item.status !== "declined" && 
       <div
         key={item._id}
         className=" h-16 border-2 border-stone-700 rounded-md"
@@ -77,7 +78,7 @@ const Badge = () => {
           </div>
         </div>
       </div>
-    );
+    ));
   });
   return (
     <div className="space-y-1">
