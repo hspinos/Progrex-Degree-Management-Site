@@ -2,6 +2,7 @@ import Badge from "../../components/badge";
 import ProgressBar from "../../components/progressbar"
 import GameBoard from "../../components/gameBoard";
 import Sidebar from "../../components/sidebar";
+import Cookies from "js-cookie";
 
 // export default function UserDash() {
 //   let badgesList = [
@@ -33,6 +34,9 @@ import Sidebar from "../../components/sidebar";
 //   ];
 
 export default function UserDash() {
+  if (!Cookies.get('userCookie')) {
+    window.location.replace('/login?redirectLocation=userdash');
+  }
   
   return (
     <div className="flex justify-around items-center w-full m-auto">

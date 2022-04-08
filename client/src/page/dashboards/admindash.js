@@ -15,11 +15,15 @@ const AdminDash = () => {
   }, []);
 
   const approve = (id) => {
-      console.log(id)
     dispach(approveBadge(id));
+        dispach(listBadge());
+
   };
   const deny = (id) => {
     dispach(denyBadge(id));
+        dispach(listBadge());
+
+    // badges.splice(badges.findIndex(v => v.id === id), 1);
   };
 
   console.log(badges);

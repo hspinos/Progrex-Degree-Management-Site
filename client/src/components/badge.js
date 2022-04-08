@@ -74,7 +74,12 @@ const Badge = () => {
           </div>
           <div className="flex flex-col items-start">
             <div className="uppercase">{item.badgeName}</div>
-            <div className="">{item.description}</div>
+            <div className="leading-3">{item.description}</div>
+            {item.status ==="requested" && 
+            
+            <div className="">pending</div>
+
+            }
           </div>
         </div>
       </div>
