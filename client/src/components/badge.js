@@ -68,13 +68,13 @@ const Badge = () => {
                 50,
                 55
               )}`}
-              className="w-full cover-full"
+              className="w-full cover-full flex-shrink-0 flex-1"
               alt=""
             />
           </div>
           <div className="flex flex-col items-start">
             <div className="uppercase">{item.badgeName}</div>
-            <div className="leading-3">{item.description}</div>
+            <div className="leading-3 overflow-clip ">{item.description}</div>
             {item.status ==="requested" && 
             
             <div className="">pending</div>

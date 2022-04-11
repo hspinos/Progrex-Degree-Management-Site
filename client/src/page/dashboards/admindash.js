@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Sidebar from "../../components/sidebar";
 import {
   listBadge,
   approveBadge,
@@ -22,8 +23,6 @@ const AdminDash = () => {
   const deny = (id) => {
     dispach(denyBadge(id));
         dispach(listBadge());
-
-    // badges.splice(badges.findIndex(v => v.id === id), 1);
   };
 
   console.log(badges);
@@ -85,8 +84,10 @@ const AdminDash = () => {
 
   return (
     <div>
-      <div className="container mx-auto px-4 sm:px-8 max-w-5xl">
-        <div className="py-8">
+      <div className="flex flex-row">
+      <Sidebar/>
+      <div className="container mx-auto px-4  ">
+        <div className="">
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
               <table className="min-w-full leading-normal">
@@ -131,6 +132,7 @@ const AdminDash = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
