@@ -7,27 +7,11 @@ function DocModalEdit(props) {
 	var docDescBody = document.getElementById(`docDescription${props.docId}`);
 	var pfUrlBody = document.getElementById(`pfUrl${props.docId}`);
 
-	const [documents, setDocuments] = useState([]);
 	const [docName, setDocName] = useState("");
 	const [description, setDescription] = useState("");
 	const [pfUrl, setPfUrl] = useState("");
 
-	/*Getting document list from database
-	const getDocuments = async () => {
-		try {
-			const response = await axios.get(`/document/detail/${props.docId}`);
-			const jsonData = await response.data;
-
-			setDocuments(jsonData);
-		} catch (err) {
-			console.error(err.message);
-		}
-	};
-
-	useEffect(() => {
-		getDocuments();
-	}, []);*/
-
+	//Active switch styling
 	const toggleStyle = `
 	input:checked ~ .dot {
 		transform: translateX(100%);
@@ -39,10 +23,7 @@ function DocModalEdit(props) {
 
 	`;
 
-	/*function handleSaveClick() {
-		console.log("test");
-	}*/
-
+	//Handles clicking save
 	async function handleSaveClick(e) {
 		e.preventDefault();
 		console.log(docName, description, pfUrl, isActive);
@@ -63,12 +44,14 @@ function DocModalEdit(props) {
 		}
 	}
 
+	//Clears inputs on cancel
 	function handleCancel() {
 		docNameBody.value = props.name;
 		docDescBody.value = props.description;
 		pfUrlBody.value = props.pfUrl;
 	}
 
+	//Active switch componentt
 	function ActiveSwitch() {
 		if (isActive) {
 			return (
@@ -92,6 +75,7 @@ function DocModalEdit(props) {
 		}
 	}
 
+	//Active switch toggle functionality
 	function toggleActiveText() {
 		isActive = !isActive;
 		console.log(isActive);
