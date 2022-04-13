@@ -34,9 +34,6 @@ function DocModalNew(props) {
 			isActive: isActive,
 			creator: props.creator,
 		};
-		/*if (docName) docUpdateData["name"] = docName;
-		if (description) docUpdateData["description"] = description;
-		if (pfUrl) docUpdateData["powerFormUrl"] = pfUrl;*/
 		console.log(newDocument);
 		try {
 			let res = await axios.post("/document/create", newDocument);
