@@ -100,6 +100,27 @@ exports.update_document = async function (req, res) {
 	}
 };
 
+//Deletes existing document by ID
+exports.delete_document = async function (req, res) {
+	try {
+		console.log("delete document endpoint called");
+		const document = await Document.findById(req.params.id);
+		if (document) {
+			await Document.deleteOne({ document });
+			res.status(200).send(`Document ${req.params.id} successfully deleted.`);
+		} else {
+			res
+				.status(410)
+				.send(
+					`Document ${req.params.id} does not exist or has already been deleted.`
+				);
+		}
+	} catch (err) {
+		console.error(err);
+		res.status(401).send();
+	}
+};
+
 //Setting document signed status
 exports.set_document_active = async function (req, res) {
 	try {

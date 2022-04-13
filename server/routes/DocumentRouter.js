@@ -30,4 +30,6 @@ documentRouter.post("/create/", document_controller.create_document);
 
 documentRouter.put("/update/:id", document_controller.update_document);
 
+documentRouter.delete("/delete/:id", document_controller.delete_document);
+
 module.exports = documentRouter;
