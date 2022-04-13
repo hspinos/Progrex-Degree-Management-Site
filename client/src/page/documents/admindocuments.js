@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 import AdminDocTable from "../../components/admindoctable";
 import DocModalEdit from "../../components/docmodaledit";
-import { MdPodcasts } from "react-icons/md";
+import DocModalNew from "../../components/docmodalnew";
 
 //Fetching documents from backend
 function AdminDocuments() {
@@ -75,12 +75,14 @@ function AdminDocuments() {
 		window.location.replace("/login?redirectLocation=admindocuments");
 	} else if (documents.length != 0) {
 		user = JSON.parse(Cookies.get("userCookie"));
+		console.log(user);
 		return (
 			<div className="h-full w-screen flex justify-center">
 				<div className="flex-col w-8/12 h-full">
 					<AdminDocTable />
 				</div>
 				{editModals}
+				<DocModalNew creator={`${user.fName} ${user.lName}`} />
 			</div>
 		);
 	}

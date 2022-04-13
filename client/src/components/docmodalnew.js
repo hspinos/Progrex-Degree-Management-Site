@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function DocModalEdit(props) {
-	var isActive = props.isActive;
-	var docNameBody = document.getElementById(`docName${props.docId}`);
-	var docDescBody = document.getElementById(`docDescription${props.docId}`);
-	var pfUrlBody = document.getElementById(`pfUrl${props.docId}`);
+function DocModalNew(props) {
+	var isActive = true;
+	var docNameBody = document.getElementById(`docName`);
+	var docDescBody = document.getElementById(`docDescription`);
+	var pfUrlBody = document.getElementById(`pfUrl`);
 
 	const [docName, setDocName] = useState("");
 	const [description, setDescription] = useState("");
@@ -27,16 +27,19 @@ function DocModalEdit(props) {
 	async function handleSaveClick(e) {
 		e.preventDefault();
 		console.log(docName, description, pfUrl, isActive);
-		let docUpdateData = { isActive: isActive };
-		if (docName) docUpdateData["name"] = docName;
+		let newDocument = {
+			name: docName,
+			description: description,
+			powerFormUrl: pfUrl,
+			isActive: isActive,
+			creator: props.creator,
+		};
+		/*if (docName) docUpdateData["name"] = docName;
 		if (description) docUpdateData["description"] = description;
-		if (pfUrl) docUpdateData["powerFormUrl"] = pfUrl;
-		console.log(docUpdateData);
+		if (pfUrl) docUpdateData["powerFormUrl"] = pfUrl;*/
+		console.log(newDocument);
 		try {
-			let res = await axios.put(
-				`/document/update/${props.docId}`,
-				docUpdateData
-			);
+			let res = await axios.post("/document/create", newDocument);
 			console.log(res);
 			window.location.reload();
 		} catch (err) {
@@ -46,9 +49,9 @@ function DocModalEdit(props) {
 
 	//Clears inputs on cancel
 	function handleCancel() {
-		docNameBody.value = props.name;
-		docDescBody.value = props.description;
-		pfUrlBody.value = props.pfUrl;
+		docNameBody.value = "";
+		docDescBody.value = "";
+		pfUrlBody.value = "";
 	}
 
 	//Active switch componentt
@@ -58,7 +61,7 @@ function DocModalEdit(props) {
 				<input
 					type="checkbox"
 					defaultChecked
-					id={`activeToggle${props.docId}`}
+					id={`activeToggle`}
 					class="sr-only"
 					onClick={toggleActiveText}
 				/>
@@ -67,7 +70,7 @@ function DocModalEdit(props) {
 			return (
 				<input
 					type="checkbox"
-					id={`activeToggle${props.docId}`}
+					id={`activeToggle`}
 					class="sr-only"
 					onClick={toggleActiveText}
 				/>
@@ -83,11 +86,11 @@ function DocModalEdit(props) {
 	return (
 		<div
 			className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-			id={`editModal${props.docId}`}
+			id={`newModal`}
 			data-bs-keyboard="false"
 			data-bs-backdrop="static"
 			tabIndex="-1"
-			aria-labelledby={`editModal${props.docId}`}
+			aria-labelledby={`newModal`}
 			aria-hidden="true"
 		>
 			<div className="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
@@ -97,7 +100,7 @@ function DocModalEdit(props) {
 							className="text-xl font-medium leading-normal text-gray-800 dark:text-white"
 							id="editModalTitle"
 						>
-							Edit Document
+							New Document
 						</h5>
 						<button
 							type="button"
@@ -132,18 +135,17 @@ function DocModalEdit(props) {
 									</label>
 									<input
 										type="text"
-										id={`docName${props.docId}`}
+										id={`docName`}
 										name="docName"
 										className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:border-transparent"
 										placeholder="Document Title"
-										defaultValue={props.name}
 										onChange={(e) => setDocName(e.target.value)}
 									/>
 								</div>
 								<div className="grid">
 									<style>{toggleStyle}</style>
 									<label
-										id={`docActiveLabel${props.docId}`}
+										id={`docActiveLabel`}
 										class="activeLabel font-semibold"
 									>
 										Active
@@ -162,11 +164,10 @@ function DocModalEdit(props) {
 								<label className="font-semibold">Description</label>
 								<textarea
 									className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
-									id={`docDescription${props.docId}`}
+									id={`docDescription`}
 									name="docDescription"
 									placeholder="A brief description of the contents and purpose of this document."
 									rows="4"
-									defaultValue={props.description}
 									required
 									onChange={(e) => {
 										setDescription(e.target.value);
@@ -177,11 +178,10 @@ function DocModalEdit(props) {
 								<label className="font-semibold">PowerForm URL</label>
 								<input
 									type="text"
-									id={`pfUrl${props.docId}`}
+									id={`pfUrl`}
 									name="pfUrl"
 									className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
 									placeholder="Link to DocuSign PowerForm associated with this document."
-									defaultValue={props.pfUrl}
 									onChange={(e) => {
 										setPfUrl(e.target.value);
 									}}
@@ -191,10 +191,10 @@ function DocModalEdit(props) {
 								<label className="font-semibold">Creator</label>
 								<input
 									type="text"
-									id={`creator${props.docId}`}
+									id={`creator`}
+									placeholder={props.creator}
 									name="creator"
 									className="cursor-not-allowed rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-400 text-gray-700 placeholder-gray-700 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
-									placeholder={props.creator}
 									disabled
 								/>
 							</div>
@@ -225,4 +225,4 @@ function DocModalEdit(props) {
 	);
 }
 
-export default DocModalEdit;
+export default DocModalNew;
