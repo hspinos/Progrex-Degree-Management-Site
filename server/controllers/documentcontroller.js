@@ -74,6 +74,7 @@ exports.create_document = async function (req, res) {
 			name: req.body.name,
 			description: req.body.description,
 			powerFormUrl: req.body.powerFormUrl,
+			isActive: req.body.isActive,
 		});
 		if (req.body.creator) document.creator = req.body.creator;
 		await document.save();
