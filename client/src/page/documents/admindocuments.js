@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import AdminDocTable from "../../components/admindoctable";
 import DocModalEdit from "../../components/docmodaledit";
 import DocModalNew from "../../components/docmodalnew";
+import DocModalDel from "../../components/docmodaldel";
 
 //Fetching documents from backend
 function AdminDocuments() {
@@ -59,15 +60,18 @@ function AdminDocuments() {
 
 	let editModals = documents.map((doc) => {
 		return (
-			<DocModalEdit
-				key={doc._id}
-				docId={doc._id}
-				name={doc.name}
-				description={doc.description}
-				pfUrl={doc.powerFormUrl}
-				isActive={doc.isActive}
-				creator={doc.creator}
-			/>
+			<React.Fragment>
+				<DocModalEdit
+					key={doc._id}
+					docId={doc._id}
+					name={doc.name}
+					description={doc.description}
+					pfUrl={doc.powerFormUrl}
+					isActive={doc.isActive}
+					creator={doc.creator}
+				/>
+				<DocModalDel docId={doc._id} name={doc.name} />
+			</React.Fragment>
 		);
 	});
 
