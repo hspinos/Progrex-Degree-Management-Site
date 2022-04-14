@@ -26,6 +26,14 @@ const populateGameBoard = async () => {
     }
 }
 
+const setIsAdmin = async (isAdmin) =>{
+    console.log("In setIsAdmin");
+    config.send("GameManager", "setIsAdmin", isAdmin);
+}
+//const setAdminStatus = async () => {
+//    config.send("GameManager", "setIsAdmin", true);
+//}
+
 //React component to be called to spawn the gameboard
 function GameBoard(){
 
@@ -36,8 +44,9 @@ function GameBoard(){
     useEffect(function () {
       config.on("loaded", () => {
         setIsLoaded(true);
-        setTimeout(() => {populateGameBoard()}, 3000)
-        console.log("after spawn avatar");
+        setTimeout(() => {setIsAdmin(1)}, 3000);
+        setTimeout(() => {populateGameBoard()}, 3000);
+        
       });
     }, []);
     
