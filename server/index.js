@@ -25,6 +25,7 @@ const UserRouter = require('./routes/UserRouter');
 const DocumentRouter = require('./routes/DocumentRouter');
 const badgeRouter = require('./routes/badgeRouter');
 const gameBoardRouter = require('./routes/GameBoardRouter');
+const courseRouter = require('./routes/courseRouter');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -49,6 +50,7 @@ app.use('/user', UserRouter);
 app.use('/document', DocumentRouter);
 app.use('/badge', badgeRouter)
 app.use('/gameboard', gameBoardRouter);
+app.use('/course', courseRouter);
 
 // Test endpoint
 app.get('/', (req, res) => {
