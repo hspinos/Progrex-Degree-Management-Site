@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import DocumentCard from "../../components/documentcard";
-import DocModalUnsigned from "../../components/docmodalunsigned";
-import DocModalSigned from "../../components/docmodalsigned";
+import AdminDocTable from "../../components/admindoctable";
+import DocModalEdit from "../../components/docmodaledit";
+import DocModalNew from "../../components/docmodalnew";
+import DocModalDel from "../../components/docmodaldel";
 
 //Fetching documents from backend
-function UserDocuments() {
+function AdminDocuments() {
 	var user;
 
-	const [documents, setDocuments] = useState([]); //
+	const [documents, setDocuments] = useState([]);
 
 	//Getting document list from database
 	const getDocuments = async () => {
@@ -45,31 +46,47 @@ function UserDocuments() {
 		}, 500);
 	}
 
-	//Mapping document JSON objects to card components
-	let docs = documents.map((doc) => {
-		if (doc.isActive)
-			return (
-				<DocumentCard
+	function Alert(props) {
+		return (
+			<div
+				class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+				role="alert"
+			>
+				<span class="font-medium">Success alert!</span> Change a few things up
+				and try submitting again.
+			</div>
+		);
+	}
+
+	let editModals = documents.map((doc) => {
+		return (
+			<React.Fragment>
+				<DocModalEdit
 					key={doc._id}
+					docId={doc._id}
 					name={doc.name}
-					desc={doc.description}
-					id={doc._id}
+					description={doc.description}
 					pfUrl={doc.powerFormUrl}
+					isActive={doc.isActive}
+					creator={doc.creator}
 				/>
-			);
+				<DocModalDel docId={doc._id} name={doc.name} />
+			</React.Fragment>
+		);
 	});
 
 	if (!Cookies.get("userCookie")) {
-		window.location.replace("/login?redirectLocation=userdocuments");
+		window.location.replace("/login?redirectLocation=admindocuments");
 	} else if (documents.length != 0) {
 		user = JSON.parse(Cookies.get("userCookie"));
+		console.log(user);
 		return (
-			<div className="h-full flex items-center justify-center">
-				<div className="w-9/12">
-					<div className="mt-8 grid grid-cols-4 gap-10">{docs}</div>
-					<DocModalUnsigned />
-					<DocModalSigned />
+			<div className="h-full w-screen flex justify-center">
+				<div className="flex-col w-8/12 h-full">
+					<AdminDocTable />
 				</div>
+				{editModals}
+				<DocModalNew creator={`${user.fName} ${user.lName}`} />
 			</div>
 		);
 	}
@@ -100,4 +117,4 @@ function UserDocuments() {
 	);
 }
 
-export default UserDocuments;
+export default AdminDocuments;

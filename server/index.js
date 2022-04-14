@@ -47,7 +47,7 @@ app.use(session({
 
 app.use('/user', UserRouter);
 app.use('/document', DocumentRouter);
-app.use('/badge', badgeRouter)
+app.use('/badge', badgeRouter);
 app.use('/gameboard', gameBoardRouter);
 
 // Test endpoint
