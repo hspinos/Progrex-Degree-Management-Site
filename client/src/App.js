@@ -4,6 +4,9 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import Cookies from 'js-cookie';
 
 import Layout from './components/layout';
 import Signup from './page/authentication/signup';
@@ -17,15 +20,37 @@ import BadgeRequest from './page/badge/badgeRequest';
 import AdminDocuments from './page/documents/admindocuments';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    console.log("handleAuth was called. current status: " + isAuthenticated)
+    if (Cookies.get('userCookie')) {
+      setIsAuthenticated(true)
+    } else {
+      setIsAuthenticated(false);
+    }
+  })
+
+  const handleAuth = () => {
+    console.log("handleAuth was called. current status: " + isAuthenticated)
+    if (Cookies.get('userCookie')) {
+      setIsAuthenticated(true)
+    } else {
+      setIsAuthenticated(false);
+    }
+  }
+
   return (
     <Router>
       <div className="App bg-neutral-900 text-white h-full min-h-screen bg-auto">
         <header className="App-header">
         </header>
-        <Layout>
+        <Layout
+          authStatus={isAuthenticated}
+        >
           <Switch>
 
-            <Route path="/login"><Login /></Route>
+            <Route path="/login"><Login handleAuth={handleAuth} /></Route>
             <Route path="/signup"><Signup /></Route>
             <Route path="/userdash"><UserDash /></Route>
             <Route path="/updateuserpage"><UpdateUserPage /></Route>

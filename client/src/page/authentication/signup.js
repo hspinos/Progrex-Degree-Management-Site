@@ -19,6 +19,7 @@ function Signup() {
 					lName: lName,
 				});
 				console.log(res);
+				window.location.href = '/login';
 			}
 		} catch (err) {
 			console.error(err);
@@ -79,7 +80,7 @@ function Signup() {
 								<div className="w-full">
 									<div className=" relative ">
 										<input
-											type="passowrd"
+											type="password"
 											id="password"
 											name="password"
 											className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-300 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
@@ -93,7 +94,7 @@ function Signup() {
 								<div className="w-full">
 									<div className=" relative ">
 										<input
-											type="passowrd"
+											type="password"
 											id="passwordCheck"
 											name="passwordCheck"
 											className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-300 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
 // eslint-disable-next-line
-function Navbar() {
+const Navbar = (props) => {
   var user;
+
+  const history = useHistory();
 
 
   let menuItems = [{
@@ -42,7 +44,7 @@ function Navbar() {
       Cookies.remove('userCookie');
 
       // The following line refreshes the page after a successful logout
-      window.location.reload('/');
+      history.push('/login')
     } catch (err) {
       alert('Failed to logout');
     }
@@ -51,7 +53,11 @@ function Navbar() {
   let nav = menuItems.map((item) => {
     return (
       <li key={item.id}>
-        <a href={item.route} className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">{item.name}</a>
+        <a href={item.route} className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+          <Link to={`/${item.route}`}>
+            {item.name}
+          </Link>
+        </a>
       </li>)
   });
   return (
@@ -63,7 +69,7 @@ function Navbar() {
         </a>
         <div className="flex items-center md:order-2">
           {
-            Cookies.get('userCookie') ?
+            props.authStatus ?
               <div>
                 <button type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
                   <span className="sr-only">Open user menu</span>
@@ -80,7 +86,11 @@ function Navbar() {
                       <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
                     </li>
                     <li>
-                      <a href="userdocuments" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Documents</a>
+                      <a className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                        <Link to="/userdocuments">
+                          Documents
+                        </Link>
+                      </a>
                     </li>
                     <li>
                       <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
@@ -112,18 +122,20 @@ function Navbar() {
 
 
                 <a
-                  href='/login'
                   className="py-2 px-4  bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
 
                 >
-                  Login
+                  <Link to="/login">
+                    Login
+                  </Link>
                 </a>
                 <a
-                  href='/signup'
                   className="py-2 px-4  bg-gray-600 hover:bg-gray-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
 
                 >
-                  Signup
+                  <Link to="/signup">
+                    Signup
+                  </Link>
                 </a>
                 {/* <a className="bg-emerald-600 py-1 w-20 rounded-sm text-center" href="/signup">Signup</a>
                 <a className="bg-sky-600 p-1 w-20 rounded-sm text-center" href="/login">Login</a> */}
