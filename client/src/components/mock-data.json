@@ -18,14 +18,4 @@
     "courseYear":"2020",
     "id":4,
     "grade":"D"
-  },{
-    "name":"Course 5",
-    "courseYear":"2019",
-    "id":5,
-    "grade":"A"
-  },{
-    "name":"Course 6",
-    "courseYear":"2020",
-    "id":6,
-    "grade":"B"
   }]
