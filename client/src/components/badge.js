@@ -62,22 +62,27 @@ const Badge = () => {
         className=" h-16 border-2 border-stone-700 rounded-md"
       >
         <div className="flex flex-row items-center h-full p-2 space-x-5">
-          <div className="w-12 bg-gray-300 h-12 rounded-full  overflow-clip ">
+          <div className="w-12 bg-gray-300 h-12 rounded-full  overflow-clip flex-none ">
             <img
               src={`http://placekitten.com/${randomSize(45, 55)}/${randomSize(
                 50,
                 55
               )}`}
-              className="w-full cover-full flex-shrink-0 flex-1"
+              className="w-full cover-full flex-none"
               alt=""
             />
           </div>
-          <div className="flex flex-col items-start">
-            <div className="uppercase">{item.badgeName}</div>
-            <div className="leading-3 overflow-clip ">{item.description}</div>
+          <div className="flex flex-col items-start text-left leading-snug text-truncate">
+            <div className=" font-simibold text-md ">{item.badgeName}</div>
+            <div className="leading-3 overflow-clip text-sm font-light ">{item.description}</div>
             {item.status ==="requested" && 
             
-            <div className="">pending</div>
+            <div className="flex-none w-full h-full">
+              <span className=" w-4 h-4 flex-none rounded-full bg-yellow-500">n</span>
+              
+              pending
+              
+              </div>
 
             }
           </div>
