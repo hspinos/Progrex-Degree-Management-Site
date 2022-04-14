@@ -12,7 +12,8 @@ const userSchema = new Schema({
 		dropDups: true,
 	},
 	password: { type: String, required: true },
-	position: { type: String, requried: false },
+	isAdmin: { type: Boolean, required: false, default: false },
+	position: { type: String, required: false },
 	avatarNum: { type: String, required: false },
 });
 
