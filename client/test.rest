@@ -1,12 +1,26 @@
+
 POST http://localhost:8080/badge/create HTTP/1.1
 Content-Type: application/json
 
 {
-    "badgeName":"Test Badge 1",
-    "isApproved": false,
-    "description":"test badge "
+    "badgeName":"Common Badge 9",
+    "isApproved": true,
+    "requester":"624b763b70bf5cda6db07da7",
+    "description":"test badge",
+    "isCommon":true
 }
 
+
+###
+GET http://localhost:8080/user/list HTTP/1.1
+Content-Type: application/json
+
+###
+GET http://localhost:8080/badge/list/common HTTP/1.1
+Content-Type: application/json
+###
+DELETE  http://localhost:8080/badge/delete HTTP/1.1
+Content-Type: application/json
 ###
 GET http://localhost:8080/badge/list HTTP/1.1
 Content-Type: application/json
@@ -15,6 +29,27 @@ Content-Type: application/json
 
 # GET  http://localhost:8080/badge HTTP/1.1
 
+###
+
+GET http://localhost:3000/userdocuments
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/badge/find?id=624f70eb7ec6a4f3ea216da0
+Content-Type: application/json
+
+###
+
+PUT http://localhost:8080/badge/approve?id=624f832383b50c21ade0cb42
+Content-Type: application/json
+
+
+###
+
+PUT http://localhost:8080/badge/decline?id=624f832383b50c21ade0cb42
+Content-Type: application/json
+
 
 ###
 POST http://localhost:8080/badge/badges HTTP/1.1
@@ -22,4 +57,13 @@ Content-Type: application/json
 
 {
 "ids":["623a1c4c3c3c23b9517a2e34","623a1b473c3c23b9517a0ec5"]
+}
+
+
+###
+POST http://localhost:8080/badge/badges HTTP/1.1
+Content-Type: application/json
+
+{
+"userId":"624b763b70bf5cda6db07da7"
 }

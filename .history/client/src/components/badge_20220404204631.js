@@ -2,11 +2,12 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Cookies from "js-cookie";
 
 import { useDispatch, useSelector } from "react-redux";
-import { requestBadge, getBadgesByIds,listBadge } from "../redux/slices/badgeSlice";
+import { requestBadge, getBadge, getBadges } from "../redux/slices/badgeSlice";
 import { Link } from "react-router-dom";
 import BadgesService from "../services/badgeService";
 import { http } from "../axios-config";
 import axios from "axios";
+import { getDefaultMiddleware } from "@reduxjs/toolkit";
 
 const Badge = () => {
 
@@ -14,14 +15,13 @@ const Badge = () => {
   const [user, setUser] = useState({});
   const [badges, setBadges] = useState({});
   const [length, setLength] = useState(0)
-  const dispach = useDispatch()
-  const s = useSelector(data=>data.badges)
-  async function getBadges(userId) {
+
+  async function getBadges(ids) {
     try {
       let res = await axios.post(
-        `http://localhost:8080/badge/badgeswithuid`,
+        `http://localhost:8080/badge/badges`,
         {
-          userId: userId,
+          ids: ids,
         },
         {
           headers: {
@@ -41,14 +41,14 @@ const Badge = () => {
 
    const getData = () => {
     let cookie = JSON.parse(Cookies.get("userCookie"))
-    let bs = JSON.stringify(cookie.id)
-    // setUser(JSON.parse(Cookies.get("userCookie")));
+    let bs = JSON.stringify(cookie.badges)
+    setUser(JSON.parse(Cookies.get("userCookie")));
     getBadges(JSON.parse(bs))
   };
 
   useEffect(() => {
    getData()
-  },[]);
+  },[length]);
 
   let randomSize = (min, max) => {
     return Math.floor(Math.random() * (max - min) + min);
@@ -56,39 +56,28 @@ const Badge = () => {
 
   let badgesx = badgesList.map((item) => {
     return (
-      (item.status !== "declined" && 
       <div
         key={item._id}
         className=" h-16 border-2 border-stone-700 rounded-md"
       >
         <div className="flex flex-row items-center h-full p-2 space-x-5">
-          <div className="w-12 bg-gray-300 h-12 rounded-full  overflow-clip flex-none ">
+          <div className="w-12 bg-gray-300 h-12 rounded-full  overflow-clip ">
             <img
               src={`http://placekitten.com/${randomSize(45, 55)}/${randomSize(
                 50,
                 55
               )}`}
-              className="w-full cover-full flex-none"
+              className="w-full cover-full"
               alt=""
             />
           </div>
-          <div className="flex flex-col items-start text-left leading-snug text-truncate">
-            <div className=" font-simibold text-md ">{item.badgeName}</div>
-            <div className="leading-3 overflow-clip text-sm font-light ">{item.description}</div>
-            {item.status ==="requested" && 
-            
-            <div className="flex-none w-full h-full">
-              <span className=" w-4 h-4 flex-none rounded-full bg-yellow-500">n</span>
-              
-              pending
-              
-              </div>
-
-            }
+          <div className="flex flex-col items-start">
+            <div className="uppercase">{item.badgeName}</div>
+            <div className="">{item.description}</div>
           </div>
         </div>
       </div>
-    ));
+    );
   });
   return (
     <div className="space-y-1">

@@ -1,24 +1,17 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+
 const session = require('express-session');
-const cookieParser = require('cookie-parser');
 const Redis = require('ioredis');
-const { DateTime } = require("luxon");
 const RedisStore = require('connect-redis')(session);
 let RedisClient = new Redis({
   host: 'cache',
   port: 6379
 });
 
-
 let mongoDB = `mongodb://${process.env.ME_CONFIG_MONGODB_ADMINUSERNAME}:${process.env.ME_CONFIG_MONGODB_ADMINPASSWORD}@${process.env.ME_CONFIG_MONGODB_HOST}:27017`;
 let app = express();
-
-// if(process.env.NODE_ENV ==="development"){
-
-  app.use(cookieParser());
-// }
 
 const PORT = 8080;
 
@@ -31,7 +24,6 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 const UserRouter = require('./routes/UserRouter');
 const DocumentRouter = require('./routes/DocumentRouter');
 const badgeRouter = require('./routes/badgeRouter');
-const gameBoardRouter = require('./routes/GameBoardRouter');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -55,7 +47,6 @@ app.use(session({
 app.use('/user', UserRouter);
 app.use('/document', DocumentRouter);
 app.use('/badge', badgeRouter)
-app.use('/gameboard', gameBoardRouter);
 
 // Test endpoint
 app.get('/', (req, res) => {
