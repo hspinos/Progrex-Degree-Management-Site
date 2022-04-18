@@ -1,5 +1,6 @@
 let Course = require('../models/coursemodel')
 courseModel = new Course();
+const mongoose = require('mongoose');
 
 
 exports.test_course_endpoint = function (req, res) {
@@ -40,6 +41,28 @@ exports.test_course_endpoint = function (req, res) {
             .send("still good")
       }
   }
+
+  exports.set_user_course = async function (req, res){
+      try{
+          let userId = mongoose.Types.ObjectId(req.params.userId);
+          const course = await Course.findById(req.params.courseId);
+          if(course.usersTaken.find(studentData => studentData.studentId.equals(userId))){
+              res
+                .status(401)
+                .send("Error, user already taken this course");
+          }else {
+              course.usersTaken.push({studentId: userId});
+              await course.save();
+              res
+                .json(course)
+                .status(200)
+                .send("sick job");
+            }
+          } catch(err){
+              console.error(err);
+        }
+}
+  
 
   exports.reset_courses = async function (req, res){
       try{

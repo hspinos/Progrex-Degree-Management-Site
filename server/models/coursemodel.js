@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const studentSchema = new Schema(
   {
-    userId: {type: mongoose.SchemaTypes.ObjectId, ref: 'User'},
+    studentId: {type: mongoose.SchemaTypes.ObjectId, ref: 'User'},
     semester: {type: "String", required: false, default: "Spring 2022"},
     grade: {type: "String", required: false, default: "A"}
   }
