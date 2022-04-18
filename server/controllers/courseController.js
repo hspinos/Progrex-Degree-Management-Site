@@ -61,8 +61,22 @@ exports.test_course_endpoint = function (req, res) {
           } catch(err){
               console.error(err);
         }
-}
-  
+    }
+
+  exports.check_student_course = async function (req,res){
+    try {
+        let userId = mongoose.Types.ObjectId(req.params.userId);
+        const course = await Course.findById(req.params.courseId);
+        let data = course.usersTaken.find(studentData => studentData.studentId.equals(userId));
+        if (data) {
+          res.send({ isTaken: true, grade: data.grade });
+        } else {
+          res.send({ isTaken: false });
+        }
+      } catch (err) {
+        console.error(err);
+      }
+  }
 
   exports.reset_courses = async function (req, res){
       try{

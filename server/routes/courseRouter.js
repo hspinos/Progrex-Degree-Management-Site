@@ -11,6 +11,8 @@ courseRouter.put("/reset", courseController.reset_courses);
 
 courseRouter.post("/create", courseController.create_course);
 
-courseRouter.put("/student/:courseId/:userId", courseController.set_user_course)
+courseRouter.put("/student/:courseId/:userId", courseController.set_user_course);
+
+courseRouter.get("/student/:courseId/:userId", courseController.check_student_course);
 
 module.exports = courseRouter;
