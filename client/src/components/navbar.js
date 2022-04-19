@@ -5,8 +5,7 @@ import axios from 'axios';
 
 // eslint-disable-next-line
 const Navbar = (props) => {
-  var user;
-
+  let user;
   const history = useHistory();
 
 
@@ -33,9 +32,6 @@ const Navbar = (props) => {
 
   }]
 
-  if (Cookies.get('userCookie')) {
-    user = JSON.parse(Cookies.get('userCookie'));
-  }
 
   // TODO this method needs to be moved into a service file
   async function handleSignout() {
@@ -50,6 +46,8 @@ const Navbar = (props) => {
     }
   }
 
+  user = Cookies.get('userCookie')
+
   let nav = menuItems.map((item) => {
     return (
       <li key={item.id}>
@@ -59,7 +57,10 @@ const Navbar = (props) => {
           </Link>
         </a>
       </li>)
+
+
   });
+
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-stone-800 w-full">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -69,7 +70,7 @@ const Navbar = (props) => {
         </a>
         <div className="flex items-center md:order-2">
           {
-            props.authStatus ?
+            Cookies.get('userCookie') ?
               <div>
                 <button type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="dropdown">
                   <span className="sr-only">Open user menu</span>
@@ -116,6 +117,7 @@ const Navbar = (props) => {
                   <svg className="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                 </button>
               </div>
+
               :
 
               <div className="flex space-x-3">
