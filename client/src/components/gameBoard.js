@@ -2,32 +2,33 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Unity, { UnityContext } from "react-unity-webgl";
 
-//Unity context object is from react-unity-webgl library that acts as brain for embedded WebGL build.
-//Build files must be stored in the public folder
+
 const config = new UnityContext({
-    loaderUrl: "Build/gameboard.loader.js",
-    dataUrl: "Build/gameboard.data",
-    frameworkUrl: "Build/gameboard.framework.js",
-    codeUrl: "Build/gameboard.wasm"
+    loaderUrl: "Build/build.loader.js",
+    dataUrl: "Build/build.data",
+    frameworkUrl: "Build/build.framework.js",
+    codeUrl: "Build/build.wasm"
 })
 
-//Handle retrieving data from the data base and spawning all avatars on gameboard based on data returned
-const spawnAvatars = async () => {
+const populateGameBoard = async () => {
     try {
         const response = await axios.get("/gameboard/list");
         const jsonData = await response.data;
 
         console.log(jsonData);
+        for (const x of jsonData){
+            config.send("GameManager", "createStudent", JSON.stringify(x));
+        }
+
     }
     catch{
         
     }
-    //Insert logic for calling database here
-    //axios.get call to get all student objects
-    //then call config.send within a for loop for i times where i = num of students returned
-    //for (int i = 0; i <= axios.getStudents.length; i++)
-    //  config.send("Spawner", "spawnAvatar", axios.getStudents[i]);
-    config.send("Spawner", "spawnAvatar", "{\"FName\":\"Jonathan\", \"LName\" : \"Nguyen\", \"position\" : 1, \"avatarNum\" : 1}");
+}
+
+const setIsAdmin = async (isAdmin) =>{
+    console.log("In setIsAdmin");
+    config.send("GameManager", "setIsAdmin", isAdmin);
 }
 
 //React component to be called to spawn the gameboard
@@ -40,15 +41,16 @@ function GameBoard(){
     useEffect(function () {
       config.on("loaded", () => {
         setIsLoaded(true);
-        setTimeout(() => {spawnAvatars()}, 3000)
-        console.log("after spawn avatar");
+        setTimeout(() => {setIsAdmin(1)}, 3000);
+        setTimeout(() => {populateGameBoard()}, 3000);
+        
       });
     }, []);
     
     useEffect(function(){
         let wid =  document.documentElement.clientWidth
-|| window.innerWidth
-||document.body.clientWidth;
+||      window.innerWidth
+||      document.body.clientWidth;
         setWindowWidth(wid)
     },[windowWidth])
     
