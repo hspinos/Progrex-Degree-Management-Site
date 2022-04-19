@@ -11,16 +11,16 @@ const { DateTime } = require("luxon");
 
 const AdminDash = () => {
 
-  if (!Cookies.get('userCookie')) {
-    window.location.replace('/login?redirectLocation=admindash');
-  }
+  // if (!Cookies.get('userCookie')) {
+  //   window.location.replace('/login?redirectLocation=admindash');
+  // }
 
   let cookie = JSON.parse(Cookies.get("userCookie"))
   let isAdmin = cookie.roles?.find(el=>el ==="admin")
 
-  if(!isAdmin){
-    window.location.replace('/login?redirectLocation=admindash')
-  }
+  // if(!isAdmin){
+  //   window.location.replace('/login?redirectLocation=admindash')
+  // }
 
 
   const dispach = useDispatch();
