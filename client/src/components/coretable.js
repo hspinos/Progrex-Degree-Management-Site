@@ -2,12 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react"
 import Cookies from "js-cookie";
 
+import GradeCard from "./grade";
 
-
-function CoreTable(props) {
+function CoreTable() {
     const [course, setCourses] = useState([]);
-    const [student, setStudent] = useState([]);
-    const [grade, setGrade] = useState([]);
     var user;
 
     const get_courses = async () => {
@@ -27,28 +25,12 @@ function CoreTable(props) {
         get_courses();
     }, []);
 
-    const getStudent = async () => {
-        try{
-            const response = await axios.get(`/course/student/${props.id}/${user.id}`)
-            const studentResponse = await response.data;
+    let grades = course.map((cor) => {
+    return <GradeCard id={cor._id} /> 
+    })
 
-            console.log(studentResponse);
-
-            setStudent(studentResponse.isTaken);
-            if(studentResponse.isTaken) setGrade(studentResponse.grade);
-        }catch(err){
-            console.error(err.message);
-        }
-    };
-
-    useEffect(() => {
-        getStudent();
-    }, []);
-
-     //Defining user that is logged in
-     if (Cookies.get('userCookie')) {
-        user = JSON.parse(Cookies.get('userCookie'));
-    }
+   
+    
 
     return (
         <div className="flex mb-10">
@@ -64,16 +46,16 @@ function CoreTable(props) {
                             
                             <tr>
                                 <th scope="col" class="px-1 py-3"></th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-4">
                                     Course Name
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-4">
                                     Course ID
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-4">
                                     Credits
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-4">
                                     Grade
                                 </th>
                             </tr>
@@ -86,18 +68,16 @@ function CoreTable(props) {
                                     <th className="w-6 h-6 dark:text-white">
                                     <svg class="w-6 h-6 dark:text-white" fill="none" stroke="#2BB673" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                     </th>
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                    <th scope="row" class="px-6 py-3 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                                         {courses.courseName}
                                     </th>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-3">
                                         {courses.courseRan}
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-3">
                                         {courses.credits}
                                     </td>
-                                    <td class="px-6 py-4">
-                                        {grade}
-                                    </td>
+                                        {grades} 
                                 </tr>
                             ))}    
                        </tbody>
