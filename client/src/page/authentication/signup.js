@@ -33,6 +33,7 @@ function Signup() {
 		}
 	}
 
+
 	return (
 		<div className="h-full flex justify-center">
 			<div className="flex items-center">
