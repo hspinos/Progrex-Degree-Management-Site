@@ -15,6 +15,12 @@ const userSchema = new Schema({
 	isAdmin: { type: Boolean, required: false, default: false },
 	position: { type: String, required: false },
 	avatarNum: { type: String, required: false },
+	isThesis: { type: Boolean, required: false, default: true },
+	pathway: { type: String, required: false, default: "autoPathway" },
+	gpa: { type: String, required: false, default: "autoGPA" },
+	isGoodStanding: { type: Boolean, required: false, default: true },
+	isAppliedToGrad: { type: Boolean, required: false, default: true },
+	studentID: { type: String, required: false, default: "autoID" },
 });
 
 module.exports = mongoose.model("User", userSchema);
