@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
-function Login() {
+const Login = (props) => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
 	var redirectLocation = "home";
+
+	let history = useHistory();
 
 	const search = useLocation().search;
 	if (new URLSearchParams(search).get("redirectLocation"))
@@ -32,7 +34,10 @@ function Login() {
 			console.log("Hello console!");
 			if (res.status == 200) {
 				console.log("login successful!");
-				window.location.replace(`/${redirectLocation}`);
+				setTimeout(() => {
+					props.handleAuth()
+					history.push("/userdash")
+				}, 500)
 			}
 		} catch (err) {
 			console.error(err);
