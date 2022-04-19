@@ -36,6 +36,7 @@ function ElectivesTable() {
             <div className="bg-stone-800 items-center p-4 w-screen rounded-md">
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-left text-lg font-bold">
                     <div className="bg-stone-800 items-center p-4 w-full rounded-md font-bold">
+
                         Core Curriculum
                     </div>
                     <table class="w-full text-sm text-left text-white-500 dark:text-white-400">

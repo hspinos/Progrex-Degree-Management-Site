@@ -1,12 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const session = require('express-session');
 const Redis = require('ioredis');
 const RedisStore = require('connect-redis')(session);
 let RedisClient = new Redis({
-  host: 'cache',
+  host: `${process.env.REDIS_HOST}`,
+  password: `${process.env.REDIS_PASSWORD}`,
   port: 6379
 });
 
@@ -27,6 +29,7 @@ const badgeRouter = require('./routes/badgeRouter');
 const gameBoardRouter = require('./routes/GameBoardRouter');
 const courseRouter = require('./routes/courseRouter');
 
+app.use(express.static(path.join(__dirname, 'frontend/build')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({
@@ -42,19 +45,20 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     secure: false,
-    httpOnly: true
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 // This will result in a hour
   }
 }));
 
 app.use('/user', UserRouter);
 app.use('/document', DocumentRouter);
-app.use('/badge', badgeRouter)
+app.use('/badge', badgeRouter);
 app.use('/gameboard', gameBoardRouter);
 app.use('/course', courseRouter);
 
 // Test endpoint
-app.get('/', (req, res) => {
-  res.send("Test endpoint");
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
 });
 
 

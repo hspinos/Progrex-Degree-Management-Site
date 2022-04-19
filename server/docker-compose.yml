@@ -31,7 +31,8 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: degreeworkspp
       ME_CONFIG_MONGODB_HOST: mongo
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017
-      REDIS_URL: redis://cache
+      REDIS_HOST: cache
+      REDIS_PASSWORD: password
     depends_on:
       - "mongo"
       - "redis"
