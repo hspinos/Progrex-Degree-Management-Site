@@ -12,9 +12,16 @@ const userSchema = new Schema({
 		dropDups: true,
 	},
 	password: { type: String, required: true },
+
+	isThesis: { type: Boolean, required: false, default: true },
+	pathway: { type: String, required: false, default: "autoPathway" },
+	gpa: { type: String, required: false, default: "autoGPA" },
+	isGoodStanding: { type: Boolean, required: false, default: true },
+	isAppliedToGrad: { type: Boolean, required: false, default: true },
+	studentID: { type: String, required: false, default: "autoID" },
 	isAdmin: { type: Boolean, required: false, default: false },
 	position: { type: String, required: false },
-	avatarNum: { type: String, required: false },
+	avatarNum: { type: String, required: false }
 });
 
 module.exports = mongoose.model("User", userSchema);

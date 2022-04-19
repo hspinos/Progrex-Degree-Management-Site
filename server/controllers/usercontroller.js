@@ -45,6 +45,17 @@ exports.create_user = async function (req, res) {
   }
 }
 
+exports.user_detail = async function (req, res){
+  try{
+    const user = await User.findById(req.params.id);
+    res
+      .status(200)
+      .send(user)
+  }catch (err){
+    console.error(err);
+  }
+}
+
 exports.user_login = function (req, res) {
   User.findOne({ username: req.body.username }, async function (err, user) {
     try {

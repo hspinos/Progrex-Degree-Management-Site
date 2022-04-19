@@ -80,14 +80,14 @@ function AdminDocTable() {
 						<button
 							data-bs-toggle="modal"
 							data-bs-target={`#editModal${doc._id}`}
-							className=" w-min px-4 h-full whitespace-nowrap bg-green-600 hover:bg-green-700 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
+							className=" w-fit px-4 h-full whitespace-nowrap bg-green-600 hover:bg-green-700 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
 						>
 							Edit
 						</button>
 						<button
 							data-bs-toggle="modal"
-							data-bs-target="#editModal"
-							className="px-1 py-1 w-min h-full whitespace-nowrap bg-red-600 hover:bg-red-700 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
+							data-bs-target={`#deleteModal${doc._id}`}
+							className="px-1 py-1 w-fit h-full whitespace-nowrap bg-red-600 hover:bg-red-700 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
 						>
 							Delete
 						</button>
@@ -122,7 +122,11 @@ function AdminDocTable() {
 							scope="col"
 							className="relative h-full flex items-center justify-end py-3"
 						>
-							<button className="absolute object-none mb-5 w-12 h-12 flex items-center justify-center rounded-full bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white hover:scale-110 transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 ">
+							<button
+								data-bs-toggle="modal"
+								data-bs-target="#newModal"
+								className="absolute object-none mb-5 w-12 h-12 flex items-center justify-center rounded-full bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white hover:scale-110 transition ease-in duration-200 text-center text-base font-semibold shadow-md"
+							>
 								<BsFileEarmarkPlusFill className="h-full w-6/12 fill-white-600" />
 							</button>
 						</th>

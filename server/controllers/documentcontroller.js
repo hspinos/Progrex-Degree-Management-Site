@@ -74,7 +74,9 @@ exports.create_document = async function (req, res) {
 			name: req.body.name,
 			description: req.body.description,
 			powerFormUrl: req.body.powerFormUrl,
+			isActive: req.body.isActive,
 		});
+		if (req.body.creator) document.creator = req.body.creator;
 		await document.save();
 		res.json(document).status(200).send();
 	} catch (err) {
@@ -94,6 +96,27 @@ exports.update_document = async function (req, res) {
 		document.isActive = req.body.isActive;
 		await document.save();
 		res.json(document).status(200).send();
+	} catch (err) {
+		console.error(err);
+		res.status(401).send();
+	}
+};
+
+//Deletes existing document by ID
+exports.delete_document = async function (req, res) {
+	try {
+		console.log("delete document endpoint called");
+		const document = await Document.findById(req.params.id);
+		if (document) {
+			await Document.deleteOne({ _id: document.id });
+			res.status(200).send(`${document.name} successfully deleted.`);
+		} else {
+			res
+				.status(410)
+				.send(
+					`Document with ID '${req.params.id}' does not exist or has already been deleted.`
+				);
+		}
 	} catch (err) {
 		console.error(err);
 		res.status(401).send();
@@ -178,7 +201,7 @@ exports.reset_documents = async function (req, res) {
 			await document.save();
 		}
 
-		res.status(200).send("good");
+		res.status(200).send("Document list has been reset with sample documents");
 	} catch (err) {
 		console.error(err);
 	}
