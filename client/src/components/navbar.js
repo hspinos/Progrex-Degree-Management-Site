@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 // eslint-disable-next-line
-function Navbar() {
-  var user;
+const Navbar = (props) => {
+  let user;
+  const history = useHistory();
 
 
   let menuItems = [{
@@ -28,16 +31,36 @@ function Navbar() {
     id: 6,
 
   }]
-  if (Cookies.get('userCookie')) {
-    user = JSON.parse(Cookies.get('userCookie'));
+
+
+  // TODO this method needs to be moved into a service file
+  async function handleSignout() {
+    try {
+      await axios.get('/user/logout');
+      Cookies.remove('userCookie');
+
+      // The following line refreshes the page after a successful logout
+      history.push('/login')
+    } catch (err) {
+      alert('Failed to logout');
+    }
   }
+
+  user = Cookies.get('userCookie')
 
   let nav = menuItems.map((item) => {
     return (
       <li key={item.id}>
-        <a href={item.route} className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">{item.name}</a>
+        <a href={item.route} className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+          <Link to={`/${item.route}`}>
+            {item.name}
+          </Link>
+        </a>
       </li>)
+
+
   });
+
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-stone-800 w-full">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -64,16 +87,27 @@ function Navbar() {
                       <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
                     </li>
                     <li>
-                      <a href="userdocuments" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Documents</a>
+                      <a className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                        <Link to="/userdocuments">
+                          Documents
+                        </Link>
+                      </a>
                     </li>
                     <li>
                       <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
                     </li>
                     <li>
+                      <a className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                        <Link to="/updateuserpage">
+                          Update Information
+                        </Link>
+                      </a>
+                    </li>
+                    <li>
                       <a href="badgerequest" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Request Badges</a>
                     </li>
                     <li>
-                      <a href="#" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                      <a onClick={handleSignout} className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
                     </li>
                   </ul>
                 </div>
@@ -83,24 +117,27 @@ function Navbar() {
                   <svg className="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                 </button>
               </div>
+
               :
 
               <div className="flex space-x-3">
 
 
                 <a
-                  href='/login'
                   className="py-2 px-4  bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
 
                 >
-                  Login
+                  <Link to="/login">
+                    Login
+                  </Link>
                 </a>
                 <a
-                  href='/signup'
                   className="py-2 px-4  bg-gray-600 hover:bg-gray-700 focus:ring-green-500 focus:ring-offset-green-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
 
                 >
-                  Signup
+                  <Link to="/signup">
+                    Signup
+                  </Link>
                 </a>
                 {/* <a className="bg-emerald-600 py-1 w-20 rounded-sm text-center" href="/signup">Signup</a>
                 <a className="bg-sky-600 p-1 w-20 rounded-sm text-center" href="/login">Login</a> */}

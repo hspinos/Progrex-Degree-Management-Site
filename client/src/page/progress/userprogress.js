@@ -4,6 +4,8 @@ import StudentInfoDiv from "../../components/studentinfodiv";
 import ElectivesTable from "../../components/electives";
 import Cookies from "js-cookie";
 
+
+
 function UserProgress() {
     var user;
     if (!Cookies.get('userCookie')) {

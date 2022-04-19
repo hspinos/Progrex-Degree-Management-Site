@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+
 const userSchema = new Schema({
 	fName: { type: String, required: true, maxLength: 40 },
 	lName: { type: String, required: true, maxLength: 40 },
@@ -12,8 +13,9 @@ const userSchema = new Schema({
 		dropDups: true,
 	},
 	password: { type: String, required: true },
-	position: { type: String, requried: true },
-	avatarNum: { type: String, required: true },
+	isAdmin: { type: Boolean, required: false, default: false },
+	position: { type: String, required: false },
+	avatarNum: { type: String, required: false },
 	isThesis: { type: Boolean, required: false, default: true },
 	pathway: { type: String, required: false, default: "autoPathway" },
 	gpa: { type: String, required: false, default: "autoGPA" },
