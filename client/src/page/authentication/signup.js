@@ -35,7 +35,7 @@ function Signup() {
 
 
 	return (
-		<div className="h-full flex justify-center">
+		<div className="h-full flex justify-center mt-8">
 			<div className="flex items-center">
 				<div className="bg-gray-300 rounded-lg shadow sm:max-w-md sm:w-full sm:mx-auto sm:overflow-hidden dark:bg-stone-800 ">
 					<div className="px-4 py-8 sm:px-10">

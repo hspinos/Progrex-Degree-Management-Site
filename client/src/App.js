@@ -18,6 +18,7 @@ import UserProgress from './page/progress/userprogress';
 import DocSignConfirmation from './page/documents/docsignconfirmation';
 import BadgeRequest from './page/badge/badgeRequest';
 import AdminDocuments from './page/documents/admindocuments';
+import AdminDash from './page/dashboards/admindash';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -54,6 +55,7 @@ function App() {
             <Route path="/signup"><Signup /></Route>
             <Route path="/userdash"><UserDash /></Route>
             <Route path="/updateuserpage"><UpdateUserPage /></Route>
+            <Route path="/admindash"><AdminDash /></Route>
             <Route path="/badgerequest"><BadgeRequest /></Route>
             <Route path="/userdocuments"><UserDocuments /></Route>
             <Route path="/userprogress"><UserProgress /></Route>

@@ -30,7 +30,8 @@ exports.create_user = async function (req, res) {
       username: req.body.username,
       password: hash,
       fName: req.body.fName,
-      lName: req.body.lName
+      lName: req.body.lName,
+      badges:[]
     });
     await user.save();
     res
