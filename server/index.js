@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const Redis = require('ioredis');
+const { DateTime } = require("luxon");
 const RedisStore = require('connect-redis')(session);
 let RedisClient = new Redis({
   host: `${process.env.REDIS_HOST}`,
@@ -12,8 +14,14 @@ let RedisClient = new Redis({
   port: 6379
 });
 
+
 let mongoDB = `mongodb://${process.env.ME_CONFIG_MONGODB_ADMINUSERNAME}:${process.env.ME_CONFIG_MONGODB_ADMINPASSWORD}@${process.env.ME_CONFIG_MONGODB_HOST}:27017`;
 let app = express();
+
+// if(process.env.NODE_ENV ==="development"){
+
+  app.use(cookieParser());
+// }
 
 const PORT = 8080;
 
