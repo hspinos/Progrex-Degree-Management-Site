@@ -7,7 +7,7 @@ import axios from 'axios';
 const Navbar = (props) => {
   let user;
   const history = useHistory();
-
+   let [isAdmin, setIsAdmin] = useState(false)
 
   let menuItems = [{
     name: "Home",
@@ -48,6 +48,14 @@ const Navbar = (props) => {
 
   user = Cookies.get('userCookie')
 
+  useEffect(()=>{
+    if(Cookies.get("userCookie")){
+    let u = JSON.parse(Cookies.get("userCookie"))
+    console.log(u);
+    setIsAdmin(u.isAdmin)
+    console.log("isAdmin ? : "+isAdmin)
+  }
+  },[])
   let nav = menuItems.map((item) => {
     return (
       <li key={item.id}>
@@ -203,7 +211,7 @@ const Navbar = (props) => {
           <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
             {nav}
 
-            {/* {isAdmin && 
+            {isAdmin && 
             <li>
               <a
                 href="admindash"
@@ -212,7 +220,7 @@ const Navbar = (props) => {
                 Admin Dashboard
               </a>
             </li>
-            } */}
+            }
           </ul>
         </div>
       </div>
