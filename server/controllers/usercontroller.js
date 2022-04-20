@@ -13,7 +13,7 @@ exports.test_user_endpoint = function (req, res) {
 */
 exports.get_users = async function (req, res) {
   let query = User.find({});
-  query.select("username password");
+  //query.select("username password");
   query.exec(function (err, person) {
     if (err) return handleError(err);
     res

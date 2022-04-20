@@ -12,12 +12,23 @@ const config = new UnityContext({
 
 const populateGameBoard = async () => {
     try {
-        const response = await axios.get("/gameboard/list");
+        //const response = await axios.get("/gameboard/list");
+        //const jsonData = await response.data;
+
+        const response = await axios.get("/user/list");
         const jsonData = await response.data;
 
         console.log(jsonData);
         for (const x of jsonData){
-            config.send("GameManager", "createStudent", JSON.stringify(x));
+            console.log(x.fName + x.lName);
+            let currentData = { FName: x.fName,
+                                LName: x.lName,
+                                position: x.position,
+                                avatarNum: x.avatarNum,
+                                badgeNum: x.displayBadgeNum,
+                                badgeDescription: x.displayBadgeDescription
+                            }
+            config.send("GameManager", "createStudent", JSON.stringify(currentData));
         }
 
     }
