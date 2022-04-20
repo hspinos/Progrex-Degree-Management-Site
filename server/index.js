@@ -26,7 +26,6 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 const UserRouter = require('./routes/UserRouter');
 const DocumentRouter = require('./routes/DocumentRouter');
 const badgeRouter = require('./routes/badgeRouter');
-const gameBoardRouter = require('./routes/GameBoardRouter');
 const courseRouter = require('./routes/courseRouter');
 
 app.use(express.static(path.join(__dirname, 'frontend/build')));
@@ -53,7 +52,6 @@ app.use(session({
 app.use('/user', UserRouter);
 app.use('/document', DocumentRouter);
 app.use('/badge', badgeRouter);
-app.use('/gameboard', gameBoardRouter);
 app.use('/course', courseRouter);
 
 // Test endpoint

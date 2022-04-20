@@ -15,4 +15,6 @@ userRouter.get("/detail/:id", userController.user_detail);
 
 userRouter.get("/logout", userController.user_logout);
 
+userRouter.put("/update/:id", userController.update_userInfo);
+
 module.exports = userRouter;
