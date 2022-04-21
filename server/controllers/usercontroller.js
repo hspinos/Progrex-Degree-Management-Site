@@ -13,7 +13,7 @@ exports.test_user_endpoint = function (req, res) {
 */
 exports.get_users = async function (req, res) {
   let query = User.find({});
-  query.select("username password");
+  //query.select("username password");
   query.exec(function (err, person) {
     if (err) return handleError(err);
     res
@@ -96,4 +96,20 @@ exports.user_logout = function (req, res) {
   res
     .status(200)
     .send()
+}
+
+exports.update_userInfo = async function (req, res){
+  try{
+    const user = await User.findById(req.params.id);
+    if (req.body.fName) user.fName = req.body.fName;
+    if (req.body.lName) user.lName = req.body.lName;
+    if (req.body.avatarNum) user.avatarNum = req.body.avatarNum;
+    if (req.body.displayBadgeNum) user.displayBadgeNum = req.body.displayBadgeNum;
+    await user.save();
+    res.json(user).status(200).send();
+  }catch (err){
+    console.log(err);
+    res.status(401).send();
+  }
+
 }

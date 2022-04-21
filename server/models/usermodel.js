@@ -22,6 +22,8 @@ const userSchema = new Schema({
 	isGoodStanding: { type: Boolean, required: false, default: true },
 	isAppliedToGrad: { type: Boolean, required: false, default: true },
 	studentID: { type: String, required: false, default: "autoID" },
+	displayBadgeNum: {type: String, required: true, default: "0"},
+	displayBadgeDescription: {type: String, required: false}
 });
 
 module.exports = mongoose.model("User", userSchema);

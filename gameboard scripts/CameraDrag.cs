@@ -8,7 +8,7 @@ public class CameraDrag : MonoBehaviour
     public float dragSpeed = 0.1f;
     private Vector3 dragOrigin;
     public float leftCameraBound = 0;
-    public float rightCameraBound = 12;
+    public float rightCameraBound = 30;
 
     // Start is called before the first frame update
     void Start()
