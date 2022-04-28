@@ -75,7 +75,7 @@ Role: Arbitrator
 
 GitHub: [@ElijahHorowitz](https://github.com/ElijahHorowitz)
 
-LinkedIn: [@elijah-horowitz-7841281a7](https://www.linkedin.com/in/elijah-horowitz-7841281a7/)
+LinkedIn: [@elijah-horowitz-7841281a7](https://www.linkedin.com/in/elijah-horowitz/)
 
 </div>
         </td>
@@ -91,7 +91,7 @@ Role: DevOps/Note Taker
 
 GitHub: [@jn04137](https://github.com/jn04137)
 
-LinkedIn: [@jonathan-nguyen-936161194](https://www.linkedin.com/in/jonathan-nguyen-936161194/)
+LinkedIn: [@jonathan-nguyen-936161194](https://www.linkedin.com/in/jonathan-nguyen/)
 
 </div>
         </td>
