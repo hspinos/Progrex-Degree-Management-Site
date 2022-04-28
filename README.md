@@ -33,7 +33,11 @@
 
 ## ✨ Spring 2022 Team
 
-<div >
+<table>
+<tbody>
+	<tr>
+		<td>
+        <div align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Nate_Headshot.jpg" alt="Nate Agcaoili" width="200px"/>
 
 ### Nate Agcaoili
@@ -45,7 +49,9 @@ GitHub: [@NateAgcaoili](https://github.com/NateAgcaoili)
 LinkedIn: [@nathan-agcaoili](https://www.linkedin.com/in/nathan-agcaoili/)
 
 </div>
-<div >
+        </td>
+		<td>
+        <div align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Elias_Headshot.jpg" alt="Elias Binchamo" width="200px"/>
 
 ### Elias Binchamo
@@ -57,7 +63,11 @@ GitHub: [@eliasbinchamo](https://github.com/eliasbinchamo)
 LinkedIn: [@elias-binchamo](https://www.linkedin.com/in/elias-binchamo/)
 
 </div>
-<div >
+        </td>
+	</tr>
+	<tr>
+		<td>
+        <div align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Eli_Headshot.jpg" width="200px"/>
 
 ### Elijah Horowitz
@@ -69,8 +79,9 @@ GitHub: [@ElijahHorowitz](https://github.com/ElijahHorowitz)
 LinkedIn: [@elijah-horowitz-7841281a7](https://www.linkedin.com/in/elijah-horowitz-7841281a7/)
 
 </div>
-
-<div >
+        </td>
+		<td>
+        <div align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Jonathan_Headshot.jpg" width="200px"/>
 
 ### Jonathan Nguyen
@@ -82,8 +93,11 @@ GitHub: [@jn04137](https://github.com/jn04137)
 LinkedIn: [@jonathan-nguyen-936161194](https://www.linkedin.com/in/jonathan-nguyen-936161194/)
 
 </div>
-
-<div>
+        </td>
+	</tr>
+    <tr>
+		<td>
+        <div align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Hayden_Headshot.jpg" width="200px"/>
 
 ### Hayden Spinos
@@ -95,7 +109,10 @@ GitHub: [@hspinos](https://github.com/hspinos)
 LinkedIn: [@haydenspinos](https://www.linkedin.com/in/haydenspinos/)
 
 </div>
-</p>
+        </td>
+	</tr>
+</tbody>
+</table>
 
 ## 📝️ Documentation
 
@@ -106,38 +123,5 @@ LinkedIn: [@haydenspinos](https://www.linkedin.com/in/haydenspinos/)
 Copyright © 2022 [GSU-CS-Software-Engineering](https://github.com/GSU-CS-Software-Engineering).
 <br />
 This project is [MIT](https://github.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/blob/main/LICENSE) licensed.
-
-<table>
-<thead>
-	<tr>
-		<th><div >
-<img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Nate_Headshot.jpg" alt="Nate Agcaoili" width="200px"/>
-
-### Nate Agcaoili
-
-Role: Team Lead
-
-GitHub: [@NateAgcaoili](https://github.com/NateAgcaoili)
-
-LinkedIn: [@nathan-agcaoili](https://www.linkedin.com/in/nathan-agcaoili/)
-
-</div></th>
-		<th>Header 2</th>
-		<th>Header :</th>
-	</tr>
-</thead>
-<tbody>
-	<tr>
-		<td>Column 1</td>
-		<td>Column 2</td>
-		<td>Column 3</td>
-	</tr>
-	<tr>
-		<td>Custom Table Content</td>
-		<td>Column 4</td>
-		<td>Column 5</td>
-	</tr>
-</tbody>
-</table>
 
 ---
