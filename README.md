@@ -33,8 +33,8 @@
 
 ## ✨ Spring 2022 Team
 
-|:-------------------------:|:-------------------------:|:-------------------------:|
-|<div align="center">
+<div class="grid-container">
+<div class="grid-item" align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Nate_Headshot.jpg" alt="Nate Agcaoili" width="200px"/>
 
 ### Nate Agcaoili
@@ -46,8 +46,8 @@ GitHub: [@NateAgcaoili](https://github.com/NateAgcaoili)
 LinkedIn: [@nathan-agcaoili](https://www.linkedin.com/in/nathan-agcaoili/)
 
 </div>
-|<div align="center">
-<img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Elias_Headshot.jpg" alt="Elias Binchamo" width="200px"/>|
+<div class="grid-item" align="center">
+<img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Elias_Headshot.jpg" alt="Elias Binchamo" width="200px"/>
 
 ### Elias Binchamo
 
@@ -57,9 +57,8 @@ GitHub: [@eliasbinchamo](https://github.com/eliasbinchamo)
 
 LinkedIn: [@elias-binchamo](https://www.linkedin.com/in/elias-binchamo/)
 
-</div>|
-
-|<div align="center">
+</div>
+<div class="grid-titem" align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Eli_Headshot.jpg" width="200px"/>
 
 ### Elijah Horowitz
@@ -70,11 +69,10 @@ GitHub: [@ElijahHorowitz](https://github.com/ElijahHorowitz)
 
 LinkedIn: [@elijah-horowitz-7841281a7](https://www.linkedin.com/in/elijah-horowitz-7841281a7/)
 
-</div>|
+</div>
 
-|</div>
-
-<div align="center">
+</div>
+<div class="grid-titem" align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Jonathan_Headshot.jpg" width="200px"/>
 
 ### Jonathan Nguyen
@@ -85,11 +83,9 @@ GitHub: [@jn04137](https://github.com/jn04137)
 
 LinkedIn: [@jonathan-nguyen-936161194](https://www.linkedin.com/in/jonathan-nguyen-936161194/)
 
-</div>|
-
-|</div>
-
-<div align="center">
+</div>
+</div>
+<div class="grid-titem" align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Hayden_Headshot.jpg" width="200px"/>
 
 ### Hayden Spinos
@@ -100,7 +96,8 @@ GitHub: [@hspinos](https://github.com/hspinos)
 
 LinkedIn: [@haydenspinos](https://www.linkedin.com/in/haydenspinos/)
 
-</div>|
+</div>
+</div>
 
 ## 📝️ Documentation
 
