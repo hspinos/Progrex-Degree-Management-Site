@@ -23,18 +23,18 @@
 
 ## 🛠️ Technologies used
 
-<a href="https://www.mongodb.com/"><img width="60" src="https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg"></a>
-<a href="https://expressjs.com/"><img width="60" src="https://cdn.buttercms.com/2q5r816LTo2uE9j7Ntic"></a>
-<a href="https://reactjs.org/"><img width="60" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png"></a>
-<a href="https://nodejs.org/en/"><img width="60" src="https://seeklogo.com/images/N/nodejs-logo-FBE122E377-seeklogo.com.png"></a>
-<a href="https://tailwindcss.com/"><img width="60" src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg"></a>
-<a href="https://www.docker.com/"><img width="60" src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png"></a>
-<a href="https://redis.io/"><img width="60" src="https://cdn.iconscout.com/icon/free/png-256/redis-4-1175103.png"></a>
+<a href="https://www.mongodb.com/"><img height="60" src="https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg"></a>
+<a href="https://expressjs.com/"><img height="60" src="https://cdn.buttercms.com/2q5r816LTo2uE9j7Ntic"></a>
+<a href="https://reactjs.org/"><img height="60" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png"></a>
+<a href="https://nodejs.org/en/"><img height="60" src="https://seeklogo.com/images/N/nodejs-logo-FBE122E377-seeklogo.com.png"></a>
+<a href="https://tailwindcss.com/"><img height="60" src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg"></a>
+<a href="https://www.docker.com/"><img height="60" src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png"></a>
+<a href="https://redis.io/"><img height="60" src="https://cdn.iconscout.com/icon/free/png-256/redis-4-1175103.png"></a>
 
 ## ✨ Spring 2022 Team
 
-<div>
-<div align="center">
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|<div align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Nate_Headshot.jpg" alt="Nate Agcaoili" width="200px"/>
 
 ### Nate Agcaoili
@@ -46,8 +46,8 @@ GitHub: [@NateAgcaoili](https://github.com/NateAgcaoili)
 LinkedIn: [@nathan-agcaoili](https://www.linkedin.com/in/nathan-agcaoili/)
 
 </div>
-<div align="center">
-<img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Elias_Headshot.jpg" alt="Elias Binchamo" width="200px"/>
+|<div align="center">
+<img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Elias_Headshot.jpg" alt="Elias Binchamo" width="200px"/>|
 
 ### Elias Binchamo
 
@@ -57,8 +57,9 @@ GitHub: [@eliasbinchamo](https://github.com/eliasbinchamo)
 
 LinkedIn: [@elias-binchamo](https://www.linkedin.com/in/elias-binchamo/)
 
-</div>
-<div align="center">
+</div>|
+
+|<div align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Eli_Headshot.jpg" width="200px"/>
 
 ### Elijah Horowitz
@@ -69,9 +70,10 @@ GitHub: [@ElijahHorowitz](https://github.com/ElijahHorowitz)
 
 LinkedIn: [@elijah-horowitz-7841281a7](https://www.linkedin.com/in/elijah-horowitz-7841281a7/)
 
-</div>
+</div>|
 
-</div>
+|</div>
+
 <div align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Jonathan_Headshot.jpg" width="200px"/>
 
@@ -83,8 +85,10 @@ GitHub: [@jn04137](https://github.com/jn04137)
 
 LinkedIn: [@jonathan-nguyen-936161194](https://www.linkedin.com/in/jonathan-nguyen-936161194/)
 
-</div>
-</div>
+</div>|
+
+|</div>
+
 <div align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Hayden_Headshot.jpg" width="200px"/>
 
@@ -96,8 +100,7 @@ GitHub: [@hspinos](https://github.com/hspinos)
 
 LinkedIn: [@haydenspinos](https://www.linkedin.com/in/haydenspinos/)
 
-</div>
-</div>
+</div>|
 
 ## 📝️ Documentation
 
