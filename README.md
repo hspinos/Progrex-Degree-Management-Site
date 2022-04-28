@@ -33,6 +33,7 @@
 
 ## ✨ Spring 2022 Team
 
+<div align="center">
 <table>
 <tbody>
 	<tr>
@@ -64,9 +65,7 @@ LinkedIn: [@elias-binchamo](https://www.linkedin.com/in/elias-binchamo/)
 
 </div>
         </td>
-	</tr>
-	<tr>
-		<td>
+        <td>
         <div align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Eli_Headshot.jpg" width="200px"/>
 
@@ -80,6 +79,8 @@ LinkedIn: [@elijah-horowitz-7841281a7](https://www.linkedin.com/in/elijah-horowi
 
 </div>
         </td>
+	</tr>
+	<tr>
 		<td>
         <div align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Jonathan_Headshot.jpg" width="200px"/>
@@ -94,9 +95,7 @@ LinkedIn: [@jonathan-nguyen-936161194](https://www.linkedin.com/in/jonathan-nguy
 
 </div>
         </td>
-	</tr>
-    <tr>
-		<td>
+        <td>
         <div align="center">
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Hayden_Headshot.jpg" width="200px"/>
 
@@ -113,6 +112,7 @@ LinkedIn: [@haydenspinos](https://www.linkedin.com/in/haydenspinos/)
 	</tr>
 </tbody>
 </table>
+</div>
 
 ## 📝️ Documentation
 
