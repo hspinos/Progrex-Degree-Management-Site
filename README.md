@@ -33,7 +33,6 @@
 
 ## ✨ Spring 2022 Team
 
-<div>
 <div >
 <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Nate_Headshot.jpg" alt="Nate Agcaoili" width="200px"/>
 
@@ -96,7 +95,7 @@ GitHub: [@hspinos](https://github.com/hspinos)
 LinkedIn: [@haydenspinos](https://www.linkedin.com/in/haydenspinos/)
 
 </div>
-</div>
+</p>
 
 ## 📝️ Documentation
 
@@ -107,5 +106,38 @@ LinkedIn: [@haydenspinos](https://www.linkedin.com/in/haydenspinos/)
 Copyright © 2022 [GSU-CS-Software-Engineering](https://github.com/GSU-CS-Software-Engineering).
 <br />
 This project is [MIT](https://github.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/blob/main/LICENSE) licensed.
+
+<table>
+<thead>
+	<tr>
+		<th><div >
+<img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/main/doc/Spring%202022%20Team%20Headshots/Nate_Headshot.jpg" alt="Nate Agcaoili" width="200px"/>
+
+### Nate Agcaoili
+
+Role: Team Lead
+
+GitHub: [@NateAgcaoili](https://github.com/NateAgcaoili)
+
+LinkedIn: [@nathan-agcaoili](https://www.linkedin.com/in/nathan-agcaoili/)
+
+</div></th>
+		<th>Header 2</th>
+		<th>Header :</th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<td>Column 1</td>
+		<td>Column 2</td>
+		<td>Column 3</td>
+	</tr>
+	<tr>
+		<td>Custom Table Content</td>
+		<td>Column 4</td>
+		<td>Column 5</td>
+	</tr>
+</tbody>
+</table>
 
 ---
