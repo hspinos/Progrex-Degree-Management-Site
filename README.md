@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/1dd16c35506253c598276e46685532ed8aed2094/client/public/assets/vectors/logo.svg">
+    <img width="150" src="https://raw.githubusercontent.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/1dd16c35506253c598276e46685532ed8aed2094/client/public/assets/vectors/logo.svg">
     <h1>ProgREX</h1>
     <h3> A Degree Management Site built with the MERN stack and Tailwind CSS </h3>
 </div>
