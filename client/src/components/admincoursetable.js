@@ -45,6 +45,9 @@ function AdminCourseTable() {
 				<th scope ="row" className="px-2 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
 					{cor.usersTaken.length}
 				</th>
+				<th scope="row" className="px-2 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+					{cor.courseRan}
+				</th>
 				<td className="px-2 py-4 text-right">
 					<div className="grid grid-cols-2">
 						<button
@@ -80,8 +83,12 @@ function AdminCourseTable() {
 							Studnts
 						</th>
 						<th scope="col" className="px-2 py-4">
+							Course Subject
+						</th>
+						<th scope="col" className="px-2 py-4">
 							Options
 						</th>
+							
 						<th
 							scope="col"
 							className="relative h-full flex items-center justify-end py-3"

@@ -33,12 +33,12 @@ exports.test_course_endpoint = function (req, res) {
           res
             .json(course)
             .status(200)
-            .send("good")
+            .send()
       }catch(err){
           console.error(err);
           res
             .status(200)
-            .send("still good")
+            .send()
       }
   }
 
@@ -123,7 +123,7 @@ exports.test_course_endpoint = function (req, res) {
       const course = await Course.findById(req.params.id);
       if (course) {
         await Course.deleteOne({ _id: course.id });
-        res.status(200).send(`${course.name} successfully deleted.`);
+        res.status(200).send(`${course.courseName} successfully deleted.`);
       } else {
         res
           .status(410)

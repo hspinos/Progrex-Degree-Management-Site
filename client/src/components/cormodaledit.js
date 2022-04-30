@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function CorModalEdit(props) {
-	var corName = Course.getElementById(`corName${props.corId}`);
-	var corRan = course.getElementById(`corRan${props.corId}`);
-	var corCredits = cor.getElementById(`corCredits${props.corId}`);
+	var corName = document.getElementById(`courseName${props.courseId}`);
+	var corRan = document.getElementById(`courseRan${props.courseId}`);
+	var corCredits = document.getElementById(`credits${props.courseId}`);
 
     const[corseName, setName] = useState("");
     const [corseRan, setRan] = useState("");
@@ -29,11 +29,11 @@ function CorModalEdit(props) {
         let corUpdateData;
 		if (corseName) corUpdateData["courseName"] = corseName;
 		if (corseRan) corUpdateData["courseRan"] = corseRan;
-		if (corseCredits) corUpdateData["courseCredits"] = corseCredits;
+		if (corseCredits) corUpdateData["credits"] = corseCredits;
 		console.log(corUpdateData);
 		try {
 			let res = await axios.put(
-				`/course/update/${props.docId}`,
+				`/course/update/${props.courseId}`,
 				corUpdateData
 			);
 			console.log(res);
@@ -46,18 +46,18 @@ function CorModalEdit(props) {
 	//Clears inputs on cancel
 	function handleCancel() {
 		corName.value = props.courseName;
-		corCredits.value = props.courseCredits;
-		corCredits.value = props.courseRan;
+		corCredits.value = props.credits;
+		corRan.value = props.courseRan;
 	}
 
 	return (
 		<div
 			className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-			id={`editModal${props.corId}`}
+			id={`editModal${props.courseId}`}
 			data-bs-keyboard="false"
 			data-bs-backdrop="static"
 			tabIndex="-1"
-			aria-labelledby={`editModal${props.corId}`}
+			aria-labelledby={`editModal${props.courseId}`}
 			aria-hidden="true"
 		>
 			<div className="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
@@ -97,46 +97,33 @@ function CorModalEdit(props) {
 						>
 							<div className="flex space-x-4 mb-2 w-full">
 								<div className="grid w-10/12">
-									<label id="docNameLabel" className="font-semibold mb-1">
+									<label id="courseName" className="font-semibold mb-1">
 										Name
 									</label>
 									<input
 										type="text"
-										id={`docName${props.docId}`}
-										name="docName"
+										id={`courseName${props.courseId}`}
+										name="courseName"
 										className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:border-transparent"
-										placeholder="Document Title"
-										defaultValue={props.name}
+										placeholder="Course Title"
+										defaultValue={props.courseName}
 										onChange={(e) => setName(e.target.value)}
 									/>
 								</div>
 								<div className="grid">
 									<style>{toggleStyle}</style>
-									<label
-										id={`docActiveLabel${props.corId}`}
-										class="activeLabel font-semibold"
-									>
-										Active
-									</label>
-									<label class="flex items-center cursor-pointer">
-										<div class="relative flex items-center">
-											<div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
-
-											<div class="dot absolute left-3 top-1 bg-white w-6 h-6 rounded-full transition transform translate-x-[0.3rem]"></div>
-										</div>
-									</label>
 								</div>
 							</div>
 							<div className="grid mb-2">
 								<label className="font-semibold">Credits</label>
-								<textarea
+								<input
+                                    type="number"
 									className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
-									id={`corCredits${props.corId}`}
-									name="corCredits"
-									placeholder="A brief description of the contents and purpose of this document."
-									rows="4"
-									defaultValue={props.corCredits}
-									required
+									id={`credits${props.courseId}`}
+									name="credits"
+									placeholder="3"
+									rows="1"
+									defaultValue={props.credits}
 									onChange={(e) => {
 										setCredit(e.target.value);
 									}}
@@ -146,11 +133,11 @@ function CorModalEdit(props) {
 								<label className="font-semibold">Ran</label>
 								<input
 									type="text"
-									id={`corRan${props.corRan}`}
-									name="corRan"
+									id={`courseRan${props.courseRan}`}
+									name="courseRan"
 									className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
 									placeholder="Link to DocuSign PowerForm associated with this document."
-									defaultValue={props.corRan}
+									defaultValue={props.courseRan}
 									onChange={(e) => {
 										setRan(e.target.value);
 									}}

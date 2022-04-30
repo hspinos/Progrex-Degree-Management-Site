@@ -7,7 +7,7 @@ function CorModalDel(props) {
 	async function handleDeleteClick(e) {
 		e.preventDefault();
 		try {
-			let res = await axios.delete(`/course/delete/${props.corId}`);
+			let res = await axios.delete(`/course/delete/${props.courseId}`);
 			console.log(res);
 			window.location.reload();
 		} catch (err) {
@@ -18,11 +18,11 @@ function CorModalDel(props) {
 	return (
 		<div
 			className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-			id={`deleteModal${props.corId}`}
+			id={`deleteModal${props.courseId}`}
 			data-bs-keyboard="false"
 			data-bs-backdrop="static"
 			tabIndex="-1"
-			aria-labelledby={`deleteModal${props.corId}`}
+			aria-labelledby={`deleteModal${props.courseId}`}
 			aria-hidden="true"
 		>
 			<div className="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
@@ -53,7 +53,7 @@ function CorModalDel(props) {
 							<div class="p-6 pt-0 text-center">
 								<RiAlertFill className="mx-auto mb-4 w-24 h-24 fill-red-600" />
 								<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-white">
-									Are you sure you want to delete {props.corseName}?
+									Are you sure you want to delete {props.courseName}?
 								</h3>
 								<button
 									data-modal-toggle="popup-modal"

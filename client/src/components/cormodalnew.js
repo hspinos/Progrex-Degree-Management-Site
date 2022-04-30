@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
 function CorModalNew(props) {
 	var isActive = true;
-	var corNameBody = course.getElementById(`courseName`);
-	var corRanBody = course.getElementById(`courseRan`);
-	var corCreditBody = course.getElementById(`credits`);
+	var corNameBody = document.getElementById(`courseName`);
+	var corRanBody = document.getElementById(`courseRan`);
+	var corCreditBody = document.getElementById(`credits`);
 
 	const [corName, setName] = useState("");
 	const [corCredits, setCredits] = useState("");
@@ -26,12 +27,11 @@ function CorModalNew(props) {
 	//Handles clicking save
 	async function handleSaveClick(e) {
 		e.preventDefault();
-		console.log(corName, corCredits, corRan, isActive);
+		console.log(corName, corCredits, corRan);
 		let newCourse = {
 			courseName: corName,
-			courseCredits: corCredits,
+			credits: corCredits,
 			courseRan: corRan,
-			isActive: isActive,
 		};
 		console.log(newCourse);
 		try {
@@ -48,35 +48,6 @@ function CorModalNew(props) {
 		corNameBody.value = "";
 		corCreditBody.value = "";
 		corRanBody.value = "";
-	}
-
-	//Active switch componentt
-	function ActiveSwitch() {
-		if (isActive) {
-			return (
-				<input
-					type="checkbox"
-					defaultChecked
-					id={`activeToggle`}
-					class="sr-only"
-					onClick={toggleActiveText}
-				/>
-			);
-		} else {
-			return (
-				<input
-					type="checkbox"
-					id={`activeToggle`}
-					class="sr-only"
-					onClick={toggleActiveText}
-				/>
-			);
-		}
-	}
-
-	//Active switch toggle functionality
-	function toggleActiveText() {
-		isActive = !isActive;
 	}
 
 	return (
@@ -126,7 +97,7 @@ function CorModalNew(props) {
 						>
 							<div className="flex space-x-4 mb-2 w-full">
 								<div className="grid w-10/12">
-									<label id="docNameLabel" className="font-semibold mb-1">
+									<label id="courseNameLabel" className="font-semibold mb-1">
 										Name
 									</label>
 									<input
@@ -140,20 +111,6 @@ function CorModalNew(props) {
 								</div>
 								<div className="grid">
 									<style>{toggleStyle}</style>
-									<label
-										id={`docActiveLabel`}
-										class="activeLabel font-semibold"
-									>
-										Active
-									</label>
-									<label class="flex items-center cursor-pointer">
-										<div class="relative flex items-center">
-											<ActiveSwitch />
-											<div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
-
-											<div class="dot absolute left-3 top-1 bg-white w-6 h-6 rounded-full transition transform translate-x-[0.3rem]"></div>
-										</div>
-									</label>
 								</div>
 							</div>
 							<div className="grid mb-2">
@@ -162,8 +119,8 @@ function CorModalNew(props) {
 									className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
 									id={`courseCredits`}
 									name="courseCredits"
-									placeholder="A brief description of the contents and purpose of this document."
-									rows="4"
+									placeholder="The number of Credits for the course"
+									rows="1"
 									required
 									onChange={(e) => {
 										setCredits(e.target.value);
@@ -177,21 +134,10 @@ function CorModalNew(props) {
 									id={`courseRan`}
 									name="courseRan"
 									className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
-									placeholder="Link to DocuSign PowerForm associated with this document."
+									placeholder="CSCI 0000"
 									onChange={(e) => {
 										setRan(e.target.value);
 									}}
-								/>
-							</div>
-							<div className="grid mb-2">
-								<label className="font-semibold">Creator</label>
-								<input
-									type="text"
-									id={`creator`}
-									placeholder={props.creator}
-									name="creator"
-									className="cursor-not-allowed rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-400 text-gray-700 placeholder-gray-700 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
-									disabled
 								/>
 							</div>
 						</form>
