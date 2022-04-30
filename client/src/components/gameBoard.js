@@ -28,6 +28,7 @@ const populateGameBoard = async () => {
                                 badgeNum: x.displayBadgeNum,
                                 badgeDescription: x.displayBadgeDescription
                             }
+            console.log("calling create student");
             config.send("GameManager", "createStudent", JSON.stringify(currentData));
         }
 
