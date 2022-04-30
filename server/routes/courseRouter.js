@@ -15,4 +15,6 @@ courseRouter.put("/student/:courseId/:userId", courseController.set_user_course)
 
 courseRouter.get("/student/:courseId/:userId", courseController.check_student_course);
 
+courseRouter.delete("/delete/:id", courseController.delete_course);
+
 module.exports = courseRouter;

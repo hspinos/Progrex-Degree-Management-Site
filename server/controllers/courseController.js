@@ -116,3 +116,39 @@ exports.test_course_endpoint = function (req, res) {
           console.error(err);
       }
   }
+
+  exports.delete_course = async function (req, res) {
+    try {
+      console.log("delete course endpoint called");
+      const course = await Course.findById(req.params.id);
+      if (course) {
+        await Course.deleteOne({ _id: course.id });
+        res.status(200).send(`${course.name} successfully deleted.`);
+      } else {
+        res
+          .status(410)
+          .send(
+            `Course with ID '${req.params.id}' does not exist or has already been deleted.`
+          );
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(401).send();
+    }
+  }
+
+  exports.update_course = async function (req, res) {
+    try {
+      console.log("update course endpoint called");
+      const course = await Course.findById(req.params.id);
+      if (req.body.courseName) course.courseName = req.body.courseName;
+      if (req.body.courseRan) document.courseRan = req.body.courseRan;
+      if (req.body.credits) document.credits = req.body.credits;
+      course.isActive = req.body.isActive;
+      await course.save();
+      res.json(course).status(200).send();
+    } catch (err) {
+      console.error(err);
+      res.status(401).send();
+    }
+  };
