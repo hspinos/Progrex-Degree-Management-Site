@@ -34,7 +34,7 @@ describe('Testing user endpoint', () => {
         });
     });
 
-    describe('GET /user/detail/id: list a single user with specified id', () => {
+    describe('GET /user/detail/:id : list a single user with specified id', () => {
         it('should return status 200', (done) => {
         chai.request(app)
             .get('/user/detail/1234567890a0a1a2a3a4a5a6')

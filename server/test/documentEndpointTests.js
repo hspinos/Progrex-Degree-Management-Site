@@ -34,10 +34,21 @@ describe('Testing document endpoint', () => {
         });
     });
 
-    describe('GET /document/detail/id: list a single document with specified id', () => {
+    describe('GET /document/detail/:id : list a single document with specified id', () => {
         it('should return status 200', (done) => {
         chai.request(app)
             .get('/document/detail/1234567890a0a1a2a3a4a5a6')
+            .end((err, res) => {
+                res.should.have.status(200);
+                done();
+            });
+        });
+    });
+
+    describe('GET /document/sign/:docID/:userID : check to see if a document is signed ', () => {
+        it('should return status 200', (done) => {
+        chai.request(app)
+            .get('/document/sign/0234567890a0a1a2a3a4a5a6/1234567890a0a1a2a3a4a5a6')
             .end((err, res) => {
                 res.should.have.status(200);
                 done();
