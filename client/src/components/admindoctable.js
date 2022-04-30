@@ -68,7 +68,11 @@ function AdminDocTable() {
 				>
 					{doc.name}
 				</th>
-				<td className="px-2 py-4 hover:underline hover:cursor-pointer">
+				<td
+					className="px-2 py-4 hover:underline hover:cursor-pointer"
+					data-bs-toggle="modal"
+					data-bs-target={`#signedListModal${doc._id}`}
+				>
 					{doc.usersSigned.length}
 				</td>
 				<td className="px-2 py-4 flex items-center">
