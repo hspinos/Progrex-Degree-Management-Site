@@ -10,7 +10,7 @@ const app = require('../index');
 chai.use(chaiHttp);
 chai.should();
 
-describe('Testing user endpoint', () => {
+describe('Testing document endpoint', () => {
     before((done) => {
         connectDB()
             .then(() => done())
@@ -23,10 +23,10 @@ describe('Testing user endpoint', () => {
             .catch((err) => done(err));
     })
 
-    describe('GET /user/list: list all users', () => {
+    describe('GET /document/list', () => {
         it('should return status 200', (done) => {
         chai.request(app)
-            .get('/user/list')
+            .get('/document/list')
             .end((err, res) => {
                 res.should.have.status(200);
                 done();
@@ -34,10 +34,10 @@ describe('Testing user endpoint', () => {
         });
     });
 
-    describe('GET /user/detail/id: list a single user with specified id', () => {
+    describe('GET /document/detail/id: list a single document with specified id', () => {
         it('should return status 200', (done) => {
         chai.request(app)
-            .get('/user/detail/1234567890a0a1a2a3a4a5a6')
+            .get('/document/detail/1234567890a0a1a2a3a4a5a6')
             .end((err, res) => {
                 res.should.have.status(200);
                 done();
@@ -46,5 +46,4 @@ describe('Testing user endpoint', () => {
     });
 
 });
-
 
