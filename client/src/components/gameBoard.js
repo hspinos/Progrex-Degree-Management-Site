@@ -4,10 +4,10 @@ import Unity, { UnityContext } from "react-unity-webgl";
 
 
 const config = new UnityContext({
-    loaderUrl: "Build/build.loader.js",
-    dataUrl: "Build/build.data",
-    frameworkUrl: "Build/build.framework.js",
-    codeUrl: "Build/build.wasm"
+    loaderUrl: "Build/Build.loader.js",
+    dataUrl: "Build/Build.data",
+    frameworkUrl: "Build/Build.framework.js",
+    codeUrl: "Build/Build.wasm"
 })
 
 const populateGameBoard = async () => {
