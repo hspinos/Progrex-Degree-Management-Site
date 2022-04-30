@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import SignerName from "./signername";
+
 //Fetching signer details from backend
 function AdminDocSignedTable(props) {
 	var signerIndex = 0;
@@ -16,7 +18,7 @@ function AdminDocSignedTable(props) {
 
 			console.log(jsonData.usersSigned);
 
-			setSignerList(...signerList, jsonData.usersSigned);
+			setSignerList(jsonData.usersSigned);
 		} catch (err) {
 			console.error(err.message);
 		}
@@ -26,7 +28,7 @@ function AdminDocSignedTable(props) {
 		getSignerList();
 	}, []);
 
-	//Signer name compoonent dynamically
+	/*//Signer name compoonent dynamically
 	function SignerName(props) {
 		const getSignerData = async () => {
 			try {
@@ -44,7 +46,7 @@ function AdminDocSignedTable(props) {
 		}, []);
 
 		return <p>{signerName}</p>;
-	}
+	}*/
 
 	let signerRows = signerList.map((signer) => {
 		var rowColor;
