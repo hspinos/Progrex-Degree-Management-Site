@@ -16,7 +16,7 @@ describe('Testing user endpoint', () => {
             .then(() => done())
             .catch((err) => done(err));
     })
-    
+
     after((done) => {
         disconnectDB()
             .then(() => done())
@@ -25,26 +25,99 @@ describe('Testing user endpoint', () => {
 
     describe('GET /user/list: list all users', () => {
         it('should return status 200', (done) => {
-        chai.request(app)
-            .get('/user/list')
-            .end((err, res) => {
-                res.should.have.status(200);
-                done();
-            });
+            chai.request(app)
+                .get('/user/list')
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
         });
     });
 
     describe('GET /user/detail/:id : list a single user with specified id', () => {
         it('should return status 200', (done) => {
-        chai.request(app)
-            .get('/user/detail/1234567890a0a1a2a3a4a5a6')
-            .end((err, res) => {
-                res.should.have.status(200);
-                done();
-            });
+            chai.request(app)
+                .get('/user/detail/1234567890a0a1a2a3a4a5a6')
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
         });
     });
 
+    describe('POST /user/create: fail no username', () => {
+        it('should return status 401', (done) => {
+            chai.request(app)
+                .post('/user/create')
+                .send({ password: 'johndoe', fName: 'john', lName: 'doe' })
+                .end((err, res) => {
+                    res.should.have.status(401);
+                    done();
+                });
+        });
+    });
+
+    describe('POST /user/create: fail no password', () => {
+        it('should return status 401', (done) => {
+            chai.request(app)
+                .post('/user/create')
+                .send({ username: 'johndoe', fName: 'john', lName: 'doe' })
+                .end((err, res) => {
+                    res.should.have.status(401);
+                    done();
+                });
+        });
+    });
+
+    describe('POST /user/create: fail no first name', () => {
+        it('should return status 401', (done) => {
+            chai.request(app)
+                .post('/user/create')
+                .send({ username: 'johndoe', password: 'johndoe', lName: 'doe' })
+                .end((err, res) => {
+                    res.should.have.status(401);
+                    done();
+                });
+        });
+    });
+
+    describe('POST /user/create: fail no last name', () => {
+        it('should return status 401', (done) => {
+            chai.request(app)
+                .post('/user/create')
+                .send({ username: 'johndoe', password: 'johndoe', fName: 'john' })
+                .end((err, res) => {
+                    res.should.have.status(401);
+                    done();
+                });
+        });
+    });
+
+    describe('POST /user/create: user signup', () => {
+        it('should return status 200', (done) => {
+            chai.request(app)
+                .post('/user/create')
+                .send({ username: 'johndoe', password: 'johndoe', fName: 'john', lName: 'doe' })
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    // This verifies that the user has been passed thru to server
+                    res.body.should.have.property('username')
+                    done();
+                });
+        });
+    });
+
+    //describe('POST /user/login: endpoint users can use to log in', () => {
+    //    it('should return status 200', (done) => {
+    //        chai.request(app)
+    //            .post('/user/login')
+    //            .send({ username: 'johndoe', password: 'johndoe' })
+    //            .end((err, res) => {
+    //                res.should.have.status(200);
+    //                done();
+    //            });
+    //    });
+    //});
 });
 
 
