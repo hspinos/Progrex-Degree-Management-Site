@@ -117,10 +117,6 @@ LinkedIn: [@haydenspinos](https://www.linkedin.com/in/haydenspinos/)
 </table>
 </div>
 
-## Status
-
-![Tests](https://github.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/actions/workflows/node.js.yml/badge.svg)
-
 ## 📝️ Documentation
 
 [View Documentation & Guide for Future Development](https://github.com/GSU-CS-Software-Engineering/2022Spring-DegreeManagementSite/tree/main/doc)
