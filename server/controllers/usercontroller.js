@@ -4,7 +4,9 @@ let User = require('../models/usermodel');
 const saltRounds = 10;
 
 exports.test_user_endpoint = function (req, res) {
-  res.send('This is the test_user_endpoint');
+  res
+    .status(200)
+    .send('This is the test_user_endpoint');
 }
 
 /* 

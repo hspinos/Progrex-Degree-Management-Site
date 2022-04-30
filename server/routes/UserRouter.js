@@ -5,7 +5,7 @@ const userController = require('../controllers/usercontroller');
 
 userRouter.get("/test", userController.test_user_endpoint)
 
-userRouter.get('/list', userController.get_users);
+userRouter.get("/list", userController.get_users);
 
 userRouter.post("/create", userController.create_user);
 

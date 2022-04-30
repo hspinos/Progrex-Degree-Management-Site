@@ -1,40 +1,21 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
+
 const path = require('path');
-
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
-const Redis = require('ioredis');
-const { DateTime } = require("luxon");
-const RedisStore = require('connect-redis')(session);
-let RedisClient = new Redis({
-  host: `${process.env.REDIS_HOST}`,
-  password: `${process.env.REDIS_PASSWORD}`,
-  port: 6379
-});
-
-
-let mongoDB = `mongodb://${process.env.ME_CONFIG_MONGODB_ADMINUSERNAME}:${process.env.ME_CONFIG_MONGODB_ADMINPASSWORD}@${process.env.ME_CONFIG_MONGODB_HOST}:27017`;
-let app = express();
-
-// if(process.env.NODE_ENV ==="development"){
-
-  app.use(cookieParser());
-// }
-
 const PORT = 8080;
-
-mongoose.connect(mongoDB, { useUnifiedTopology: true });
-let db = mongoose.connection;
-
-db.on('connected', () => console.log("DB connected!"));
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+const { connectDB, disconnectDB } = require('./database');
+let app = express();
 
 const UserRouter = require('./routes/UserRouter');
 const DocumentRouter = require('./routes/DocumentRouter');
 const badgeRouter = require('./routes/badgeRouter');
 const courseRouter = require('./routes/courseRouter');
+const {config} = require('process');
+
+app.use('/user', UserRouter);
+app.use('/document', DocumentRouter);
+app.use('/badge', badgeRouter);
+app.use('/course', courseRouter);
 
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 app.use(express.json());
@@ -45,27 +26,42 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(session({
-  store: new RedisStore({ client: RedisClient }),
-  secret: 'partycat',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: false,
-    httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24 // This will result in a hour
-  }
-}));
+if(process.env.NODE_ENV !== 'test') {
+    connectDB();
+    //mongoose.connect(DB_URI, {useUnifiedTopology: true});
+    //.then((res, err) => {
+    //    if (err) return reject(err);
+    //    resolve();
+    //})
 
-app.use('/user', UserRouter);
-app.use('/document', DocumentRouter);
-app.use('/badge', badgeRouter);
-app.use('/course', courseRouter);
+    const session = require('express-session');
+    const Redis = require('ioredis');
+    const RedisStore = require('connect-redis')(session);
+    let RedisClient = new Redis({
+        host: `${process.env.REDIS_HOST}`,
+        password: `${process.env.REDIS_PASSWORD}`,
+        port: 6379
+    });
 
-// Test endpoint
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
-});
+    app.use(session({
+        store: new RedisStore({ client: RedisClient }),
+        secret: 'partycat',
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+          secure: false,
+          httpOnly: true,
+          maxAge: 1000 * 60 * 60 * 24 // This will result in a hour
+        }
+      }));
+}
+
+
+
+//Test endpoint
+//app.get('*', (req, res) => {
+//  res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
+//});
 
 
 app.listen(PORT, () => {
