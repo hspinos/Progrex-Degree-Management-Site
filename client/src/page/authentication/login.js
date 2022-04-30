@@ -18,6 +18,7 @@ const Login = (props) => {
 	async function handleLoginClick(e) {
 		e.preventDefault();
 		try {
+			console.log(username)
 			let res = await axios.post(
 				`/user/login`,
 				{

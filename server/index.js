@@ -1,39 +1,18 @@
 const express = require('express');
 const cors = require('cors');
-
 const path = require('path');
-const PORT = 8080;
 const { connectDB, disconnectDB } = require('./database');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const { DateTime } = require("luxon");
 let app = express();
 
-const UserRouter = require('./routes/UserRouter');
-const DocumentRouter = require('./routes/DocumentRouter');
-const badgeRouter = require('./routes/badgeRouter');
-const courseRouter = require('./routes/courseRouter');
-const {config} = require('process');
+let PORT = 8081;
 
-app.use('/user', UserRouter);
-app.use('/document', DocumentRouter);
-app.use('/badge', badgeRouter);
-app.use('/course', courseRouter);
-
-app.use(express.static(path.join(__dirname, 'frontend/build')));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cors({
-  origin: 'http://localhost:3000',
-  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
-  credentials: true
-}));
 
 if(process.env.NODE_ENV !== 'test') {
+    PORT = 8080;
     connectDB();
-    //mongoose.connect(DB_URI, {useUnifiedTopology: true});
-    //.then((res, err) => {
-    //    if (err) return reject(err);
-    //    resolve();
-    //})
-
     const session = require('express-session');
     const Redis = require('ioredis');
     const RedisStore = require('connect-redis')(session);
@@ -56,13 +35,28 @@ if(process.env.NODE_ENV !== 'test') {
       }));
 }
 
+app.use(cookieParser());
 
 
-//Test endpoint
-//app.get('*', (req, res) => {
-//  res.sendFile(path.join(__dirname + '/frontend/build/index.html'));
-//});
+const UserRouter = require('./routes/UserRouter');
+const DocumentRouter = require('./routes/DocumentRouter');
+const badgeRouter = require('./routes/badgeRouter');
+const courseRouter = require('./routes/courseRouter');
 
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+  credentials: true
+}));
+
+
+app.use('/user', UserRouter);
+app.use('/document', DocumentRouter);
+app.use('/badge', badgeRouter);
+app.use('/course', courseRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
