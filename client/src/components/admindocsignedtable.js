@@ -8,7 +8,6 @@ function AdminDocSignedTable(props) {
 	var signerIndex = 0;
 
 	const [signerList, setSignerList] = useState([]);
-	const [signerName, setSignerName] = useState();
 
 	//Getting signed list data
 	const getSignerList = async () => {
@@ -28,26 +27,6 @@ function AdminDocSignedTable(props) {
 		getSignerList();
 	}, []);
 
-	/*//Signer name compoonent dynamically
-	function SignerName(props) {
-		const getSignerData = async () => {
-			try {
-				let response = await axios.get(`/user/detail/${props.userId}`);
-				const jsonData = await response.data;
-
-				setSignerName(jsonData.fName + " " + jsonData.lName);
-			} catch (err) {
-				console.error(err.message);
-			}
-		};
-
-		useEffect(() => {
-			getSignerData();
-		}, []);
-
-		return <p>{signerName}</p>;
-	}*/
-
 	let signerRows = signerList.map((signer) => {
 		var rowColor;
 
@@ -65,6 +44,7 @@ function AdminDocSignedTable(props) {
 				>
 					<SignerName userId={signer.signerId} />
 				</th>
+
 				<td
 					className="px-2 py-4"
 					data-bs-toggle="modal"
