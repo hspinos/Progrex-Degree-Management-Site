@@ -67,8 +67,18 @@ function AdminCourseTable() {
 						>
 							Delete
 						</button>
+						
 					</div>
 				</td>
+				<th scope="row" >
+					<button 
+						data-bs-toggle="modal"
+						data-bs-target={`#addStudent${cor._id}`}
+						class="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+						>
+						Add Student
+					</button>
+				</th>
 				<td></td>
 			</tr>
 		);
@@ -94,7 +104,9 @@ function AdminCourseTable() {
 						<th scope="col" className="px-2 py-4">
 							Options
 						</th>
-							
+						<th scope="col" className="px-2 py-4">
+							Students
+						</th>
 						<th
 							scope="col"
 							className="relative h-full flex items-center justify-end py-3"

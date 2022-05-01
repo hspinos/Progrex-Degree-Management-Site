@@ -26,7 +26,7 @@ exports.test_course_endpoint = function (req, res) {
           console.log("create course endpoint");
           const course = new Course({
               courseName: req.body.courseName,
-              couseRan: req.body.courseRan,
+              courseRan: req.body.courseRan,
               credits: req.body.credits,
           });
           await course.save();
@@ -142,11 +142,10 @@ exports.test_course_endpoint = function (req, res) {
       console.log("update course endpoint called");
       const course = await Course.findById(req.params.id);
       if (req.body.courseName) course.courseName = req.body.courseName;
-      if (req.body.courseRan) document.courseRan = req.body.courseRan;
-      if (req.body.credits) document.credits = req.body.credits;
-      course.isActive = req.body.isActive;
+      if (req.body.courseRan) course.courseRan = req.body.courseRan;
+      if (req.body.credits) course.credits = req.body.credits;
       await course.save();
-      res.json(course).status(200).send();
+      res.json(course).status(200).send("works");
     } catch (err) {
       console.error(err);
       res.status(401).send();

@@ -30,8 +30,9 @@ function CorModalNew(props) {
 		console.log(corName, corCredits, corRan);
 		let newCourse = {
 			courseName: corName,
-			credits: corCredits,
 			courseRan: corRan,
+			credits: corCredits,
+			
 		};
 		console.log(newCourse);
 		try {
@@ -117,8 +118,8 @@ function CorModalNew(props) {
 								<label className="font-semibold">Credits</label>
 								<textarea
 									className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
-									id={`courseCredits`}
-									name="courseCredits"
+									id={`credits`}
+									name="credits"
 									placeholder="The number of Credits for the course"
 									rows="1"
 									required

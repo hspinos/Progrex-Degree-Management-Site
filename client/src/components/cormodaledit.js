@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function CorModalEdit(props) {
-	var corName = document.getElementById(`courseName${props.courseId}`);
-	var corRan = document.getElementById(`courseRan${props.courseId}`);
-	var corCredits = document.getElementById(`credits${props.courseId}`);
+	var corName = document.getElementById(`name${props.courseId}`);
+	var corRan = document.getElementById(`ran${props.courseId}`);
+	var corCredits = document.getElementById(`creds${props.courseId}`);
 
-    const[corseName, setName] = useState("");
-    const [corseRan, setRan] = useState("");
-    const [corseCredits, setCredit] = useState("");
+    const[name, setName] = useState("");
+    const [ran, setRan] = useState("");
+    const [creds, setCredit] = useState("");
 
 	//Active switch styling
 	const toggleStyle = `
@@ -25,11 +25,11 @@ function CorModalEdit(props) {
 	//Handles clicking save
 	async function handleSaveClick(e) {
 		e.preventDefault();
-		console.log(corName, corRan, corCredits);
+		console.log(name, ran, creds);
         let corUpdateData;
-		if (corseName) corUpdateData["courseName"] = corseName;
-		if (corseRan) corUpdateData["courseRan"] = corseRan;
-		if (corseCredits) corUpdateData["credits"] = corseCredits;
+		if (name) corUpdateData["courseName"] = name;
+		if (ran) corUpdateData["courseRan"] = ran;
+		if (creds) corUpdateData["credits"] = creds;
 		console.log(corUpdateData);
 		try {
 			let res = await axios.put(
@@ -46,8 +46,8 @@ function CorModalEdit(props) {
 	//Clears inputs on cancel
 	function handleCancel() {
 		corName.value = props.courseName;
-		corCredits.value = props.credits;
-		corRan.value = props.courseRan;
+		corRan.value = props.ran;
+        corCredits.value = props.creds;
 	}
 
 	return (
@@ -67,7 +67,7 @@ function CorModalEdit(props) {
 							className="text-xl font-medium leading-normal text-gray-800 dark:text-white"
 							id="editModalTitle"
 						>
-							Edit Course
+							Edit Course {props.name}
 						</h5>
 						<button
 							type="button"
@@ -97,15 +97,15 @@ function CorModalEdit(props) {
 						>
 							<div className="flex space-x-4 mb-2 w-full">
 								<div className="grid w-10/12">
-									<label id="courseName" className="font-semibold mb-1">
+									<label id="courseNameLabel" className="font-semibold mb-1">
 										Name
 									</label>
 									<input
 										type="text"
-										id={`courseName${props.courseId}`}
-										name="courseName"
+										id={`name${props.courseId}`}
+										name="name"
 										className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:border-transparent"
-										placeholder="Course Title"
+										placeholder="Course Name"
 										defaultValue={props.courseName}
 										onChange={(e) => setName(e.target.value)}
 									/>
@@ -117,10 +117,10 @@ function CorModalEdit(props) {
 							<div className="grid mb-2">
 								<label className="font-semibold">Credits</label>
 								<input
-                                    type="number"
+                                    type="text"
 									className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
-									id={`credits${props.courseId}`}
-									name="credits"
+									id={`creds${props.courseId}`}
+									name="creds"
 									placeholder="3"
 									rows="1"
 									defaultValue={props.credits}
@@ -133,10 +133,10 @@ function CorModalEdit(props) {
 								<label className="font-semibold">Ran</label>
 								<input
 									type="text"
-									id={`courseRan${props.courseRan}`}
-									name="courseRan"
+									id={`ran${props.courseId}`}
+									name="ran"
 									className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 focus:ring-green-500 bg-gray-200 text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2  focus:border-transparent"
-									placeholder="Link to DocuSign PowerForm associated with this document."
+									placeholder="Ran"
 									defaultValue={props.courseRan}
 									onChange={(e) => {
 										setRan(e.target.value);

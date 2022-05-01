@@ -6,6 +6,7 @@ import CorModalEdit from "../../components/cormodaledit";
 import CorModalDel from "../../components/cormodaldel";
 import AdminCourseTable from "../../components/admincoursetable";
 import CorModalNew from "../../components/cormodalnew";
+import AddStudentModal from "../../components/addstudentmodal";
 
 
 
@@ -71,6 +72,11 @@ function AdminProgress() {
                     courseRan={cor.courseRan}
 				/>
 				<CorModalDel courseId={cor._id} courseName={cor.courseName}/>
+                <AddStudentModal
+                    key={cor._id}
+					courseId={cor._id}
+					courseName={cor.courseName}
+                    />
 			</React.Fragment>
 		);
 	});

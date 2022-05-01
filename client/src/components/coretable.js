@@ -26,7 +26,7 @@ function CoreTable() {
     }, []);
 
     let grades = course.map((cor) => {
-    return <GradeCard id={cor._id} /> 
+    return <GradeCard id={cor.id} /> 
     })
 
    
