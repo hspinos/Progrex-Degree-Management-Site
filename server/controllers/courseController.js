@@ -17,28 +17,29 @@ exports.test_course_endpoint = function (req, res) {
                 .send(course)
           });
       }catch(err){
-          console.error(err);
+          //console.error(err);
+          res.status(401).send(err);
       }
   }
 
   exports.create_course = async function (req, res) {
       try{
-          console.log("create course endpoint");
+          //console.log("create course endpoint");
           const course = new Course({
               courseName: req.body.courseName,
-              couseRan: req.body.courseRan,
-              credits: req.body.credits,
+              courseRan: req.body.courseRan,
+              credits: req.body.credits
           });
           await course.save();
           res
             .json(course)
             .status(200)
-            .send("good")
+            .send()
       }catch(err){
-          console.error(err);
+          //console.error(err);
           res
-            .status(200)
-            .send("still good")
+            .status(401)
+            .send(err)
       }
   }
 
@@ -56,10 +57,11 @@ exports.test_course_endpoint = function (req, res) {
               res
                 .json(course)
                 .status(200)
-                .send("sick job");
+                .send();
             }
-          } catch(err){
+        } catch(err){
               console.error(err);
+              res.status(401).send(err);
         }
     }
 
@@ -69,12 +71,13 @@ exports.test_course_endpoint = function (req, res) {
         const course = await Course.findById(req.params.courseId);
         let data = course.usersTaken.find(studentData => studentData.studentId.equals(userId));
         if (data) {
-          res.send({ isTaken: true, grade: data.grade });
+          res.status(200).send({ isTaken: true, grade: data.grade });
         } else {
-          res.send({ isTaken: false });
+          res.status(200).send({ isTaken: false });
         }
       } catch (err) {
-        console.error(err);
+        //console.error(err);
+        res.status(401).send(err);
       }
   }
 

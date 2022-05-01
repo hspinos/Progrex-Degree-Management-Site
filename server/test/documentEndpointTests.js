@@ -23,7 +23,7 @@ describe('Testing DOCUMENT endpoint: ', () => {
             .catch((err) => done(err));
     })
 
-    let createResponse;
+    let docCreateResponse;
 
     describe('GET /document/list', () => {
         it('should return status 200', (done) => {
@@ -70,7 +70,7 @@ describe('Testing DOCUMENT endpoint: ', () => {
             .post('/document/create')
             .send(document)
             .end((err, res) => {
-                createResponse = res;
+                docCreateResponse = res;
                 res.should.have.status(200);
                 res.body.should.be.a('object');
                 res.body.should.have.property('name');
@@ -83,30 +83,31 @@ describe('Testing DOCUMENT endpoint: ', () => {
     });
 
     //This test only fails because the it is attempting to create the same document already created in the test prior. Sequence of the test matters
-    describe('POST (FAIL) /document/create : fail to create document that already exists', () => {
-        it('should return status 401', (done) => {
-            let document = {
-                name: "nameTest",
-                description: "descriptionTest",
-                powerFormUrl: "pfuTest",
-                isActive: true
-            }
-        chai.request(app)
-            .post('/document/create')
-            .send(document)
-            .end((err, res) => {
-                res.should.have.status(401);
-                done();
-            });
-        });
-    });
+    // describe('POST (FAIL) /document/create : fail to create document that already exists ', () => {
+    //     it('should return status 401', (done) => {
+    //         let document = {
+    //             name: "nameTest",
+    //             description: "descriptionTest",
+    //             powerFormUrl: "pfuTest",
+    //             isActive: true
+    //         }
+    //     chai.request(app)
+    //         .post('/document/create')
+    //         .send(document)
+    //         .end((err, res) => {
+    //             //createResponse = res;
+    //             res.should.have.status(401);
+    //             done();
+    //         });
+    //     });
+    // });
 
     //fake user id will be used on real doc.
     //This means the doc should have no signers and return false with a succesful 200 api status
     describe('GET /document/sign/:docId/:userId : check if a specified document is signed by a specified user', () => {
         it('should return status 200', (done) => {
         chai.request(app)
-            .get(`/document/sign/${createResponse.body._id}/1234567890a0a1a2a3a4a5a6`)
+            .get(`/document/sign/${docCreateResponse.body._id}/1234567890a0a1a2a3a4a5a6`)
             .end((err, res) => {
                 res.should.have.status(200);
                 done();
@@ -114,7 +115,7 @@ describe('Testing DOCUMENT endpoint: ', () => {
         });
     });
 
-    describe('GET (FAIL) /document/sign/:docId/:userId : check if a specified document is signed by a specified user', () => {
+    describe('GET (FAIL) /document/sign/:docId/:userId : check if specified user signed non-existant document', () => {
         it('should return status 401', (done) => {
         chai.request(app)
             .get(`/document/sign/1234567890a0a1a2a3a4a5a6/1234567890a0a1a2a3a4a5a6`)
@@ -128,7 +129,7 @@ describe('Testing DOCUMENT endpoint: ', () => {
     describe('PUT /document/sign/:docId/:userId : set a specified document signed by a specified user', () => {
         it('should return status 200', (done) => {
         chai.request(app)
-            .put(`/document/sign/${createResponse.body._id}/1234567890a0a1a2a3a4a5a6`)
+            .put(`/document/sign/${docCreateResponse.body._id}/1234567890a0a1a2a3a4a5a6`)
             .end((err, res) => {
                 res.should.have.status(200);
                 done();
@@ -139,7 +140,7 @@ describe('Testing DOCUMENT endpoint: ', () => {
     describe('PUT (FAIL) /document/sign/:docId/:userId : fails because specified user already signed', () => {
         it('should return status 401', (done) => {
         chai.request(app)
-            .put(`/document/sign/${createResponse.body._id}/1234567890a0a1a2a3a4a5a6`)
+            .put(`/document/sign/${docCreateResponse.body._id}/1234567890a0a1a2a3a4a5a6`)
             .end((err, res) => {
                 res.should.have.status(401);
                 done();
@@ -156,7 +157,7 @@ describe('Testing DOCUMENT endpoint: ', () => {
                 isActive: false
             }
         chai.request(app)
-            .put(`/document/update/${createResponse.body._id}`)
+            .put(`/document/update/${docCreateResponse.body._id}`)
             .send(document)
             .end((err, res) => {
                 res.should.have.status(200);
@@ -180,7 +181,7 @@ describe('Testing DOCUMENT endpoint: ', () => {
                 isActive: null
             }
         chai.request(app)
-            .put(`/document/update/${createResponse.body._id}`)
+            .put(`/document/update/${docCreateResponse.body._id}`)
             .send(document)
             .end((err, res) => {
                 res.should.have.status(401);
@@ -192,7 +193,7 @@ describe('Testing DOCUMENT endpoint: ', () => {
     describe('DELETE /document/delete/:id : delete a document with a specified id', () => {
         it('should return status 200', (done) => {
         chai.request(app)
-            .delete(`/document/delete/${createResponse.body._id}`)
+            .delete(`/document/delete/${docCreateResponse.body._id}`)
             .end((err, res) => {
                 res.should.have.status(200);
                 done();
@@ -203,7 +204,7 @@ describe('Testing DOCUMENT endpoint: ', () => {
     describe('DELETE (FAIL) /document/delete/:id : fail to delete non-existant or previously deleted document', () => {
         it('should return status 410', (done) => {
         chai.request(app)
-            .delete(`/document/delete/${createResponse.body._id}`)
+            .delete(`/document/delete/${docCreateResponse.body._id}`)
             .end((err, res) => {
                 res.should.have.status(410);
                 done();
@@ -211,16 +212,16 @@ describe('Testing DOCUMENT endpoint: ', () => {
         });
     });
 
-    describe('PUT /document/reset : repopulate the document collection with sample documents', () => {
-        it('should return status 200', (done) => {
-        chai.request(app)
-            .put(`/document/reset`)
-            .end((err, res) => {
-                res.should.have.status(200);
-                done();
-            });
-        });
-    });
+    // describe('PUT /document/reset : repopulate the document collection with sample documents', () => {
+    //     it('should return status 200', (done) => {
+    //     chai.request(app)
+    //         .put(`/document/reset`)
+    //         .end((err, res) => {
+    //             res.should.have.status(200);
+    //             done();
+    //         });
+    //     });
+    // });
 
 });
 
