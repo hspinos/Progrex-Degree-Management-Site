@@ -11,8 +11,8 @@ const studentSchema = new Schema(
 const courseSchema = new Schema(
   {
     courseName: {type: String, required: true, maxLegnth: 40, unique: true, dropDups: true},
-    courseRan: {type: String, maxLegnth: 10, required: true, default: "CSCI ----"},
-    credits: {type: Number, required: true, default: "0"},
+    courseRan: {type: String, maxLegnth: 10, required: true},
+    credits: {type: Number, required: true},
     usersTaken: [studentSchema]
   }
 )
