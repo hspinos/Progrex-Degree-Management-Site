@@ -30,7 +30,6 @@ function AdminDocTable() {
 	}, []);
 
 	function DocStatus(props) {
-		console.log(props.isActive);
 		if (props.isActive) {
 			return (
 				<div className="relative grid grid-cols-2 ">
