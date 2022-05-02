@@ -26,7 +26,7 @@ function CorModalEdit(props) {
 	async function handleSaveClick(e) {
 		e.preventDefault();
 		console.log(name, ran, creds);
-        let corUpdateData;
+        let corUpdateData = {name: name, ran: ran, creds: creds};
 		if (name) corUpdateData["courseName"] = name;
 		if (ran) corUpdateData["courseRan"] = ran;
 		if (creds) corUpdateData["credits"] = creds;
@@ -67,7 +67,7 @@ function CorModalEdit(props) {
 							className="text-xl font-medium leading-normal text-gray-800 dark:text-white"
 							id="editModalTitle"
 						>
-							Edit Course {props.name}
+							Edit Course {props.courseName}
 						</h5>
 						<button
 							type="button"
