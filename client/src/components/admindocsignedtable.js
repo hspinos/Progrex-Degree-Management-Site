@@ -56,6 +56,9 @@ function AdminDocSignedTable(props) {
 		);
 	});
 
+	if (signerList.length == 0) {
+		return <p>No students have signed this document yet.</p>;
+	}
 	return (
 		<div className="relative  shadow-md sm:rounded-lg h-full overflow-visible">
 			<table className="w-full text-sm text-left text-gray-500 dark:text-gray-50">
