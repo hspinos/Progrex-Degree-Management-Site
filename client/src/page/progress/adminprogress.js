@@ -44,6 +44,7 @@ function AdminProgress() {
 
 	function generateClick() {
 		resetCourses();
+		window.location.reload();
 		setTimeout(() => {
 			window.location.reload();
 		}, 500);
@@ -103,7 +104,7 @@ function AdminProgress() {
 					<h1 className="text-3xl text-center font-semibold mb-4">Uh oh...</h1>
 					<div className="items-center p-4 border-t h-fit border-gray-200 rounded-t-m dark:border-stone-700">
 						<p>
-							It looks like there currently aren't any documents saved in your
+							It looks like there currently aren't any courses saved in your
 							database. Push the button below to populate your document list
 							with some samples.
 						</p>
@@ -113,7 +114,7 @@ function AdminProgress() {
 								onClick={generateClick}
 								className="inline-block px-6 py-2.5 bg-stone-500 text-white font-medium text-xs leading-tight rounded shadow-md hover:bg-stone-600 hover:shadow-lg focus:bg-stone-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-stone-700 active:shadow-lg"
 							>
-								Generate Sample Documents
+								Generate Sample Courses
 							</button>
 						</div>
 					</div>
