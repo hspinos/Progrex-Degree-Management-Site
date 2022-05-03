@@ -7,6 +7,13 @@ import GradeCard from "./grade";
 function ElectivesTable() {
     const [course, setCourses] = useState([]);
     var user;
+    var grade;
+
+    //Defining user that is logged in
+    if (Cookies.get('userCookie')) {
+        user = JSON.parse(Cookies.get('userCookie'));
+    }
+
 
     const get_courses = async () => {
         try{
@@ -25,9 +32,21 @@ function ElectivesTable() {
         get_courses();
     }, []);
 
-    let grades = course.map((cor) => {
-    return <GradeCard id={cor._id} /> 
-    })
+    function getGrade(courseId){
+        const get_grade = async () => {
+            try{
+            const response = await axios.get(`/course/student/${courseId}/${user._id}`)
+            const courseStudent = await response.data;
+
+            grade = courseStudent.grade;
+            console.log(grade);
+            return(grade);
+        }catch(err){
+            console.error(err.message);
+        }
+        }
+        
+    }
 
 
     return (
@@ -37,7 +56,7 @@ function ElectivesTable() {
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-left text-lg font-bold">
                     <div className="bg-stone-800 items-center p-4 w-full rounded-md font-bold">
 
-                        Core Curriculum
+                        Electives 
                     </div>
                     <table class="w-full text-sm text-left text-white-500 dark:text-white-400">
                        
@@ -76,7 +95,9 @@ function ElectivesTable() {
                                     <td class="px-6 py-3">
                                         {courses.credits}
                                     </td>
-                                        {grades} 
+                                        <GradeCard 
+                                            id={courses._id}
+                                        />
                                 </tr>
                             ))}    
                        </tbody>

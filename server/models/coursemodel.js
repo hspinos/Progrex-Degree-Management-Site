@@ -4,16 +4,15 @@ const Schema = mongoose.Schema;
 const studentSchema = new Schema(
   {
     studentId: {type: mongoose.SchemaTypes.ObjectId, ref: 'User'},
-    semester: {type: "String", required: false, default: "Spring 2022"},
-    grade: {type: "String", required: false, default: "A"}
+    grade: {type: "String", required: true}
   }
 )
 
 const courseSchema = new Schema(
   {
     courseName: {type: String, required: true, maxLegnth: 40, unique: true, dropDups: true},
-    courseRan: {type: String, required: false, maxLegnth: 10, default: "CSCI 0000"},
-    credits: {type: Number, required: false, default: 3},
+    courseRan: {type: String, maxLegnth: 10, required: true},
+    credits: {type: Number, required: true},
     usersTaken: [studentSchema]
   }
 )
