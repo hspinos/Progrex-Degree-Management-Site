@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const studentSchema = new Schema(
   {
     studentId: {type: mongoose.SchemaTypes.ObjectId, ref: 'User'},
-    grade: {type: "String", required: false, default: "-"}
+    grade: {type: "String", required: true}
   }
 )
 

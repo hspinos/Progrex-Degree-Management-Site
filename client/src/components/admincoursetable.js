@@ -51,19 +51,19 @@ function AdminCourseTable() {
 				<th scope="row" className="px-2 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
 					{cor.credits}
 				</th>
-				<td className="px-2 py-4 text-right">
-					<div className="grid grid-cols-2">
+				<td className="px-2 py-4 whitespace-nowrap">
+					<div className="grid grid-cols-2 content-center">
 						<button
 							data-bs-toggle="modal"
 							data-bs-target={`#editModal${cor._id}`}
-							className=" w-fit px-4 h-full whitespace-nowrap bg-green-600 hover:bg-green-700 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
+							className="flex-right px-3 py-2 justify-self-center h-full bg-green-600 hover:bg-green-700 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
 						>
 							Edit
 						</button>
 						<button
 							data-bs-toggle="modal"
 							data-bs-target={`#deleteModal${cor._id}`}
-							className="px-1 py-1 w-fit h-full whitespace-nowrap bg-red-600 hover:bg-red-700 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
+							className="px-1 py-2 justify-self-center h-full whitespace-nowrap bg-red-600 hover:bg-red-700 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg "
 						>
 							Delete
 						</button>
@@ -74,7 +74,7 @@ function AdminCourseTable() {
 					<button 
 						data-bs-toggle="modal"
 						data-bs-target={`#addStudent${cor._id}`}
-						class="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+						class="text-white bg-green-600 hover:bg-green-800 font-medium rounded-lg text-sm inline-flex items-right px-5 py-2.5 text-center mr-2"
 						>
 						Add Student
 					</button>

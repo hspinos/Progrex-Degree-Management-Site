@@ -47,16 +47,16 @@ function AddStudentModal(props) {
 
 	//Handles clicking save
 	async function handleSaveClick(e) {
-        let studentUpdate;
         console.log(studId)
+		console.log(props.courseId)
         console.log(studGrade)
-		let studUpdateData;
+		let studUpdateData = {studId: studId, studGrade: studGrade};
 		if (studId) studUpdateData["studentId"] = studId;
 		if (studGrade) studUpdateData["grade"] = studGrade;
+		console.log(studUpdateData);
         try{
             let res = await axios.put(`/course/student/${props.courseId}/${studId}`, studUpdateData);
-            
-            console.log(res);
+            console.log(res.data);
             window.location.reload();
         }catch (err) {
             alert("Error! Student is already in this course");

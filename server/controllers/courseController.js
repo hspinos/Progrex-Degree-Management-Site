@@ -1,4 +1,5 @@
 let Course = require('../models/coursemodel')
+let student = require('../models/coursemodel')
 courseModel = new Course();
 const mongoose = require('mongoose');
 
@@ -46,13 +47,20 @@ exports.test_course_endpoint = function (req, res) {
       try{
           let userId = mongoose.Types.ObjectId(req.params.userId);
           const course = await Course.findById(req.params.courseId);
+          if(req.params.grade) course.usersTaken(`grade`) = req.body.grade;
+          console.log(req.params.grade);
+          //console.log(req.body.grade);
           if(course.usersTaken.find(studentData => studentData.studentId.equals(userId))){
               res
                 .status(401)
                 .send("Error, user already taken this course");
           }else {
-              course.usersTaken.push({studentId: userId});
+            console.log(req.params.grade);
+            console.log(req.body.grade);
+              course.usersTaken.push({studentId: userId, grade: req.body.grade});
+              
               await course.save();
+              
               res
                 .json(course)
                 .status(200)

@@ -26,7 +26,7 @@ function CoreTable() {
     }, []);
 
     let grades = course.map((cor) => {
-    return <GradeCard id={cor.id} /> 
+    return <GradeCard id={cor._id} /> 
     })
 
    
@@ -77,7 +77,7 @@ function CoreTable() {
                                     <td class="px-6 py-3">
                                         {courses.credits}
                                     </td>
-                                        {grades} 
+                                        <GradeCard id={courses._id} />
                                 </tr>
                             ))}    
                        </tbody>
