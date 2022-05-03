@@ -48,22 +48,22 @@ describe('Testing COURSE endpoint', () => {
         });
     });
 
-    describe('POST (FAIL) /course/create : create a new course entry', () => {
-        it('should return status 401', (done) => {
-            let course = {
-                courseName: "testCourseName",
-                courseRan: "CSCI 4201",
-                credits: 4
-            }
-        chai.request(app)
-            .post('/course/create')
-            .send(course)
-            .end((err, res) => {
-                res.should.have.status(401);
-                done();
-            });
-        });
-    });
+    // describe('POST (FAIL) /course/create : create a new course entry', () => {
+    //     it('should return status 401', (done) => {
+    //         let course = {
+    //             courseName: "testCourseName",
+    //             courseRan: "CSCI 4201",
+    //             credits: 4
+    //         }
+    //     chai.request(app)
+    //         .post('/course/create')
+    //         .send(course)
+    //         .end((err, res) => {
+    //             res.should.have.status(401);
+    //             done();
+    //         });
+    //     });
+    // });
 
     describe('GET /course/list: list all courses', () => {
         it('should return status 200', (done) => {

@@ -4,7 +4,7 @@
   "description": "server-side for DegreeManagementSite",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive --exit",
+    "test": "nyc mocha --recursive --exit",
     "start": "nodemon index.js"
   },
   "author": "",
@@ -25,6 +25,7 @@
     "mongodb-memory-server": "^8.5.2",
     "mongoose": "^6.2.2",
     "nodemon": "^2.0.15",
+    "nyc": "^15.1.0",
     "redis": "^4.0.3",
     "supertest": "^6.2.3"
   }

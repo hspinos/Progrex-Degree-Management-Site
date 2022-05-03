@@ -10,7 +10,7 @@ const app = require('../index');
 chai.use(chaiHttp);
 chai.should();
 
-describe('Testing user endpoint', () => {
+describe('Testing USER endpoint', () => {
     before((done) => {
         connectDB()
             .then(() => done())
@@ -45,7 +45,7 @@ describe('Testing user endpoint', () => {
         });
     });
 
-    describe('POST /user/create: fail no username', () => {
+    describe('POST (FAIL) /user/create: fail no username', () => {
         it('should return status 401', (done) => {
             chai.request(app)
                 .post('/user/create')
@@ -57,7 +57,7 @@ describe('Testing user endpoint', () => {
         });
     });
 
-    describe('POST /user/create: fail no password', () => {
+    describe('POST (FAIL) /user/create: fail no password', () => {
         it('should return status 401', (done) => {
             chai.request(app)
                 .post('/user/create')
@@ -69,7 +69,7 @@ describe('Testing user endpoint', () => {
         });
     });
 
-    describe('POST /user/create: fail no first name', () => {
+    describe('POST (FAIL) /user/create: fail no first name', () => {
         it('should return status 401', (done) => {
             chai.request(app)
                 .post('/user/create')
@@ -81,7 +81,7 @@ describe('Testing user endpoint', () => {
         });
     });
 
-    describe('POST /user/create: fail no last name', () => {
+    describe('POST (FAIL) /user/create: fail no last name', () => {
         it('should return status 401', (done) => {
             chai.request(app)
                 .post('/user/create')

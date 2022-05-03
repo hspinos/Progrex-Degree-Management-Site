@@ -132,7 +132,7 @@ exports.addToCommon = async function (req, res) {
 
 exports.createBadge = async function (req, res) {
   try {
-    console.log("create badge endpoint called");
+    //console.log("create badge endpoint called");
     // let userId = mongoose.Types.ObjectId(req.params.userId);
     
     const badge = new Badge({

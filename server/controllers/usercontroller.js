@@ -26,7 +26,7 @@ exports.get_users = async function (req, res) {
 
 exports.create_user = async function (req, res) {
   try {
-    console.log("create user endpoint called");
+    //console.log("create user endpoint called");
     let hash = await bcrypt.hash(req.body.password, saltRounds);
     const user = new User({
       username: req.body.username,
