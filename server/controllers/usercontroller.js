@@ -71,21 +71,23 @@ exports.user_login = function (req, res) {
       if (result == false) throw new Error('Password does not match');
 
       // Set request session object to user._id
-      req.session.user = user._id;
-
+      if(process.env.NODE_ENV !== 'test'){
+        req.session.user = user._id;
+      }
+      
       /**
        * Start building out response object
        * add a cookie to it
        * send it with status 200
        */
-      console.log("Inside user login");
+      //console.log("Inside user login");
       return res
         .status(200)
         .cookie('userCookie', JSON.stringify({ id: user._id, fName: user.fName, lName: user.lName, isAdmin: user.isAdmin }), { maxAge: 1000 * 60 * 60 * 24 })
         .send({ "user": user.fName })
         .end()
     } catch (err) {     // If there are any errors, catch, print, and send 401
-      // console.error(err);
+      //console.error(err);
       return res
         .status(401)
         .send()

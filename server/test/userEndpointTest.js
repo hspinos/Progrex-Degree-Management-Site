@@ -23,17 +23,6 @@ describe('Testing USER endpoint', () => {
             .catch((err) => done(err));
     })
 
-    describe('GET /user/list: list all users', () => {
-        it('should return status 200', (done) => {
-            chai.request(app)
-                .get('/user/list')
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    done();
-                });
-        });
-    });
-
     describe('GET /user/detail/:id : list a single user with specified id', () => {
         it('should return status 200', (done) => {
             chai.request(app)
@@ -93,12 +82,15 @@ describe('Testing USER endpoint', () => {
         });
     });
 
+    let createRes;
+
     describe('POST /user/create: user signup', () => {
         it('should return status 200', (done) => {
             chai.request(app)
                 .post('/user/create')
                 .send({ username: 'johndoe', password: 'johndoe', fName: 'john', lName: 'doe' })
                 .end((err, res) => {
+                    createRes = res;
                     res.should.have.status(200);
                     // This verifies that the user has been passed thru to server
                     res.body.should.have.property('username')
@@ -107,17 +99,50 @@ describe('Testing USER endpoint', () => {
         });
     });
 
-    //describe('POST /user/login: endpoint users can use to log in', () => {
-    //    it('should return status 200', (done) => {
-    //        chai.request(app)
-    //            .post('/user/login')
-    //            .send({ username: 'johndoe', password: 'johndoe' })
-    //            .end((err, res) => {
-    //                res.should.have.status(200);
-    //                done();
-    //            });
-    //    });
-    //});
+    describe('GET /user/list: list all users', () => {
+        it('should return status 200', (done) => {
+            chai.request(app)
+                .get('/user/list')
+                .end((err, res) => {
+                    //console.log(res.body);
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+    });
+
+    describe('POST /user/login: endpoint users can use to log in', () => {
+       it('should return status 200', (done) => {
+           chai.request(app)
+               .post('/user/login')
+               .send({ username: 'johndoe', password: 'johndoe' })
+               .end((err, res) => {
+                   //console.log(createRes.body)
+                   res.should.have.status(200);
+                   done();
+               });
+       });
+    });
+
+    describe('PUT /user/update/:id: user updates their information', () => {
+        it('should return status 200', (done) => {
+            let userInfo = {
+                fname : "test",
+                lname : "test",
+                avatarNum : 1,
+                displayBadgeNum: 1
+            }
+            chai.request(app)
+                .put(`/user/update/${createRes.body._id}`)
+                .send(userInfo)
+                .end((err, res) => {
+                    //console.log(createRes.body)
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+     });
+
 });
 
 

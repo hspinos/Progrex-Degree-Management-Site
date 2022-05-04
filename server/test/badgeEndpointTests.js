@@ -78,4 +78,49 @@ describe('Testing BADGE endpoint', () => {
         });
     });
 
+
+    describe('DELETE /badge/delete: delete and return all badges', () => {
+        it('should return status 200', (done) => {
+            chai.request(app)
+                .delete('/badge/delete')
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+    });
+
+    describe('GET /badge/find: find a badge with a specified id', () => {
+        it('should return status 200', (done) => {
+            chai.request(app)
+                .get('/badge/find?id=1234567890a0a1a2a3a4a5a6')
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+    });
+
+    describe('PUT /badge/approve: find a specified badge and set status to approved', () => {
+        it('should return status 200', (done) => {
+            chai.request(app)
+                .put('/badge/approve?id=1234567890a0a1a2a3a4a5a6')
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+    });
+
+    describe('PUT /badge/decline: find a specified badge and set status to declined', () => {
+        it('should return status 200', (done) => {
+            chai.request(app)
+                .put('/badge/decline?id=1234567890a0a1a2a3a4a5a6')
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    done();
+                });
+        });
+    });
+
 });
