@@ -17,7 +17,6 @@ function UserProgress() {
             <div className="flex-col w-10/12">
                 <StudentInfoDiv />
                 <CoreTable />
-                <ElectivesTable/>
             </div>
         </div>
     );
