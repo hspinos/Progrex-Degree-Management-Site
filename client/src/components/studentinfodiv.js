@@ -61,7 +61,7 @@ function StudentInfoDiv() {
         <div class="h- p-3">
           <div class="grid grid-cols-3 gap-4 mt-2">
             <div class="h-8 bg-stone-600 rounded border-2 border-stone-400 text-white text-center">{student.studentID}</div>
-            <div class="h-8 bg-stone-600 rounded border-2 border-stone-400 text-white text-center">{user.fName}, {user.lName}</div>
+            <div class="h-8 bg-stone-600 rounded border-2 border-stone-400 text-white text-center">{user.lName}, {user.fName}</div>
             <div class="h-8 bg-stone-600 rounded border-2 border-stone-400 text-white text-center">{student.pathway}</div>
           </div>
         </div>
