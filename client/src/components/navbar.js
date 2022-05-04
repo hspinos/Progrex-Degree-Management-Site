@@ -41,25 +41,18 @@ const Navbar = (props) => {
 
   let menuItems = [{
     name: "Home",
-    route: "home",
+    route: "userdash",
     id: 1,
-  }, {
+  }, ,  {
+    name: "Progress",
+    route: "userprogress",
+    id: 2,
+
+  },
+  {
     name: "About",
     route: "about",
-    id: 2,
-  }, {
-    name: "Dashboard",
-    route: "userdash",
     id: 3,
-  }, {
-    name: "Navbtn",
-    route: "home",
-    id: 5,
-  }, {
-    name: "Progress",
-    route: "adminprogress",
-    id: 6,
-
   }]
 
 
