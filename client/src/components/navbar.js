@@ -6,8 +6,38 @@ import axios from 'axios';
 // eslint-disable-next-line
 const Navbar = (props) => {
   let user;
+  var progressRoute = "userprogress";
   const history = useHistory();
    let [isAdmin, setIsAdmin] = useState(false)
+
+   if (Cookies.get('userCookie')) {
+    user = JSON.parse(Cookies.get('userCookie'));
+  }
+
+   const [student, setStudent] = useState([]);
+   
+   const getStudent = async () => {
+    try {
+      const response = await axios.get(`/user/detail/${user.id}`);
+      const jsonData = await response.data
+
+      console.log(jsonData);
+
+      setStudent(jsonData);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  useEffect(() => {
+    getStudent();
+  }, []);
+
+  
+
+  if(student.isAdmin == true){
+    progressRoute = "adminprogress";
+  }
 
   let menuItems = [{
     name: "Home",
@@ -27,10 +57,16 @@ const Navbar = (props) => {
     id: 5,
   }, {
     name: "Progress",
-    route: "userprogress",
+    route: "adminprogress",
     id: 6,
 
   }]
+
+
+
+  
+
+
 
 
   // TODO this method needs to be moved into a service file
@@ -46,16 +82,7 @@ const Navbar = (props) => {
     }
   }
 
-  user = Cookies.get('userCookie')
-
-  useEffect(()=>{
-    if(Cookies.get("userCookie")){
-    let u = JSON.parse(Cookies.get("userCookie"))
-    console.log(u);
-    setIsAdmin(u.isAdmin)
-    console.log("isAdmin ? : "+isAdmin)
-  }
-  },[])
+ 
   let nav = menuItems.map((item) => {
     return (
       <li key={item.id}>
