@@ -33,7 +33,8 @@ exports.create_user = async function (req, res) {
       password: hash,
       fName: req.body.fName,
       lName: req.body.lName,
-      badges: []
+      badges: [],
+      position: 0
     });
     await user.save();
     res
@@ -41,7 +42,7 @@ exports.create_user = async function (req, res) {
       .status(200)
       .send();
   } catch (err) {       // User most likely already exists
-    // console.error(err);
+    //console.error(err);
     res
       .status(401)
       .send();
