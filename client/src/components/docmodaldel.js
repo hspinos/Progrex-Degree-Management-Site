@@ -55,21 +55,23 @@ function DocModalDel(props) {
 								<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-white">
 									Are you sure you want to delete {props.name}?
 								</h3>
+							</div>
+							<div
+								id="editModalFooter"
+								className="relative modal-footer flex flex-shrink-0 flex-wrap items-center p-4 border-t border-gray-200 rounded-b-md dark:border-stone-700 justify-center"
+							>
 								<button
-									data-modal-toggle="popup-modal"
-									type="button"
-									onClick={handleDeleteClick}
-									class="text-white bg-red-600 hover:bg-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
-								>
-									Delete
-								</button>
-								<button
-									type="button"
+									className="mx-5 w-2/6 px-4 h-10 whitespace-nowrap  bg-stone-500 hover:bg-stone-600 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg"
 									data-bs-dismiss="modal"
 									aria-label="Close"
-									class="mx-5 w-fit px-4 h-10 whitespace-nowrap  bg-stone-500 hover:bg-stone-600 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg"
 								>
 									Cancel
+								</button>
+								<button
+									className="w-2/6 px-4 h-10 whitespace-nowrap bg-red-600 hover:bg-red-800 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none rounded-lg"
+									onClick={handleDeleteClick}
+								>
+									Delete
 								</button>
 							</div>
 						</div>

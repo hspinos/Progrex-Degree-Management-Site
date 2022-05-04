@@ -51,7 +51,8 @@ exports.deleteAllBadges = async function (req, res) {
       res.status(200).send(badge);
     });
   } catch (err) {
-    console.error(err);
+    //console.error(err);
+    res.status(401).send(err);
   }
 };
 
@@ -83,56 +84,58 @@ exports.getAllWithUserId = async function (req, res) {
 //returns single badge by id
 exports.getBadgeById = async function (req, res) {
   try {
-    console.log(req.query.id)
+    //console.log(req.query.id)
     const badge = await Badge.findById(req.query.id);
     res.json(badge).status(200).send();
-    console.log(badge)
+    //console.log(badge)
   } catch (err) {
-    console.error(err);
+    //console.error(err);
+    res.status(401).send(err);
   }
 };
 
 //returns single badge by id
 exports.approveBadge = async function (req, res) {
   try {
-    console.log(req.query.id)
+    //console.log(req.query.id)
     // const badge = await Badge.findById(req.query.id);
     const badge = await Badge.updateOne({_id: req.query.id}, {$set:{status:status.approved}})
     res.json(badge).status(200).send();
-    console.log(badge)
+    //console.log(badge)
   } catch (err) {
-    console.error(err);
+    //console.error(err);
+    res.status(401).send(err);
   }
 };
 //returns single badge by id
 exports.declineBadge = async function (req, res) {
   try {
-    console.log(req.query.id)
+    //console.log(req.query.id)
     // const badge = await Badge.findById(req.query.id);
     const badge = await Badge.updateOne({_id: req.query.id}, {$set:{status:status.declined}})
     res.json(badge).status(200).send();
-    console.log(badge)
+    //console.log(badge)
   } catch (err) {
     console.error(err);
   }
 };
 
 //returns single badge by id
-exports.addToCommon = async function (req, res) {
-  try {
-    console.log(req.query.id)
-    const badge = await Badge.findById(req.query.id);
-    res.json(badge).status(200).send();
-    console.log(badge)
-  } catch (err) {
-    console.error(err);
-  }
-};
+// exports.addToCommon = async function (req, res) {
+//   try {
+//     console.log(req.query.id)
+//     const badge = await Badge.findById(req.query.id);
+//     res.json(badge).status(200).send();
+//     console.log(badge)
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
 
 
 exports.createBadge = async function (req, res) {
   try {
-    console.log("create badge endpoint called");
+    //console.log("create badge endpoint called");
     // let userId = mongoose.Types.ObjectId(req.params.userId);
     
     const badge = new Badge({
