@@ -57,9 +57,7 @@ export default function UserDash() {
     <div className="flex justify-around items-center  m-auto">
       <div className="flex flex-col md:flex-row mt-4 m-auto justify-between space-x-3">
         <div className="flex-grow">
-
           <GameBoard />
-          <div>Current User Info</div>
         </div>
 
 
