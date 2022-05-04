@@ -48,8 +48,7 @@ const Navbar = (props) => {
     route: "userprogress",
     id: 2,
 
-  },
-  {
+  },{
     name: "About",
     route: "about",
     id: 3,

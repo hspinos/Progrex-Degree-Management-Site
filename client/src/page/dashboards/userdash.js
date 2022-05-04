@@ -45,10 +45,16 @@ export default function UserDash() {
     getStudent();
   }, []);
 
+  progress = parseInt(student.credits);
+  console.log(student.credits);
+  if(progress === 0 ){
+    console.log();
+  }else {
+    progress = ((progress)/30)*100;
+    progress = Math.trunc(progress);
+    console.log(student.progress);
+  }
   
-  progress = (student.credits/30)*100;
-  progress = Math.trunc(progress);
-  console.log(student.progress);
   
 
  
