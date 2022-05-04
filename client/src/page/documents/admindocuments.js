@@ -6,6 +6,7 @@ import AdminDocTable from "../../components/admindoctable";
 import DocModalEdit from "../../components/docmodaledit";
 import DocModalNew from "../../components/docmodalnew";
 import DocModalDel from "../../components/docmodaldel";
+import DocModalUsersSigned from "../../components/docmodaluserssigned";
 
 //Fetching documents from backend
 function AdminDocuments() {
@@ -58,7 +59,7 @@ function AdminDocuments() {
 		);
 	}
 
-	let editModals = documents.map((doc) => {
+	let modals = documents.map((doc) => {
 		return (
 			<React.Fragment>
 				<DocModalEdit
@@ -71,6 +72,7 @@ function AdminDocuments() {
 					creator={doc.creator}
 				/>
 				<DocModalDel docId={doc._id} name={doc.name} />
+				<DocModalUsersSigned docId={doc._id} />
 			</React.Fragment>
 		);
 	});
@@ -85,7 +87,7 @@ function AdminDocuments() {
 				<div className="flex-col w-8/12 h-full">
 					<AdminDocTable />
 				</div>
-				{editModals}
+				{modals}
 				<DocModalNew creator={`${user.fName} ${user.lName}`} />
 			</div>
 		);
