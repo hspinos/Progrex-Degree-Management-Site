@@ -78,8 +78,12 @@ describe('Testing COURSE endpoint', () => {
 
     describe('PUT /course/student/:courseId/:userId : assign a course to a specified user', () => {
         it('should return status 200', (done) => {
+        let grade = {
+            grade: "A"
+        }
         chai.request(app)
             .put(`/course/student/${createResponse.body._id}/1234567890a0a1a2a3a4a5a6`)
+            .send(grade)
             .end((err, res) => {
                 res.should.have.status(200);
                 done();
