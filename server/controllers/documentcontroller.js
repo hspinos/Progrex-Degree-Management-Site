@@ -15,7 +15,8 @@ exports.get_documents = async function (req, res) {
 			res.status(200).send(document);
 		});
 	} catch (err) {
-		console.error(err);
+		//console.error(err);
+		res.status(401).send(err);
 	}
 };
 
@@ -25,7 +26,8 @@ exports.document_detail = async function (req, res) {
 		const document = await Document.findById(req.params.id);
 		res.status(200).send(document);
 	} catch (err) {
-		console.error(err);
+		//console.error(err);
+		res.status(401).send(err);
 	}
 };
 
@@ -38,12 +40,13 @@ exports.check_document_signed = async function (req, res) {
 			signData.signerId.equals(userId)
 		);
 		if (data) {
-			res.send({ isSigned: true, dateSigned: data.dateSigned });
+			res.status(200).send({ isSigned: true, dateSigned: data.dateSigned });
 		} else {
-			res.send({ isSigned: false });
+			res.status(200).send({ isSigned: false });
 		}
 	} catch (err) {
-		console.error(err);
+		//console.error(err);
+		res.status(401).send(err);
 	}
 };
 
@@ -69,7 +72,7 @@ exports.set_document_signed = async function (req, res) {
 //Creates a new document
 exports.create_document = async function (req, res) {
 	try {
-		console.log("create document endpoint called");
+		//console.log("create document endpoint called");
 		const document = new Document({
 			name: req.body.name,
 			description: req.body.description,
@@ -80,15 +83,15 @@ exports.create_document = async function (req, res) {
 		await document.save();
 		res.json(document).status(200).send();
 	} catch (err) {
-		console.error(err);
-		res.status(401).send();
+		//console.error(err);
+		res.status(401).send(err);
 	}
 };
 
 //Creates a new document
 exports.update_document = async function (req, res) {
 	try {
-		console.log("update document endpoint called");
+		//console.log("update document endpoint called");
 		const document = await Document.findById(req.params.id);
 		if (req.body.name) document.name = req.body.name;
 		if (req.body.description) document.description = req.body.description;
@@ -97,15 +100,15 @@ exports.update_document = async function (req, res) {
 		await document.save();
 		res.json(document).status(200).send();
 	} catch (err) {
-		console.error(err);
-		res.status(401).send();
+		//console.error(err);
+		res.status(401).send(err);
 	}
 };
 
 //Deletes existing document by ID
 exports.delete_document = async function (req, res) {
 	try {
-		console.log("delete document endpoint called");
+		//console.log("delete document endpoint called");
 		const document = await Document.findById(req.params.id);
 		if (document) {
 			await Document.deleteOne({ _id: document.id });
@@ -126,7 +129,7 @@ exports.delete_document = async function (req, res) {
 //Setting document signed status
 exports.set_document_active = async function (req, res) {
 	try {
-		console.log("set active endpoint called");
+		//console.log("set active endpoint called");
 		const document = await Document.findById(req.params.id);
 		document.isActive = req.params.isActive;
 
