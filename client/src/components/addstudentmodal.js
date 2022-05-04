@@ -5,6 +5,7 @@ function AddStudentModal(props) {
 	var corName = document.getElementById(`courseName${props.courseId}`);
     var studId;
     var studGrade;
+	var credits;
 
     const[corseName, setName] = useState("");
     const[student, setStudent] = useState([]);
@@ -24,10 +25,9 @@ function AddStudentModal(props) {
         getStudents();
     }, []);
 
-
     let studs = student.map((stud) => {
         return(
-            <option value={stud._id}>{stud.lName}, {stud.fName}</option>
+            <option value={[stud._id, stud.credits]}>{stud.lName}, {stud.fName}</option>
         );
         
     })
@@ -48,16 +48,36 @@ function AddStudentModal(props) {
 	//Handles clicking save
 	async function handleSaveClick(e) {
         console.log(studId)
+		const studInfo = studId.split(",");
+		console.log(studInfo[1]);
 		console.log(props.courseId)
         console.log(studGrade)
-		let studUpdateData = {studId: studId, studGrade: studGrade};
-		if (studId) studUpdateData["studentId"] = studId;
+		let credits = parseInt(studInfo[1]);
+		let curr =	credits;
+		
+		var courseCredits = parseInt(props.credits);
+		curr += courseCredits;
+		let pos = curr/3;
+		console.log(pos);
+		pos = Math.trunc(pos-1);
+
+		console.log(pos);
+		console.log(curr);
+		let creds = {curr: curr, pos: pos}
+		
+		if (curr) creds["credits"] = curr;
+		if (pos) creds["position"] = pos;
+		console.log(creds);
+		let studUpdateData = {studId: studInfo[0], studGrade: studGrade};
+		if (studInfo[0]) studUpdateData["studentId"] = studInfo[0];
 		if (studGrade) studUpdateData["grade"] = studGrade;
 		console.log(studUpdateData);
         try{
-            let res = await axios.put(`/course/student/${props.courseId}/${studId}`, studUpdateData);
+            let res = await axios.put(`/course/student/${props.courseId}/${studInfo[0]}`, studUpdateData);
             console.log(res.data);
-            window.location.reload();
+			let kes = await axios.put(`user/update/${studInfo[0]}`, creds);
+			console.log(kes.data);
+            //window.location.reload();
         }catch (err) {
             alert("Error! Student is already in this course");
             console.error(err);

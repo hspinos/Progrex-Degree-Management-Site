@@ -107,6 +107,8 @@ exports.update_userInfo = async function (req, res){
     if (req.body.lName) user.lName = req.body.lName;
     if (req.body.avatarNum) user.avatarNum = req.body.avatarNum;
     if (req.body.displayBadgeNum) user.displayBadgeNum = req.body.displayBadgeNum;
+    if (req.body.credits) user.credits = req.body.credits;
+    if (req.body.position) user.position = req.body.position;
     await user.save();
     res.json(user).status(200).send();
   }catch (err){

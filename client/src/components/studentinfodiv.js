@@ -74,6 +74,7 @@ function StudentInfoDiv() {
           <p>Acedemic Standing:   {isGoodStanding}</p>
           <p>Applied To Graduate:  {isAppliedToGrad}</p>
           <p>Campus: Statesboro</p>
+          <p>Credits: {student.credits}</p>
         </div>
       </div>
     </div>

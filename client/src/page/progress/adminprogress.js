@@ -77,6 +77,8 @@ function AdminProgress() {
                     key={cor._id}
 					courseId={cor._id}
 					courseName={cor.courseName}
+					credits={cor.credits}
+					pos={cor.position}
                     />
 			</React.Fragment>
 		);

@@ -3,6 +3,8 @@ import ProgressBar from "../../components/progressbar";
 import GameBoard from "../../components/gameBoard";
 import Sidebar from "../../components/sidebar";
 import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 
@@ -12,10 +14,44 @@ import Cookies from "js-cookie";
   
 export default function UserDash() {
 
+  var user;
+  var progress;
   
   if (!Cookies.get('userCookie')) {
     window.location.replace('/login?redirectLocation=userdash');
   }
+
+  if (Cookies.get('userCookie')) {
+    user = JSON.parse(Cookies.get('userCookie'));
+  }
+
+  const [student, setStudent] = useState([]);//
+
+  //Getting document list from database
+  const getStudent = async () => {
+    try {
+      const response = await axios.get(`/user/detail/${user.id}`);
+      const jsonData = await response.data
+
+      console.log(jsonData);
+
+      setStudent(jsonData);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  useEffect(() => {
+    getStudent();
+  }, []);
+
+  
+  progress = (student.credits/30)*100;
+  progress = Math.trunc(progress);
+  console.log(student.progress);
+  
+
+ 
   
   return (
     <div className="flex justify-around items-center  m-auto">
@@ -59,9 +95,7 @@ export default function UserDash() {
                   </div>
                 </div>
               </div>*/}
-              <ProgressBar progressPercentage={25}/>
-              <ProgressBar progressPercentage={50}/>
-              <ProgressBar progressPercentage={75}/>
+              <ProgressBar progressPercentage={progress}/>
             </div>
           </div>
         </div>
