@@ -57,7 +57,7 @@ LinkedIn: [@nathan-agcaoili](https://www.linkedin.com/in/nathan-agcaoili/)
 
 ### Elias Binchamo
 
-Role: Quality Controller
+Role: Mock Data
 
 GitHub: [@eliasbinchamo](https://github.com/eliasbinchamo)
 
@@ -104,7 +104,7 @@ LinkedIn: [@jonathan-nguyen](https://www.linkedin.com/in/jonathan-nguyen-9361611
 
 ### Hayden Spinos
 
-Role: Devil's Advocate
+Role: QA Specialist
 
 GitHub: [@hspinos](https://github.com/hspinos)
 
