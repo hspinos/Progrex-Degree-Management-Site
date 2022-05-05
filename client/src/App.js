@@ -64,6 +64,7 @@ function App() {
             <Route path="/admindocuments"><AdminDocuments /></Route>
             <Route path="/adminprogress"><AdminProgress /></Route>
             <Route path="/about"><About /></Route>
+            <Route path="/"><UserDash /></Route>
           </Switch>
         </Layout>
       </div>

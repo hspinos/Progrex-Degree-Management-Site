@@ -8,6 +8,23 @@ import BadgesService from "../services/badgeService";
 import { http } from "../axios-config";
 import axios from "axios";
 
+let badgeArray = [
+  'ArtAndDesignBadge.jpg',
+  'BrainBadge.jpg',
+  'DiplomaBadge.jpg',
+  'ScienceBadge.jpg',
+  'UniversityBadge.jpg'
+]
+
+let randomSize = (min, max) => {
+  return Math.floor(Math.random() * (max - min) + min);
+};
+
+function generateBadge() {
+  let badgeName = badgeArray[randomSize(0, 5)];
+  return badgeName;
+}
+
 const Badge = () => {
 
   const [badgesList, setBadgesList] = useState([]);
@@ -50,9 +67,7 @@ const Badge = () => {
    getData()
   },[]);
 
-  let randomSize = (min, max) => {
-    return Math.floor(Math.random() * (max - min) + min);
-  };
+
 
   let badgesx = badgesList.map((item) => {
     return (
@@ -65,10 +80,7 @@ const Badge = () => {
         <div className="flex flex-row items-center h-full p-2 space-x-5">
           <div className="w-12 bg-gray-300 h-12 rounded-full  overflow-clip flex-none ">
             <img
-              src={`http://placekitten.com/${randomSize(45, 55)}/${randomSize(
-                50,
-                55
-              )}`}
+              src={'assets/temp_badge_pics/' + generateBadge()}
               className="w-full cover-full flex-none"
               alt=""
             />
