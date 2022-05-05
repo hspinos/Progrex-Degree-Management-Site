@@ -118,10 +118,10 @@ const Navbar = (props) => {
 							</button>
 
 							<div
-								className="hidden z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-stone-800 dark:divide-gray-600"
+								className="hidden py-3 px-4 z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-stone-800 dark:divide-gray-600"
 								id="dropdown"
 							>
-								<div className="py-3 px-4">
+								<div>
 									<span className="block text-sm text-gray-900 dark:text-white">
 										{user.fName} {user.lName}
 									</span>
@@ -132,20 +132,22 @@ const Navbar = (props) => {
 								<ul className="py-1" aria-labelledby="dropdown">
 									<li>
 										<a
-											href="#"
+											href="admindash"
 											className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
 										>
-											<Link to="/admindash">Dashboard</Link>
+                      Dashboard
 										</a>
 									</li>
 									<li>
-										<a className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-											<Link to="/admindocuments">Documents</Link>
+										<a  href="admindocuments"
+                        className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                          Documents
 										</a>
 									</li>
 									<li>
-										<a className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-											<Link to="/updateuserpage">Update Information</Link>
+										<a href="updateuserpage" 
+                       className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                         Update Information
 										</a>
 									</li>
 									<li>
