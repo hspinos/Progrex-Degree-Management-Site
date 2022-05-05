@@ -10,29 +10,29 @@ let app = express();
 let PORT = 8081;
 
 
-if(process.env.NODE_ENV !== 'test') {
-    PORT = 8080;
-    connectDB();
-    const session = require('express-session');
-    const Redis = require('ioredis');
-    const RedisStore = require('connect-redis')(session);
-    let RedisClient = new Redis({
-        host: `${process.env.REDIS_HOST}`,
-        password: `${process.env.REDIS_PASSWORD}`,
-        port: 6379
-    });
+if (process.env.NODE_ENV !== 'test') {
+  PORT = 8080;
+  connectDB();
+  const session = require('express-session');
+  const Redis = require('ioredis');
+  const RedisStore = require('connect-redis')(session);
+  let RedisClient = new Redis({
+    host: `${process.env.REDIS_HOST}`,
+    password: `${process.env.REDIS_PASSWORD}`,
+    port: 6379
+  });
 
-    app.use(session({
-        store: new RedisStore({ client: RedisClient }),
-        secret: 'partycat',
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-          secure: false,
-          httpOnly: true,
-          maxAge: 1000 * 60 * 60 * 24 // This will result in a hour
-        }
-      }));
+  app.use(session({
+    store: new RedisStore({ client: RedisClient }),
+    secret: 'partycat',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: false,
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 // This will result in a hour
+    }
+  }));
 }
 
 app.use(cookieParser());
@@ -43,7 +43,7 @@ const DocumentRouter = require('./routes/DocumentRouter');
 const badgeRouter = require('./routes/badgeRouter');
 const courseRouter = require('./routes/courseRouter');
 
-app.use(express.static(path.join(__dirname, 'frontend/build')));
+app.use(express.static(path.resolve(__dirname, './frontend/build')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({
@@ -57,6 +57,10 @@ app.use('/user', UserRouter);
 app.use('/document', DocumentRouter);
 app.use('/badge', badgeRouter);
 app.use('/course', courseRouter);
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './frontend/build', 'index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
