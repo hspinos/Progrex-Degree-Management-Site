@@ -1,14 +1,15 @@
 import React from 'react';
 function ProgressBar({progressPercentage}){
     return (
-        <div className='h-4 rounded-full w-full bg-gray-300'>
-            <div 
-            style={{width:`${progressPercentage}%`}}
-            className={`h-full flex items-center place-content-center rounded-full bg-green-500`}>
-                    <div className='text-6x1 font-semibold text-white'>{progressPercentage}%</div>
+        <div>
+            <div class="flex justify-between mb-1">
+                <span class="text-base font-medium text-blue-700 dark:text-white"></span>
+                <span class="text-sm font-medium text-blue-700 dark:text-white">{progressPercentage}%</span>
             </div>
-            
+            <div class="w-full bg-gray-200 rounded-full h-4 dark:bg-gray-700">
+            <div class="bg-[#2BB673] h-4 rounded-full" style={{width:`${progressPercentage}%`}}></div>
         </div>
+    </div>
     );
 
 }
