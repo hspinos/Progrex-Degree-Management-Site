@@ -66,39 +66,20 @@ export default function UserDash() {
           <GameBoard />
         </div>
 
-
         <div className="flex flex-col items-center justify-center space-y-2">
-          <div className=" rounded-md flex-auto overflow-y-auto lg:w-96 overflow-x-hidden bg-stone-800">
+          <div className="h-3/5 rounded-md flex-auto overflow-y-scroll lg:w-96 overflow-x-hidden bg-stone-800 scrollbar-thin scrollbar-thumb-green-700 scrollbar-track-gray-300 scrollbar-thumb-rounded scrollbar-track-rounded">
             <div className="w-full p-8 space-y-4 m-auto text-center">
-              <h1 className="text-3xl font-semibold uppercase overflow-x-clip overflow-y-scroll lg:w-40">Badges</h1>
-              {/* <div className=" h-24 border-2 rounded-md">
-                <div className="flex flex-row items-center h-full p-2 space-x-5">
-                  <div className="w-12 bg-gray-300 h-12 rounded-full "></div>
-                  <div className="flex flex-col space-y-3">
-                    <div className="w-36 bg-gray-300 h-6 rounded-md "></div>
-                    <div className="w-24 bg-gray-300 h-6 rounded-md "></div>
-                  </div>
-                </div>
-              </div> */}
-              {/* <Sidebar/> */}
-              <Badge/>
+              <h1 className="text-5xl font-semibold lg:w-40">Badges</h1>
+
+              <table>
+                <Badge />
+              </table>
+  
             </div>
           </div>
-          <div className="border-4 rounded-md p-4 flex-auto ">
+          <div className="w-full h-2/5 rounded-md p-4 flex-auto bg-stone-800">
             <div className="w-11/12 space-y-4 m-auto">
-              <h1 className="text-6xl font-semibold">Progress</h1>{/*
-              <div className=" h-24 border-2 rounded-md">
-                <div className="flex flex-row items-center h-full p-2 space-x-5">
-                  <div className="w-12 bg-gray-300 h-12 rounded-full "></div>
-                  <div className="flex flex-col space-y-3">
-                    <div className="w-36 bg-gray-300 h-6 rounded-md ">
-                      hello
-                      
-                    </div>
-                    <div className="w-24 bg-gray-300 h-6 rounded-md "></div>
-                  </div>
-                </div>
-              </div>*/}
+              <h1 className="text-5xl font-semibold">Progress</h1>
               <ProgressBar progressPercentage={progress}/>
             </div>
           </div>
