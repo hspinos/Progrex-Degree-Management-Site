@@ -43,16 +43,20 @@ const Navbar = (props) => {
 			route: "userdash",
 			id: 1,
 		},
-		,
 		{
 			name: "Progress",
 			route: "userprogress",
 			id: 2,
 		},
 		{
+			name: "Forms",
+			route: "userdocuments",
+			id: 3,
+		},
+		{
 			name: "About",
 			route: "about",
-			id: 3,
+			id: 4,
 		},
 	];
 
