@@ -47,7 +47,7 @@ app.use(express.static(path.resolve(__dirname, './frontend/build')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://http://143.244.164.60/',
   methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
   credentials: true
 }));
