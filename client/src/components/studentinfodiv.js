@@ -71,7 +71,7 @@ function StudentInfoDiv() {
           <p>Concentration:   {student.pathway}</p>
           <p>Advisor:   Erica Colbert </p>
           <p>GPA:  {student.gpa}</p>
-          <p>Acedemic Standing:   {isGoodStanding}</p>
+          <p>Good Acedemic Standing:   {isGoodStanding}</p>
           <p>Applied To Graduate:  {isAppliedToGrad}</p>
           <p>Campus: Statesboro</p>
           <p>Credits: {student.credits}</p>
