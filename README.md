@@ -110,6 +110,7 @@ GitHub: [@hspinos](https://github.com/hspinos)
 
 LinkedIn: [@haydenspinos](https://www.linkedin.com/in/haydenspinos/)
 
+
 </div>
 </td>
 </tr>
